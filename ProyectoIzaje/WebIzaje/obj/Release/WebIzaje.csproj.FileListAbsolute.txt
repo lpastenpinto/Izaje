@@ -1,0 +1,468 @@
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\oracle.dataaccess.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\WebGrease.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\bin\Oracle.Web.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Oracle.DataAccess.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\WebGrease.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje (último)\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\WebGrease.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\WebGrease.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\obj\Release\RdlCompile.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje_ - copia\WebIzaje\obj\Release\RdlCompile.compiled
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\WebGrease.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\obj\Release\RdlCompile.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\obj\Release\RdlCompile.compiled
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v1\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\WebGrease.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\obj\Release\RdlCompile.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\obj\Release\RdlCompile.compiled
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-v2\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Owin.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebGrease.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\RdlCompile.cache
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\RdlCompile.compiled
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Pezz\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.dll.config
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebIzaje.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Antlr3.Runtime.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.SqlServer.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Newtonsoft.Json.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Owin.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Helpers.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Mvc.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Optimization.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Razor.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\WebGrease.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Helpers.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Mvc.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Optimization.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\System.Web.WebPages.Razor.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Newtonsoft.Json.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Antlr3.Runtime.pdb
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\EntityFramework.SqlServer.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.csprojResolveAssemblyReference.cache
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\RdlCompile.cache
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\RdlCompile.compiled
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.dll
+C:\Users\Guillermo\Desktop\ProyectoIzaje-final\WebIzaje\obj\Release\WebIzaje.pdb

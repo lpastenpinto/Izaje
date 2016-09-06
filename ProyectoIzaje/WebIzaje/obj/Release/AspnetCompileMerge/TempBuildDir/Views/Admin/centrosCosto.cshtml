@@ -1,0 +1,81 @@
+﻿@model List<WebIzaje.Models.centro_costo>
+@{
+    ViewBag.Title = "Centros de Costo";
+}
+
+<div class="container">
+
+    @if (ViewData["mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>@ViewData["mensaje"]
+        </div>
+    }
+    <div class="page-header"><h2>Centros de Costo</h2></div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Área</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td><strong class="text-primary">@Model[i].nombre</strong></td>
+                            <td>@Model[i].codigo</td>
+                            <td>@Model[i].area</td>
+                            <td><a href="#" data-toggle="modal" data-target="#myModal" onclick="funcionDelete('@Model[i].codigo')"><span class='glyphicon glyphicon-trash text-danger'></span></a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <hr />
+    <a href="@Url.Action("agregarCentroCosto","Admin")" type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign text-success"></i>&nbsp;Nuevo</a>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">¿Eliminar Registro?</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center" id="text-modal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                    <a href="" type="button" id="btn_delete" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        function funcionDelete(name) {
+            $("#text-modal").html("");
+            var cadena = "@Url.Action("eliminarCentroCosto", "Admin", new { codigo = "name" })";
+            cadena = cadena.replace("name", name);
+            $("#btn_delete").attr("href", cadena);
+            $("#text-modal").append("¿Estás seguro de que deseas eliminar a <strong>" + name + "</strong>  de Centros de Costo?");
+        }
+
+    </script>
+}

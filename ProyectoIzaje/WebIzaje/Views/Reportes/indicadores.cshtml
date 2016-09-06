@@ -1,0 +1,283 @@
+﻿
+@{
+   ViewBag.Title = "Indicadores del Sitio";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>Indicadores del sitio</h2>
+    </div>
+
+    <div class="table table-responsive">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th>Indicador</th>
+                    <th>Descripción</th>
+                    <th>Valor entero</th>
+                    <th>Valor divisor</th>
+                    <th>Valor indicador</th>
+                    <th>Recomendación</th>
+
+                </tr>
+            </thead>
+            <tbody>                    
+                <tr>
+                    <td><strong>Solicitudes realizadas con antelación</strong></td>
+                    <td>Indica la relación existente entre el número de solicitudes creadas siete días o más antes de su fecha de inicio y el total de solicitudes futuras existentes</td>
+                    <td><span class="label label-info">@ViewData["cantidadSolicitadasConAnterioridad"]</span></td>
+                    <td><span class="label label-info">@ViewData["totalFuturas"]</span></td>
+                    @if ((double)ViewData["tasaSolicitadasConAnterioridad"]<50)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaSolicitadasConAnterioridad"]%</span></td>
+                        <td>Pedir con urgencia a los solicitantes de servicios que realicen las solicitudes con a lo menos siete días de antelación a la fecha de inicio del servicio</td>
+                    }
+                    else if ((double)ViewData["tasaSolicitadasConAnterioridad"]<85)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaSolicitadasConAnterioridad"]%</span></td>
+                        <td>Pedir a los solicitantes de servicios que realicen las solicitudes con a lo menos siete días de antelación a la fecha de inicio del servicio</td>
+                    }
+                    else 
+                    {
+                        <td><span class="label label-success">@ViewData["tasaSolicitadasConAnterioridad"]%</span></td>
+                        <td>--</td>
+                    }
+                </tr>
+                <tr>
+                    <td><strong>Planificación de solicitudes</strong></td>
+                    <td>Indica la relación existente entre el número de solicitudes futuras que han sido planificadas y el total de solicitudes futuras en el sistema</td>
+                    <td><span class="label label-info">@ViewData["cantidadPlanificadas"]</span></td>
+                    <td><span class="label label-info">@ViewData["totalFuturas"]</span></td>
+                    @if ((double)ViewData["tasaPlanificadas"] < 50)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaPlanificadas"]%</span></td>
+                        <td>Mejorar con urgencia los procesos de planificación de servicios</td>
+                    }
+                    else if ((double)ViewData["tasaPlanificadas"] < 85)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaPlanificadas"]%</span></td>
+                        <td>Mejorar los procesos de planificación de servicios</td>
+                    }
+                    else
+                    {
+                        <td><span class="label label-success">@ViewData["tasaPlanificadas"]%</span></td>
+                        <td>--</td>
+                    }
+                </tr>
+                <tr>
+                    <td><strong>Exactitud en estimación de horas</strong></td>
+                    <td>Indica la relación entre las horas reales de duración de los servicios de Izaje y la cantidad de horas estimadas de duración que se planificaron para los mismos</td>
+                    <td><span class="label label-info">@ViewData["cantidadHorasReales"]</span></td>
+                    <td><span class="label label-info">@ViewData["cantidadHorasEstimadas"]</span></td>
+                    @if ((double)ViewData["tasaExactitudEstimacionHoras"] < 50)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaExactitudEstimacionHoras"]%</span></td>
+                        <td>Indicar a los encargados de planificación de servicios que se debe mejorar urgentemente la estimación de horas de duración de servicios, ya que éstas suelen ser mucho menores en la práctica</td>
+                    }
+                    else if ((double)ViewData["tasaExactitudEstimacionHoras"] > 150)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaExactitudEstimacionHoras"]%</span></td>
+                        <td>Indicar a los encargados de planificación de servicios que se debe mejorar urgentemente la estimación de horas de duración de servicios, ya que éstas suelen ser mucho mayores en la práctica</td>
+                    }
+                    else if ((double)ViewData["tasaExactitudEstimacionHoras"] < 85)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaExactitudEstimacionHoras"]%</span></td>
+                        <td>Indicar a los encargados de planificación de servicios que las horas estimadas de duración de los mismos suelen ser mayores a sus horas de duración real</td>
+                    }
+                    else if ((double)ViewData["tasaExactitudEstimacionHoras"] > 115)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaExactitudEstimacionHoras"]%</span></td>
+                        <td>Indicar a los encargados de planificación de servicios que las horas estimadas de duración de los mismos suelen ser menores a sus horas de duración real</td>
+                    }
+                    else
+                    {
+                        <td><span class="label label-success">@ViewData["tasaExactitudEstimacionHoras"]%</span></td>
+                        <td>--</td>
+                    }
+                </tr>
+                <tr>
+                    <td><strong>Adherencia a planificación</strong></td>
+                    <td>Indica la relación existente entre el número de solicitudes que se han realizado y confirmado y el número total de solicitudes realizadas</td>
+                    <td><span class="label label-info">@ViewData["cantidadConfirmadas"]</span></td>
+                    <td><span class="label label-info">@ViewData["totalPrevias"]</span></td>
+                    @if ((double)ViewData["tasaConfirmadas"] < 50)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaConfirmadas"]%</span></td>
+                        <td>Buscar urgentemente razones para la baja confirmación de solicitudes. Consultar a encargados de planificación de servicios y autorizadores</td>
+                    }
+                    else if ((double)ViewData["tasaConfirmadas"] < 85)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaConfirmadas"]%</span></td>
+                        <td>Buscar razones para la baja confirmación de solicitudes. Consultar a encargados de planificación de servicios y autorizadores</td>
+                    }
+                    else
+                    {
+                        <td><span class="label label-success">@ViewData["tasaConfirmadas"]%</span></td>
+                        <td>--</td>
+                    }
+                </tr>
+                <tr>
+                    <td><strong>Solicitudes no confirmadas/atrasadas</strong></td>
+                    <td>Indica la relación existente entre el número de solicitudes que no se han realizado o confirmado y el número total de solicitudes realizadas</td>
+                    <td><span class="label label-info">@ViewData["cantidadNoConfirmadas"]</span></td>
+                    <td><span class="label label-info">@ViewData["totalPrevias"]</span></td>
+                    @if ((double)ViewData["tasaNoConfirmadas"] > 50)
+                    {
+                        <td><span class="label label-danger">@ViewData["tasaNoConfirmadas"]%</span></td>
+                        <td>Buscar urgentemente razones para la baja confirmación de solicitudes. Consultar a encargados de planificación de servicios y autorizadores</td>
+                    }
+                    else if ((double)ViewData["tasaNoConfirmadas"] > 15)
+                    {
+                        <td><span class="label label-warning">@ViewData["tasaNoConfirmadas"]%</span></td>
+                        <td>Buscar razones para la baja confirmación de solicitudes. Consultar a encargados de planificación de servicios y autorizadores</td>
+                    }
+                    else
+                    {
+                        <td><span class="label label-success">@ViewData["tasaNoConfirmadas"]%</span></td>
+                        <td>--</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+
+        <!--MODAL-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="text-cabezera">Filtrar datos del sitio:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Fecha de Inicio <small>Indica el primer día para el que se considerarán datos del sistema</small></h4>
+                        <div id="cuerpo_fecha_inicio">
+                            <input type='text' class='form-control' name='fecha_inicio' id='fecha_inicio' placeholder='DD/MM/YYYY' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required>
+                        </div>
+                        <br />
+                        <h4>Fecha de Termino <small>Indica el último día para el que se considerarán datos del sistema</small></h4>
+                        <div id="cuerpo_fecha_fin">
+                            <input type='text' class='form-control' name='fecha_fin' id='fecha_fin' placeholder='DD/MM/YYYY' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required>
+                        </div>
+                        <br />
+                        <h4>Fecha de "hoy" para la muestra de datos <small>Indica un día entre la fecha de inicio y la de término que se utilizará como el día para el cual se obtendrán los indicadores</small></h4>
+                        <div id="cuerpo_fecha_fin">
+                            <input type='text' class='form-control' name='fecha_hoy' id='fecha_hoy' placeholder='DD/MM/YYYY' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required>
+                        </div>
+                        <br />
+                        <label id="letra"></label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                        <a href="" type="button" id="btn_filtro" class="btn btn-primary" onclick="funcionFiltro()"><i class="glyphicon glyphicon-ok"></i>Aplicar Filtro</a>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal">Filtro de Fechas</a></div>
+</div><!--fin container-->
+@section scripts{
+    <script type="text/javascript">
+        $("#btn_filtro").attr("disabled", "disabled");
+        $("#letra").html("Debe ingresar las dos fechas");
+        $("#letra").attr("class", "alert alert-danger");
+
+        $("#fecha_inicio").click(function () {
+            verificarFechas();
+        });
+
+        $("#fecha_fin").click(function () {
+            verificarFechas();
+        });
+
+        $("#fecha_hoy").click(function () {
+            verificarFechas();
+        });
+
+        $("#btn_filtro").focus(function () {
+            verificarFechas();
+        });
+
+        $("#btn_filtro").mouseover(function () {
+            verificarFechas();
+        });
+
+        function verificarFechas()
+        {
+            var valor = $("#fecha_fin").val();
+            var valor2 = $("#fecha_inicio").val();
+            var valor3 = $("#fecha_hoy").val();
+            if (valor != "" & valor2 != "" & valor3 != "") {
+                $("#btn_filtro").removeAttr("disabled");
+                $("#letra").attr("class", "");
+                $("#letra").html("");
+            }
+            else {
+                $("#btn_filtro").attr("disabled", "disabled");
+                $("#letra").attr("class", "alert alert-danger");
+                $("#letra").html("Debe ingresar las dos fechas");
+            }
+        }
+        
+        function funcionFiltro() {
+
+            var fecha_inicio = $("#fecha_inicio").val();
+            var fecha_fin = $("#fecha_fin").val();
+            var fecha_hoy = $("#fecha_hoy").val();
+
+
+            var cadena = "@Url.Action("indicadores", "Reportes", new { FechaInicio = "fecha_inicio", FechaFin = "fecha_fin", FechaHoy = "fecha_hoy"})";
+            cadena = cadena.replace("fecha_inicio", fecha_inicio);
+            cadena = cadena.replace("fecha_fin", fecha_fin);
+            cadena = cadena.replace("fecha_hoy", fecha_hoy);
+            cadena = cadena.replace(";", "&");
+            cadena = cadena.replace(";", "&");
+
+            $("#btn_filtro").attr("href", cadena);
+        }
+
+        $("#fecha_inicio").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fecha_fin").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fecha_hoy").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        
+        $("#fecha_inicio").on("dp.change", function (e) {
+
+            if ($('#fecha_hoy').data("DateTimePicker").date() == null)
+            {
+                $('#fecha_fin').data("DateTimePicker").minDate($('#fecha_inicio').data("DateTimePicker").date());
+            }
+            else
+            {
+                $('#fecha_fin').data("DateTimePicker").minDate($('#fecha_hoy').data("DateTimePicker").date());
+            }
+            
+            $('#fecha_hoy').data("DateTimePicker").minDate(e.date);
+        });
+        $("#fecha_fin").on("dp.change", function (e) {
+
+            $('#fecha_hoy').data("DateTimePicker").maxDate($('#fecha_fin').data("DateTimePicker").date());
+
+            if ($('#fecha_hoy').data("DateTimePicker").date() == null) {
+                $('#fecha_inicio').data("DateTimePicker").maxDate(e.date);
+            }
+            else {
+                $('#fecha_inicio').data("DateTimePicker").maxDate($('#fecha_hoy').data("DateTimePicker").date());
+            }
+        });
+        $("#fecha_hoy").on("dp.change", function (e) {
+            $('#fecha_inicio').data("DateTimePicker").maxDate($('#fecha_hoy').data("DateTimePicker").date());
+            $('#fecha_fin').data("DateTimePicker").minDate($('#fecha_hoy').data("DateTimePicker").date());
+        });
+
+    </script>
+}
+

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebIzaje.Models.Marca_Equipo>
+@{
+    ViewBag.Title = "Marca Equipos";
+}
+
+<div class="container">
+    @if (ViewBag.success == 0)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong>&nbsp;No se pudieron realizar los cambios!.
+        </div>
+    }
+    @if (ViewBag.success == 1)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-ok-circle text-success"></i></strong>&nbsp;Cambios realizados con exito!.
+        </div>
+    }
+    @if (ViewBag.success == 2)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-info-sign text-warning"></i></strong>&nbsp;No se pudo eliminar. Puede estar siendo usado por otro Servicio!.
+        </div>
+    }
+
+    <div class="page-header">
+        <h2>Marca Equipos</h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in @Model)
+                {
+                    <tr>
+                        <td><strong class="text-primary">@x.marca</strong></td>
+
+                        <td><a href="#" data-toggle="modal" data-target="#mymarca" onclick="funcionDelete('@x.marca')"><i class='glyphicon glyphicon-trash text-danger'></i></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <a href="@Url.Action("Nueva_Marca_Equipo", "Admin")" type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign text-success"></i>&nbsp;Nuevo</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mymarca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">¿Eliminar Registro?</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center" id="text-modal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                    <a href="" type="button" id="btn_delete" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function funcionDelete(name) {
+            $("#text-modal").html("");
+            var cadena = "@Url.Action("Eliminar_Marca_Equipo", "Admin", new { id = "name" })";
+            cadena = cadena.replace("name", name);
+            $("#btn_delete").attr("href", cadena);
+            $("#text-modal").append("¿Estás seguro de que deseas eliminar a <strong>" + name + "</strong> de Marca Equipos ?");
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+

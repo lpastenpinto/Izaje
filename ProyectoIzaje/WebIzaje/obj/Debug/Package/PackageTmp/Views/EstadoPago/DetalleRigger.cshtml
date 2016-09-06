@@ -1,0 +1,119 @@
+﻿@model IEnumerable<WebIzaje.Models.RiggerDiasTrabajados>
+@{
+    ViewBag.Title = "Detalles Rigger";
+    WebGrid gridrigger = new WebGrid(Model, rowsPerPage: 9);
+}
+<style>
+    .table-res {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<div class="container">
+    <div class="page-header">
+        <h2 class="text-center">Información Dias Trabajados Riggers</h2>
+    </div>
+    <div class="table-res" id="tabla_rigger">
+    @if (Model.Count<WebIzaje.Models.RiggerDiasTrabajados>()> 0)
+    { 
+    @gridrigger.GetHtml(
+            columns: gridrigger.Columns(
+
+            gridrigger.Column("id_solicitud",
+            header: string.Format("ID Solicitud {0}", gridrigger.SortColumn == "id_solicitud" ? gridrigger.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.id_solicitud</span>
+            </text>),
+
+            gridrigger.Column("nombre_rigger",
+            header: "Nombre Rigger",
+            canSort: false),
+    
+            gridrigger.Column("rut_rigger",
+            header: "Rut Rigger",
+            canSort: false),
+
+            gridrigger.Column("fecha_inicio",
+            header: string.Format("Fecha Inicio ", gridrigger.SortColumn == "fecha_inicio" ? gridrigger.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted"
+            ),
+
+            gridrigger.Column("fecha_fin",
+            header: "Fecha Termino",
+            canSort: false),
+
+            gridrigger.Column("dias_trabajados",
+            header: "Dias Trabajados por Solicitud",
+            canSort: false)
+
+), tableStyle: "table table-hover table-bordered table-striped",
+nextText: ">",
+previousText: "<")
+    }
+    else
+    {
+        <h1 class="text-center text-danger">NO EXISTEN DATOS</h1> 
+    }
+    </div><!--Termino div contenedor tabla-->
+    <br />
+    <h3 class="text-center">Total de Dias Trabajados por cada Rigger</h3>
+    <br />
+
+    <div class="table-res">
+@if (((List<WebIzaje.Models.RiggerTotales>)ViewData["TotalesRiggers"]).Count > 0)
+{
+        <table class="table table-hover table-bordered table-striped ">
+            <thead>
+                <tr>
+
+                    <th>Nombre </th>
+                    <th>Rut</th>
+                    <th>Total Dias Trabajados</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (WebIzaje.Models.RiggerTotales datos in (List<WebIzaje.Models.RiggerTotales>)ViewData["TotalesRiggers"])
+                {
+
+                    if (datos.total_dias_trabajados < 10)
+                    {
+                        <tr class="danger">
+
+                            <td>@datos.nombre_rigger</td>
+                            <td>@datos.rut_rigger</td>
+                            <td>@datos.total_dias_trabajados</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <td>@datos.nombre_rigger</td>
+                            <td>@datos.rut_rigger</td>
+                            <td>@datos.total_dias_trabajados</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <caption class="text-left">
+                    <strong>&nbsp;&nbsp;Nota:&nbsp;</strong><span class="text-info">Las filas destacadas con color rojo, indican que el Rigger trabajó menos de 10 días.</span>
+                </caption>
+            </tfoot>
+
+        </table>
+}
+else
+{
+    <h1 class="text-center text-danger">NO EXISTEN DATOS</h1>
+}
+    </div>
+    
+    
+</div><!--Termino div container-->

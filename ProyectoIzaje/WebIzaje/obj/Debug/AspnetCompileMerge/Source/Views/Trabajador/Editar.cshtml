@@ -1,0 +1,582 @@
+﻿@{
+    ViewBag.Title = "Editar Trabajador";
+}
+@model WebIzaje.Models.TrabajadorDatos
+
+<div class="container">
+
+        <div class="page-header">
+            <h1 class="text-center">Editar Trabajador</h1>
+        </div>
+            <form action="@Url.Action("GuardarEditar", "Trabajador")" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="text-center">
+                            @if (!@Model.url.Equals("-1")) { 
+                            <img src="@Url.Content(@Model.url)" width="250px" class="img-rounded" />
+                            }
+                            else
+                            {
+                            <img src="@Url.Content("~/Images/default.jpg")" width="250px" class="img-rounded" />
+                            }
+                            <input type="hidden" name="imagen_url" value="@Model.url">
+                        </h6>
+                        <hr />
+                        <input type="file" class="form-control" name="imagen" accept="image/*">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group" id="panel-rut">
+                            <label class="col-sm-2 control-label">Rut</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="rut" placeholder="Ej. 10123345-1" pattern="\d{7,8}-[\d|kK]{1}" oninput="funcionValidarRut(value);" value="@Model.rut" required>
+                                <input type="hidden" name="rutOld" value="@Model.rut">
+                                <span id="icon-rut" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="@Model.nombre" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Apellido Paterno</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="apellidoP" placeholder="Apellido Paterno" value="@Model.apellidoP" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Apellido Materno</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="apellidoM" placeholder="Apellido Materno" value="@Model.apellidoM" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fono</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="fono" placeholder="Ej. 97657627 o (51)2226572" pattern="(\d{8})|(\(\d{2}\)\d{7})" value="@Model.fono" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="email" placeholder="Ej. usuario@dominio.com" value="@Model.email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Dirección</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="direccion" placeholder="Ej. Andres Bello, La Serena" value="@Model.direccion" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Rol</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="rol" id="rol" required>
+                                    @{string[] roles = { "Operador", "Rigger" };}
+                                    @foreach(var x in roles){
+                                        if(@Model.rol.Equals(x.ToLower())){
+                                            <option value="@x.ToLower()" selected> @x </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@x.ToLower()">@x</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Estado</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="estado" required>
+                                    @{string[] estados = { "Turno Dia", "Turno Noche", "Descanso", "Licencia", "Vacaciones" };}
+                                    @foreach (var x in estados)
+                                    {
+                                        if (@Model.estado.Equals(x.ToLower()))
+                                        {
+                                            <option value="@x.ToLower()" selected> @x </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@x.ToLower()">@x</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <h3 class="text-center">Requisitos Para Licencia Interna</h3>
+                <hr />
+                @{ string[] licencias = { "Examen Psicosensometrico", "Curso Manejo a la Defensa", "Licencia Municipal", "Hoja de Vida del Conductor", "Examen Preocupacional", "Inducción" };}
+              
+                @for (int i = 0; i < @licencias.Length; i++ )
+                {
+                    foreach (var x in @Model.licencia)
+                    {
+                        if (x.nombre.Equals(licencias[i]))
+                        { 
+                            
+                        <div class="form-group" id="@("licencia" + i)">
+                            <label class="col-sm-3 control-label">@x.nombre</label>
+                        <div class="col-sm-5">
+                            @if ( !string.IsNullOrEmpty(@x.fecha) && !x.fecha.Equals("01/01/1900"))
+                            {
+                                <input type="text" class="form-control" name="@("lnew_fecha" + i)" value="@x.fecha" id="@("datetimepicker_l"+i)" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa">
+                            }
+                            else
+                            {
+                            <input type="text" class="form-control" name="@("lnew_fecha" + i)" id="@("datetimepicker_l"+i)" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa">
+                            }
+                        </div>
+                        <div class="col-sm-4" id="@("l_file" + i)">
+                            @if (!@x.url.Equals("-1"))
+                            {
+                                <div class='alert alert-danger alert-dismissible' role='alert'>
+                                    <button type='button' class='close' onclick="licenciaEditar('@i','@x.url')" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                    <a type="button" class="btn btn-danger btn-block" href="@Url.Action("DownloadFile", "Trabajador", new { url = @x.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                    <input type="file" class="hidden" name="lnew_file" id="@("lnew_file" + i)">
+                                    <input type="hidden" name="@("lnew_url" + i)" value="@x.url">
+                                </div>
+                            }
+                            else
+                            {
+                            <input type="file" class="form-control" name="lnew_file" accept="application/pdf">
+                                <input type="hidden" name="@("lnew_url" + i)">
+                            }
+                        </div>
+                    </div>
+                            break;
+                        }
+                    }
+                }
+                <input type="hidden" name="clear_l" id="clear_l" value="">
+
+                <section id="certificaciones">
+                    <hr />
+                    <h3 class="text-center">Certificaciones Del Trabajador</h3>
+                    <hr />
+
+                    <div class="well well-sm" id="contenedorC">
+                        @{int index = 0;}
+                        @foreach (var x in @Model.certificado)
+                        {
+                        <div class='alert alert-info alert-dismissible' role='alert'>
+                            <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Certificación</label>
+                                        <select class="form-control" name="@("cnew_name"+index)">
+                                            <option>@x.nombre</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Fecha de Vencimiento</label>
+                                        @if (!string.IsNullOrEmpty(@x.fecha) && !x.fecha.Equals("01/01/1900"))
+                                        {
+                                        <input type="text" class="form-control" name="@("cnew_fecha"+index)" value="@x.fecha" id="@("datetimepicker_c" + index)"  data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa">
+                                        }
+                                        else
+                                        {
+                                        <input type="text" class="form-control" name="@("cnew_fecha"+index)" id="@("datetimepicker_c" + index)"  pattern="\d{2}\/\d{2}\/\d{4}" data-date-format="DD/MM/YYYY" placeholder="dd/mm/aaaa">
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4" id="@("c_file"+index)">
+                                    @if (!@x.url.Equals("-1"))
+                                    {
+                                    <div class='alert alert-danger alert-dismissible' role='alert'>
+                                        <button type='button' class='close' onclick="certificadoEditar('@index','@x.url')" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                        <a type="button" class="btn btn-danger btn-block" href="@Url.Action("DownloadFile", "Trabajador", new { url = @x.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                        <input type="file" class="hidden" name="cnew_file">
+                                        <input type="hidden" name="@("cnew_url"+index)" value="@x.url">
+                                    </div>
+                                    }
+                                    else
+                                    {
+                                    <input type="file" class="form-control" name="cnew_file" accept="application/pdf">
+                                    <input type="hidden" name="@("cnew_url"+index)">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        index++;
+                        }
+                        <input type="hidden" name="clear_c" id="clear_c" value="" />
+                        <input type="hidden" id="contador_c" value="@index">
+                    </div>
+                    <h6 class="text-center">
+                        <button type="button" class="btn btn-info" id="agregarC">
+                            <i class="glyphicon glyphicon-plus"></i>&nbsp;Agregar Certificación
+                        </button>
+                    </h6>
+                    <hr />
+                </section>
+                <section id="equipos">
+                    <h3 class="text-center">Equipos Certificados Para Ser Operados por el Trabajador</h3>
+                    <hr />
+                    <div class="well well-sm" id="contenedorE">
+                        @{int u = 0;}
+                        @foreach (var x in @Model.equipo)
+                        {
+                            <div class='alert alert-info alert-dismissible' role='alert'>
+                                <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Marca Equipo</label>
+                                            <select class="form-control" name="@("enew_marca"+u)">
+                                                <option>@x.marca</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Modelo Equipo</label>
+                                            <select class="form-control" name="@("enew_modelo"+u)">
+                                                <option>@x.modelo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label">Capacidad(Ton)</label>
+                                            <select class="form-control" name="@("enew_capacidad"+u)">
+                                                <option>@x.capacidad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Fecha Vencimiento</label>
+                                            @if (!string.IsNullOrEmpty(@x.fecha) && !x.fecha.Equals("01/01/1900"))
+                                            {
+                                                <input type="text" class="form-control" name="@("enew_fecha"+u)" value="@x.fecha" id="@("datetimepicker_e" + u)" onfocus="startdateE('@u')" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control" name="@("enew_fecha"+u)" id="@("datetimepicker_e" + u)" onfocus="startdateE('@u')" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa">
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3" id="@("e_file"+u)">
+                                        @if (!@x.url.Equals("-1"))
+                                        {
+                                            <div class='alert alert-danger alert-dismissible' role='alert'>
+                                                <button type='button' class='close' onclick="equipoEditar('@u','@x.url')" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                                <a type="button" class="btn btn-danger btn-block" href="@Url.Action("DownloadFile", "Trabajador", new { url = @x.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                                <input type="file" class="hidden" name="enew_file">
+                                                <input type="hidden" name="@("enew_url"+u)" value="@x.url">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <input type="file" class="form-control" name="enew_file" accept="application/pdf">
+                                            <input type="hidden" name="@("enew_url"+u)">
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                                        u++;
+                        }
+                        <input type="hidden" name="clear_e" id="clear_e" value="" />
+                        <input type="hidden" id="contador_e" value="@u">
+                    </div>
+                </section>
+                <h6 class="text-center">
+                    <button type="button" class="btn btn-info" id="agregarE">
+                        <i class="glyphicon glyphicon-plus"></i>&nbsp;Agregar Equipo
+                    </button>
+                </h6>
+                
+                <br />
+                <br />
+                <br />
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default btn-lg" href="@Url.Action("Todos","Trabajador")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg" id="btn-editar"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+                </div>
+            </form>
+
+</div>
+@section scripts{    
+    <script type="text/javascript">
+
+        $('#agregarC').click(function () {
+            var contador = parseInt($("#contador_c").val());
+            var x = document.getElementById("contenedorC");
+            var elemento = document.createElement("div");
+
+            var cadena = "<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
+            cadena = cadena + "<div class='row'>";
+            cadena += "<div class='col-md-4'><div class='form-group'><label class='control-label'>Certificado</label><select class='form-control' name='cnew_name" + contador + "' id='certificado"+contador+"' required>";
+            cadena += "</select></div></div>";
+
+            cadena += "<div class='col-md-4'><div class='form-group'><label class='control-label'>Fecha de Vencimiento</label><input class='form-control' type='text' data-date-format='DD/MM/YYYY' pattern='\\d{2}\\/\\d{2}\\/\\d{4}' placeholder='dd/mm/aaaa' name='cnew_fecha" + contador + "' id='datetimepicker_c" + contador + "' onfocus='startdateC(" + contador + ")'>";
+            cadena += "</div></div>";
+            cadena += "<div class='col-md-4'><div class='form-group'><input class='form-control' type='file' name='cnew_file' accept='application/pdf'><input type='hidden' name='cnew_url"+contador+"'>";
+            cadena += "</div></div>";
+            cadena += "</div>";
+
+            //agregar la clase y el inner
+            elemento.innerHTML = cadena;
+            elemento.setAttribute("class", "alert alert-info alert-dismissible");
+            elemento.setAttribute("role", "alert");
+            x.appendChild(elemento);
+
+            //Aumenta el contador oculto
+            contador = contador + 1;
+            $('#contador_c').val(contador);
+            loadCertificados(contador - 1);
+            startdateC(contador - 1);
+        });
+
+        function loadCertificados(contador) {
+            $.ajax({
+                url: "@Url.Action("GetCertificado","Trabajador")",
+                success: function (items) {
+                    $("#certificado" + contador).html('');
+                    $("#certificado" + contador).append("<option value=''>--Certificado--</option>");
+
+                    if (items.length > 0) {
+                        var item = items.split(',');
+                        for (i = 0; i < item.length; i++) {
+                            $("#certificado" + contador).append("<option>" + item[i] + "</option>");
+                        }
+                    }
+                }
+            });
+        };
+
+        $('#agregarE').click(function () {
+            var contador = parseInt($('#contador_e').val());
+            var x = document.getElementById("contenedorE");
+            var elemento = document.createElement("div");
+
+            var cadena = "<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
+            cadena = cadena + "<div class='row'>";
+            cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Marca</label><select class='form-control' name='enew_marca" + contador + "' id='marca"+contador+"' required>";
+            cadena += "<option>marca 1</option>";
+            cadena += "<option>marca 2</option>";
+            cadena += "</select></div></div>";
+
+            cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Modelo</label><select class='form-control' name='enew_modelo" + contador + "' id='modelo"+contador+"' required disabled>";
+            cadena += "</select></div></div>";
+
+            cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Capacidad(Ton)</label><select class='form-control' name='enew_capacidad" + contador + "' id='capacidad"+contador+"' required disabled>";
+            cadena += "</select></div></div>";
+
+            cadena += "<div class='col-md-3'><div class='form-group'><label class='control-label'>Fecha Vencimiento</label><input class='form-control' type='text' data-date-format='DD/MM/YYYY' pattern='\\d{2}\\/\\d{2}\\/\\d{4}' placeholder='dd/mm/aaaa' name='enew_fecha" + contador + "' id='datetimepicker_e" + contador + "' onfocus='startdateE(" + contador + ")'>";
+            cadena += "</div></div>";
+            cadena += "<div class='col-md-3'><div class='form-group'><input class='form-control' type='file' name='enew_file' accept='application/pdf'><input type='hidden' name='enew_url"+contador+"'>";
+            cadena += "</div></div>";
+            cadena += "</div>";
+
+            //agregar la clase y el inner
+            elemento.innerHTML = cadena;
+            elemento.setAttribute("class", "alert alert-info alert-dismissible");
+            elemento.setAttribute("role", "alert");
+            x.appendChild(elemento);
+
+            //Aumenta el contador oculto
+            contador = contador + 1;
+            $('#contador_e').val(contador);
+
+            loadMarca(contador - 1);
+            startdateE(contador - 1);
+        });
+
+        function licenciaEditar(num,nombre) {
+            var x = document.getElementById("l_file"+num);
+            var cadena = "<input type='file' class='form-control' name='lnew_file'><input type='hidden' name='lnew_url"+num+"'>";
+            x.innerHTML = cadena;
+            funcion_clear_l(nombre);
+        };
+
+        function certificadoEditar(num, nombre) {
+            var x = document.getElementById("c_file" + num);
+            var cadena = "<input type='file' class='form-control' name='cnew_file'><input type='hidden' name='cnew_url"+num+"'>";
+            x.innerHTML = cadena;
+            funcion_clear_c(nombre);
+        };
+
+        function equipoEditar(num, nombre) {
+            var x = document.getElementById("e_file" + num);
+            var cadena = "<input type='file' class='form-control' name='enew_file'><input type='hidden' name='enew_url"+num+"'>";
+            x.innerHTML = cadena;
+            funcion_clear_e(nombre);
+        };
+
+        function loadMarca(contador) {
+            $.ajax({
+                url: "@Url.Action("GetMarca","Trabajador")",
+                success: function (items) {
+                    $("#marca" + contador).html('');
+                    $("#marca" + contador).append("<option value=''>--Marca--</option>");
+
+                    if (items.length > 0) {
+                        var item = items.split(',');
+
+                        for (i = 0; i < item.length; i++) {
+                            $("#marca" + contador).append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                        }
+                    }
+                },
+                done: loadModelo(contador)
+            });
+        }
+
+        function loadModelo(contador) {
+            $("#marca" + contador).change(function () {
+
+                $.ajax({
+                    url: "@Url.Action("GetModelo","Trabajador")",
+                    data: { 'marca': $("#marca" + contador).val() },
+                    success: function (items) {
+
+                        $("#modelo" + contador).html('');
+                        $("#modelo" + contador).append("<option value=''>--Modelo--</option>");
+                        $("#modelo" + contador).removeAttr("disabled");
+
+                        if (items.length > 0) {
+                            var item = items.split(',');
+                            for (i = 0; i < item.length; i++) {
+                                $("#modelo" + contador).append("<option>" + item[i] + "</option>");
+                            }
+                        }
+                    },
+                    done: loadCapacidad(contador)
+                });
+            })
+        }
+
+        function loadCapacidad(contador) {
+            $("#modelo" + contador).change(function () {
+                $.ajax({
+                    url: "@Url.Action("GetCapacidad","Trabajador")",
+                    data: { 'marca': $("#marca" + contador).val(), 'modelo': $("#modelo" + contador).val() },
+                    success: function (items) {
+                        $("#capacidad" + contador).html('');
+                        $("#capacidad" + contador).append("<option value=''>--Capacidad--</option>");
+                        $("#capacidad" + contador).removeAttr("disabled");
+
+                        if (items.length > 0) {
+                            var item = items.split(',');
+                            for (i = 0; i < item.length; i++) {
+                                $("#capacidad" + contador).append("<option>" + item[i] + "</option>");
+                            }
+                        }
+                    }
+                })
+            })
+        };
+
+        function funcion_clear_l(url) {
+            var clear = $("#clear_l").val() + url+ ";";
+            $("#clear_l").val(clear);
+        }
+
+        function funcion_clear_c(url){
+            var clear = $("#clear_c").val() + url+";";
+            $("#clear_c").val(clear);
+        }
+
+        function funcion_clear_e(url) {
+            var clear = $("#clear_e").val() + url + ";";
+            $("#clear_e").val(clear);
+        }
+        
+
+        EditarRol();
+
+        $("#rol").change(function () {
+            EditarRol();
+        })
+
+        function EditarRol() {
+            var rol = $("#rol").val();
+            if (rol == "rigger") {
+                $("#licencia0,#licencia3,#licencia5,#certificaciones,#equipos").attr("hidden", "hidden");
+                $("input[name=lnew_fecha0],input[name=lnew_fecha3],input[name=lnew_fecha5]").val(null);
+                $("#lnew_file0").val(null);
+            } else {
+                $("#licencia0,#licencia3,#licencia5,#certificaciones,#equipos").removeAttr("hidden");
+            }
+        }
+
+        function funcionValidarRut(num) {
+            $.ajax({
+                url: "@Url.Action("rutValidar", "Trabajador")",
+                data: { 'rut': num },
+            success: function (result) {
+            
+                if (result == "True") {
+                    $("#panel-rut").attr("class", "form-group has-success has-feedback");
+                    $("#icon-rut").attr("class", "glyphicon glyphicon-ok form-control-feedback");
+                    $("#btn-editar").removeAttr("disabled");
+                } else {
+                    $("#panel-rut").attr("class", "form-group has-error has-feedback");
+                    $("#icon-rut").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                    $("#btn-editar").attr("disabled","disabled");
+
+                }
+            }
+        })
+        }
+
+        $(function () {
+            $('#datetimepicker_l1').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_l2').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_l3').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_l4').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_l5').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_l0').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+
+            $('#datetimepicker_c0').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c1').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c2').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c3').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c4').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c5').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c6').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c7').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c8').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_c9').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+
+            $('#datetimepicker_e0').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e1').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e2').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e3').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e4').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e5').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e6').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e7').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e8').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+            $('#datetimepicker_e9').datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+        });
+
+        function startdateC(num) {
+            $('#datetimepicker_c' + num).datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+        };
+        function startdateE(num) {
+            $('#datetimepicker_e' + num).datetimepicker({ viewMode: 'days', format: 'DD/MM/YYYY' });
+        };
+
+        $(".footer").hide();
+    </script>
+}
+

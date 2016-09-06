@@ -1,0 +1,391 @@
+﻿@{
+    ViewBag.Title = "Nuevo Equipo";
+}
+
+
+<div class="container">
+
+            <div class="page-header">
+                <h1 class="text-center">Nuevo Equipo</h1>
+            </div><!--cierre page-header-->
+
+            <!-- se crea el formulario-->
+            <form class="form-horizontal" role="form" action="@Url.Action("guardarNuevo","Equipo")" method="post" enctype="multipart/form-data">
+              
+                <h6 class="text-center">
+                    <img src="@Url.Content("~/Images/crane-default.jpg")" width="300px" class="img-rounded" />
+                    <br />
+                    <br />
+                    <input type="file" name="imagen" align="middle" class="center-block">
+                </h6>
+                <hr />
+             
+                <h3 class="text-center">Caracteristicas del Equipo</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Familia de Equipo</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="familiaE" id="familiaE" required>
+                                    <option value="Seleccione una familia de equipo">Seleccione una familia de equipo</option>
+                                    @foreach (string fa in (string[])ViewData["familia_equipo"])
+                                    {
+                                        <option value="@fa">@fa</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Tipo de Equipo</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="TipoE" id="tipoE" required></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Marca</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="marcaE" id="marcaE" required></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Modelo</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="modeloE" id="modeloE" required></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Año Fabricación</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="añof" placeholder="Año fabricacion" pattern="[0-9]{4}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Capacidad (Ton)</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="capacidadE" placeholder="Capacidad" pattern="[0-9]{1,5}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Estado</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="EstadoE" required>
+                                    @foreach (string fa in (string[])ViewData["estado"])
+                                    {
+                                        <option value="@fa">@fa</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Empresa Propietaria</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" name="empresaPE" id="empresaPE" required>
+                                    @foreach (string fa in (string[])ViewData["empresa"])
+                                    {
+                                        <option value="@fa">@fa</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group" id="panel-tag">
+                            <label class="col-sm-2 control-label">Tag</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="tag" class="form-control" name="tag" placeholder="Tag" required>
+                                <span id="icon-tag" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                
+                    
+                <h3 class="text-center">Certificados del Equipo</h3>
+                <hr />
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Inspección</u></h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Fecha de Vencimiento</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="fecha_0" id="fecha_0" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Certificado Adjunto</label>
+                            <div class="col-lg-8">
+                                <input type="file" class="form-control" name="file_">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Accesorios</u></h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Fecha de Vencimiento</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="fecha_1" id="fecha_1" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Certificado Adjunto</label>
+                            <div class="col-lg-8">
+                                <input type="file" class="form-control" name="file_">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Pluma</u></h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Fecha de Vencimiento</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="fecha_2" id="fecha_2" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Certificado Adjunto</label>
+                            <div class="col-lg-8">
+                                <input type="file" class="form-control" name="file_">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+
+                <h3 class="text-center">Costos de Operación del Equipo</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <input type="radio" id="Ecautivo" name="seleccion" value="ECautivo" required />  <strong>Equipo Cautivo</strong>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Costo Fijo</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="costoFijo" name="costoFijo" placeholder="Costo Fijo">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Area de Trabajo</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" id="areaT" name="areaT">
+                                    @foreach (string fa in (string[])ViewData["area"])
+                                    {
+                                        <option value="<%= fa %>">@fa</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <input type="radio" id="Enocautivo" name="seleccion" value="ENoCautivo" required /> <strong>Equipo No Cautivo</strong>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Costo Hora</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="costoH" name="costoH" placeholder="Costo Hora" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Costo Hora Extra</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="costoHE" name="costoHE" placeholder="Costo Hora Extra" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Minimo Garantizado</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="minimoG" name="minimoG" placeholder="Minimo Garantizado" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+       
+                <h3 class="text-center">Datos Funcionamiento</h3>
+                <hr />
+               
+                <div class="form-group">
+                    <label class="col-lg-4">Fecha de Ingreso a la Faena</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="fecha_ingresofa" name="fechaIngreso" data-date-format="DD/MM/YYYY" placeholder="dd/mm/aaaa" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' />
+                    </div>
+                </div>
+             
+                <div class="form-group">
+                    <label class="col-lg-4">Odometro (Km)</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="Odometro" name="odometro" placeholder="Odometro (km)" required />
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-lg-4">Horas Horometro</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="Horasho" name="horasHO" placeholder="Horas Horometro" required/>
+                    </div>
+                </div>
+               
+              
+                <div class="modal-footer">
+                    <a type="button" href="@Url.Action("Todos","Equipo")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-remove"></i>&nbsp;Cancelar</a>
+                    <button type="submit" id="botonguardar" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+                </div>
+
+            </form>
+        </div>
+
+@section scripts{
+<script type="text/javascript">
+    $("#Ecautivo").click(function () {
+
+        $("#costoH").val("");
+        $("#costoHE").val("");
+        $("#minimoG").val("");
+        $("#costoFijo").removeAttr("disabled");
+        $("#areaT").removeAttr("disabled");
+        
+
+    });
+    $("#Enocautivo").click(function () {
+        
+        
+        $("#costoFijo").attr("disabled", "disabled");
+        $("#areaT").attr("disabled", "disabled");
+        var valor=$("#tipoE").val().toString();
+        $.ajax({
+            url: "rescatar_Datos_nocautivo", data: { "valor_seleccion": valor },
+            success: function (retorno) {
+                var datos = retorno.split(',');
+                $("#costoH").val(datos[0]);
+                $("#costoHE").val(datos[1]);
+                $("#minimoG").val(datos[2]);
+            }
+
+        });
+    });
+
+    $("#familiaE").change(function () {
+
+        var valor = $("#familiaE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_tipoequipo", data: { "valor_seleccion": valor },
+            success: function (retorno) {
+                var arr = retorno.split(',');
+                $("#tipoE").empty();
+                $("#tipoE").append('<option value="Seleccione un tipo de equipo">Seleccione un tipo de equipo</option>')
+                for (i = 0; i < arr.length; i++) {
+                    $("#tipoE").append('<option value="'+arr[i]+'">' + arr[i] + '</option>');
+                }
+
+            }
+        });
+    });
+    
+    $("#tag").change(function(){
+        var valor = $("#tag").val();
+        $.ajax({
+            url: "comprobar_tag",
+            data: { "tag": valor },
+            success: function (retorno) {
+                var booleano = retorno;
+                if (booleano == "True") {
+                    $("#panel-tag").attr("class", "form-group has-error has-feedback");
+                    $("#icon-tag").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                    $("#botonguardar").attr("disabled", "disabled");
+                }
+                else {
+                    $("#botonguardar").removeAttr("disabled");
+                    $("#panel-tag").attr("class", "form-group has-success has-feedback");
+                    $("#icon-tag").attr("class", "glyphicon glyphicon-ok  form-control-feedback");
+                }
+            }
+        });
+    
+    });
+
+    $("#marcaE").change(function () {
+
+        var valor = $("#marcaE").val();
+        var tipo = $("#tipoE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_modelo", data: { "valor_seleccion": valor,"valor_tipo": tipo},
+            success: function (retorno) {
+                var datos_retorno = retorno.split(',');
+                $("#modeloE").empty();
+                $("#modeloE").append('<option value="Seleccione un modelo">Seleccione un modelo</option>')
+                for (i = 0; i < datos_retorno.length; i++) {
+
+                    $("#modeloE").append('<option value="'+datos_retorno[i] +'">' + datos_retorno[i] + '</option>')
+                }
+
+            }
+
+        });
+
+    });
+
+    $("#tipoE").change(function () {
+
+        var valor = $("#tipoE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_marcas", data: { "valor_seleccion": valor },
+            success: function (retorno) {
+                var datos_retorno = retorno.split(',');
+                $("#marcaE").empty();
+                $("#marcaE").append('<option value="Seleccione una marca">Seleccione una marca</option>')
+                for (i = 0; i < datos_retorno.length; i++) {
+
+                    $("#marcaE").append('<option value="' + datos_retorno[i] + '">' + datos_retorno[i] + '</option>')
+                }
+            }
+        });
+    });
+
+    $("#fecha_0").datetimepicker({ pickTime: false });
+    $("#fecha_1").datetimepicker({ pickTime: false });
+    $("#fecha_2").datetimepicker({ pickTime: false }); 
+    $("#fecha_ingresofa").datetimepicker({ pickTime: false });
+    $(".footer").hide();
+</script>
+}

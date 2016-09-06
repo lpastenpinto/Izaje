@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "Nuevo Usuario";
+}
+
+<div class="container">
+
+    <div class="panel-body">
+
+        <div class="page-header">
+            <h2 class="text-center">Nuevo Usuario</h2>
+        </div>
+
+        <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoAgregarUsuario", "Admin")">
+            <div class="form-group">
+                <label for="nombre_completo" class="col-lg-2 control-label">Nombre Completo:</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" id="nombre_completo" name="nombre_completo" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="Ej: Juan Rosario" required>
+                </div>
+                <div class="col-lg-2" id="label-nombre"></div>
+            </div>
+            <div class="form-group">
+                <label for="apellido_Paterno" class="col-lg-2 control-label">Apellido Paterno:</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" id="apellido_Paterno" name="apellido_Paterno" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="Ej: Perez" required>
+                </div>
+                <div class="col-lg-2" id="label-nombre"></div>
+            </div>
+            <div class="form-group">
+                <label for="apellido_Materno" class="col-lg-2 control-label">Apellido Materno:</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" id="apellido_Materno" name="apellido_Materno" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="Ej: Perez" required>
+                </div>
+                <div class="col-lg-2" id="label-nombre"></div>
+            </div>
+            <div class="form-group" id="panel-nombre">
+                <label for="nombre" class="col-lg-2 control-label">Identificador Usuario:</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" id="identificador" name="identificador" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="Ej: JPP2015" required>
+                    <span id="icon-tag" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                </div>
+                <div class="col-lg-2" id="label-nombre"></div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-lg-2 control-label">Email:</label>
+                <div class="col-lg-8">
+                    <input type="email" class="form-control" id="email" name="email" 
+                           placeholder="Ej: JPP2015@mlp.com" required>
+                </div>
+                <div class="col-lg-2" id="label-nombre"></div>
+            </div>
+            <div class="form-group">
+                <label for="superintendencia" class="col-lg-2 control-label">Rol:</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="rol" name="rol" required>
+                        @{
+                            
+                            if (ViewData["roles"] != null)
+                            {
+                                
+                                foreach(string rol in (string[])ViewData["roles"])
+                                {
+                                    if(rol.Equals("jefeArea")){
+                                        <option value="@rol">autorizador MLP</option>
+                                    }
+                                    else 
+                                    {
+                                        <option value="@rol">@rol</option>
+                                    }
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+            <div class="form-group">
+                <label for="descripcion" class="col-lg-2 control-label">Password:</label>
+                <div class="col-lg-8">
+                    <input type="password" class="form-control" id="password" name="password" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="contraseña" required>
+                </div>
+                <label class="col-lg-2">
+                    <input type="checkbox" id="check"> Ver Contraseña
+                </label>
+                
+            </div>
+            <div class="form-group" id="panel-repetirPassword">
+                <label for="descripcion" class="col-lg-2 control-label">Repetir Password:</label>
+                <div class="col-lg-8">
+                    <input type="password" class="form-control" id="repassword" name="repassword" pattern="[a-zA-Z0-9áéíóú ]+"
+                           placeholder="contraseña" required>
+                    <span id="icon-pass" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                 </div>
+                <div class="col-lg-2" id="label-repass">
+
+                </div>
+               
+            </div>
+            
+            <div class="modal-footer">
+                <a type="button" href="@Url.Action("todoUsuarios","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-lg" id="botonguardar"><i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Guardar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#check').click(function () {
+            if ($('#check').is(':checked'))
+            {
+                $('#password').attr("type", "text");
+            }
+            else {
+                $('#password').attr("type", "password");
+                
+            }
+
+        });
+        $("#identificador").change(function () {
+            var valor = $("#indentificador").val();
+            $.ajax({
+                url: "comprobar_usuario",
+                data: { "nombre": valor },
+                success: function (retorno) {
+                    var booleano = retorno;
+                    if (booleano == "True") {
+                        $("#panel-nombre").attr("class", "form-group has-error has-feedback");
+                        $("#icon-tag").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                        $("#botonguardar").attr("disabled", "disabled");
+                        $("#label-nombre").html("<label class='has-error'>Usuario Existe</label>");
+                    }
+                    else {
+                        $("#botonguardar").removeAttr("disabled");
+                        $("#panel-nombre").attr("class", "form-group has-success has-feedback");
+                        $("#icon-tag").attr("class", "glyphicon glyphicon-ok  form-control-feedback");
+                        $("#label-nombre").html("");
+                    }
+                }
+            });
+
+        });
+        $("#repassword").change(function () {
+            var valor_pass = $("#password").val();
+            var valor_repass=$("#repassword").val();
+            if (valor_repass.toString() == valor_pass.toString()) {
+                $("#botonguardar").removeAttr("disabled");
+                $("#panel-repetirPassword").attr("class", "form-group has-success has-feedback");
+                $("#icon-pass").attr("class", "glyphicon glyphicon-ok  form-control-feedback");
+                $("#label-repass").html("");
+                
+            }
+            else {
+                $("#panel-repetirPassword").attr("class", "form-group has-error has-feedback");
+                $("#icon-pass").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                $("#botonguardar").attr("disabled", "disabled");
+                $("#label-repass").html("<label class='has-error'>No Coinciden</label>");
+            }
+
+        });
+    </script>
+}
+

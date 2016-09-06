@@ -1,0 +1,64 @@
+﻿@model WebIzaje.Models.superintendencia
+@{
+    ViewBag.Title = "Editar Superintendencia";
+}
+
+<div class="container">
+
+        <div class="page-header">
+            <h2 class="text-center">Editar SuperIntendencia</h2>
+        </div>
+
+        <form class="form-horizontal" role="form" method="post" action="@Url.Action("AgregarEditarSuperintendencia", "Admin")">
+            <div class="form-group">
+                <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                <div class="col-lg-10">
+                    <input type="hidden" name="nombre" value="@Model.nombre">
+                    <input type="text" class="form-control" name="nombre_nuevo" value="@Model.nombre" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="nombre" required>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="gerencia" class="col-lg-2 control-label">Gerencia::</label>
+                <div class="col-lg-10">
+                    <select class="form-control" name="gerencia" required>
+                        @{
+                            if (ViewBag.gerencias != null)
+                            {
+                                List<string> gerencias = (List<string>)ViewData["gerencias"];
+                                foreach (string x in gerencias)
+                                {
+                                    if (x.Equals(Model.gerencia))
+                                    {
+                                        <option value="@x" selected>@x</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@x">@x</option>
+                                    }
+                                }
+                               
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="descripcion" class="col-lg-2 control-label">Descripción:</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" name="descripcion" rows="3"
+                              style="resize:none !important"
+                              placeholder="Descripción">@Model.descripcion</textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" href="@Url.Action("superintendencias","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+            </div>
+        </form>
+
+</div>

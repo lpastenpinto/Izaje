@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Reporte Criticidad";
+}
+
+
+
+<h2 class="text-center text-info">Solicitudes por Criticidad</h2>
+<hr />
+<br />
+<br />
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <img src="@Url.Action("GenerarReporte_Solicitud", "Reportes", new { Tipo_reporte = "Servicio_Criticidad" })" />
+        </div><!--Cierre de cuerpo-->
+        <div class="panel-footer">
+            <a type="button" href="@Url.Action("VistaReporte_Solicitud", "Reportes", new { Tipo_reporte = "Servicio_Criticidad" })" class=" btn btn-info">&emsp;Ver Reporte&emsp;</a>
+            <a type="button" href="@Url.Action("GuardarReporte_Solicitud", "Reportes", new { Tipo_reporte = "Servicio_Criticidad" })" class=" btn btn-danger">Guardar Reporte</a>
+        </div>
+    </div>
+</div>

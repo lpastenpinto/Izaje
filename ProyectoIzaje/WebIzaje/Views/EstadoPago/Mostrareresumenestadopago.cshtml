@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebIzaje.Models.ResumenEstadoPago>
+@{
+    ViewBag.Title = "Mostrar Estados de Pago";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<div class="container">
+
+    <div class="page-header">
+        @if (ViewBag.success == 0)
+        {
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong> No se ha podido Generar el Estado de pago!.
+            </div>
+        } @if (ViewBag.success == 1)
+        {
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><i class="glyphicon glyphicon-ok-circle text-success"></i></strong> Se ha Generado un nuevo Estado de Pago Exitosamente!.
+            </div>
+        }
+        <h1 class="text-center">Estados De Pago</h1>
+       
+    </div><!-- cierre de page header-->
+    <div class="table table-responsive">
+        @grid.GetHtml(
+            columns: grid.Columns(
+
+            grid.Column("id_estadopago",
+            header: string.Format("ID Estado Pago General {0}", grid.SortColumn == "id_estadopago" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                    <span class="badge">@item.id_estadopago</span>
+            </text>),
+            
+            grid.Column("id_estadopagotipo",
+            header: string.Format("ID Estado Pago Tipo {0}", grid.SortColumn == "id_estadopagotipo" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                    <span class="badge">@item.id_estadopagotipo</span>
+            </text>),
+        
+            grid.Column("fecha_generado",
+            header: string.Format("Fecha Generado {0}", grid.SortColumn == "fecha_generado" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("tipo_equipo",
+            header: string.Format("Tipo Equipo {0}", grid.SortColumn == "tipo_equipo" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("uf",
+            header: string.Format("Uf {0}", grid.SortColumn == "uf" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("total_valor_dia",
+            header: string.Format("Total Valor Dia {0}", grid.SortColumn == "total_valor_dia" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("total_valor_mlp",
+            header: string.Format("Total Valor Mlp {0}", grid.SortColumn == "total_valor_mlp" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("costo_hora",
+            header: string.Format("Costo Hora {0}", grid.SortColumn == "costo_hora" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("total_valor_distribucion",
+            header: "Valor Distribucion",
+            canSort:false),
+            
+            grid.Column("",
+            header: "Resumen Estado Pago",
+            format: @<text>
+            <a href="@Url.Action("Listadetalleestadopago", "EstadoPago", new { id_pago_tipo = item.id_estadopagotipo })"><i class="glyphicon glyphicon-edit text-primary"></i></a>
+                
+            </text>)
+         ), tableStyle: "table table-hover", footerStyle: "pagination")
+
+    </div>
+
+
+
+</div><!-- cierre container-->

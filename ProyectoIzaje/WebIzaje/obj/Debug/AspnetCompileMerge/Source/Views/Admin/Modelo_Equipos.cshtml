@@ -1,0 +1,107 @@
+﻿@model IEnumerable<WebIzaje.Models.Modelo_Equipo>
+@{
+    ViewBag.Title = "Modelo Equipos";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<div class="container">
+    @if (ViewBag.success == 0)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong> No se ha podido realizar los cambios!.
+        </div>
+    }
+    @if (ViewBag.success == 1)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-ok-circle text-success"></i></strong> Cambios realizados con exito!.
+        </div>
+    }
+    @if (ViewBag.success == 2)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-info-sign text-warning"></i></strong>&nbsp;No se han podido realizar los cambios. <strong>Nombre</strong> ya registrado!.
+        </div>
+    }
+
+    <div class="page-header">
+        <h2>Modelo Equipos</h2>
+    </div>
+
+    <div class="table-responsive">
+
+        @grid.GetHtml(
+            columns: grid.Columns(
+            
+        grid.Column("modelo",
+            header: string.Format("Modelo {0}", grid.SortColumn == "modelo" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.modelo</span>
+            </text>),
+        
+        grid.Column("marca",
+            header: string.Format("Marca {0}", grid.SortColumn == "marca" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted"),
+        
+        grid.Column("tipo",
+            header: string.Format("Tipo {0}", grid.SortColumn == "tipo" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted"),
+
+        grid.Column("",
+            header: "",
+            format: @<text>
+                <a href="@Url.Action("Editar_Modelo_Equipo","Admin",new {id = item.modelo})" title="Editar"><i class='glyphicon glyphicon-edit text-primary'></i></a>
+                &emsp;
+                <a href="#" data-toggle="modal" data-target="#mymodelo" onclick="funcionDelete('@item.modelo')" title="Eliminar"><i class='glyphicon glyphicon-trash text-danger'></i></a>
+            </text>)
+          ), tableStyle: "table table-hover", footerStyle: "pagination")
+
+    </div>
+    <hr />
+    <a href="@Url.Action("Nuevo_Modelo_Equipo", "Admin")" type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign text-success"></i>&nbsp;Nuevo</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mymodelo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">¿Eliminar Registro?</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center" id="text-modal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                    <a href="" type="button" id="btn_delete" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function funcionDelete(name) {
+            $("#text-modal").html("");
+            var cadena = "@Url.Action("Eliminar_Modelo_Equipo", "Admin", new { id = "name" })";
+            cadena = cadena.replace("name", name);
+            $("#btn_delete").attr("href", cadena);
+            $("#text-modal").append("¿Estás seguro de que deseas eliminar a <strong>" + name + "</strong> de Modelo Equipos ?");
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

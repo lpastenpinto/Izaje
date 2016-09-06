@@ -1,0 +1,153 @@
+﻿@model IEnumerable<WebIzaje.Models.DetalleEstadoPago>
+
+<style>
+    
+    .table-res {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+</style>
+<div class="container">
+            <div class="page-header">
+                <h1 class="text-center">Estados De Pago</h1>
+            </div><!-- cierre de page header-->
+            <!--aqui debe ir el foreach de la lista de objetos-->
+            <br />
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8 text-center">ID Estado Pago :</label>
+                    <div class="col-lg-4">
+                    <label class="control-label col-lg-4" id="id_estado_pago">@ViewData["id"]</label>   
+                    </div>
+                </div>
+                
+            </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="label label-primary col-lg-8 text-center">UF :</label>
+                <div class="col-lg-4">
+               <label class="control-label col-lg-4" id="uf">@ViewData["uf"]</label>
+                </div>
+            </div>
+        <br />
+        <br />
+        <hr />
+    </div>
+    <div class="table-res">
+        <table class="table table-hover table-bordered table-striped ">
+            <thead>
+                <tr>
+
+                    <th>Fecha</th>
+                    <th>Operador</th>
+                    <th>Tag Equipo</th>
+                    <th>Tipo Equipo</th>
+                    <th>Area</th>
+                    <th>Responsable</th>
+                    <th>Empresa</th>
+                    <th>Centro Costo</th>
+                    <th>Inicio Horometro</th>
+                    <th>Fin Horometro</th>
+                    <th>Delta Horometro</th>
+                    <th>Inicio Reloj</th>
+                    <th>Fin Reloj</th>
+                    <th>Delta Reloj</th>
+                    <th>Contador</th>
+                    <th>Valor Dia</th>
+                    <th>Valor Mlp</th>
+                    <th>Valor Distribucion</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(WebIzaje.Models.DetalleEstadoPago datos in (List<WebIzaje.Models.DetalleEstadoPago>)Model)
+                {
+                <tr>
+
+                    <td>@datos.fecha</td> 
+                    <td>@datos.operador</td>
+                    <td>@datos.tagequipo</td>
+                    <td>@datos.tipoequipo</td>
+                    <td>@datos.area</td>
+                    <td>@datos.responsable</td>
+                    <td>@datos.empresa</td>
+                    <td>@datos.centro_costo</td>
+                    <td>@datos.i_horometro</td>
+                    <td>@datos.f_horometro</td>
+                    <td>@datos.d_horometro</td>
+                    <td>@datos.i_reloj</td>
+                    <td>@datos.f_reloj</td>
+                    <td>@datos.d_reloj</td>
+                    <td>@datos.contador_deltareloj</td>
+                    <td>@datos.valor_dia</td>
+                    <td>@datos.valor_mlp</td>
+                    <td>@datos.valor_distribucion</td>
+                    
+                   
+                </tr>
+                }
+
+
+            </tbody>
+           
+
+        </table>
+    </div>
+
+           
+            <hr />
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Totales</h3>
+        </div>
+        <div class="panel-body">
+           
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Delta Horometro</label>
+                    <label class="control-label col-lg-4" id="d_horometro">@ViewData["total_delta_horometro"]</label>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label  label-primary  col-lg-8">Delta Reloj</label>
+                    <label class="control-label col-lg-4" id="d_reloj">@ViewData["total_delta_reloj"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary  col-lg-8">Valor Dia</label>
+                    <label class="control-label col-lg-4" id="valor_dia">@ViewData["total_valor_dia"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Valor MLP</label>
+                    <label class="control-label col-lg-4" id="valor_mlp">@ViewData["total_valor_mlp"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Valor Distribucion</label>
+                    <label class="control-label col-lg-4" id="valor_distribucion">@ViewData["total_valor_distribucion"]</label>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Generar_Excel","EstadoPago",new { id = @ViewData["id"]})" type="button" class="btn btn-success"><i class="glyphicon glyphicon-export"></i>Generar Excel</a>
+    </div>
+            <!-- cierre row muestra de equipos-->
+
+        </div><!-- cierre container-->
+
+
+

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Reporte Estado Equipos";
+}
+
+<h2 class="text-center text-info">Estado de los Equipos Disponibles</h2>
+<hr />
+<br />
+<br />
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-body">
+            <img src="@Url.Action("GenerarReporte_Equipo", "Reportes", new { Tipo_reporte = "Estado_Equipos" })" />
+        </div><!--Cierre de cuerpo-->
+        <div class="panel-footer">
+            <a type="button" href="@Url.Action("VistaReporte_Equipo", "Reportes", new { Tipo_reporte = "Estado_Equipos" })" class=" btn btn-info">&emsp;Ver Reporte&emsp;</a>
+            <a type="button" href="@Url.Action("GuardarReporte_Equipo", "Reportes", new { Tipo_reporte = "Estado_Equipos" })" class=" btn btn-danger">Guardar Reporte</a>
+        </div>
+    </div>
+</div>

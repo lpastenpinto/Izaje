@@ -1,0 +1,957 @@
+@model WebIzaje.Models.Solicitud
+@{
+    ViewBag.Title = "Replanificar Solicitud";
+}
+
+    <div class="container">
+        
+		<div class="row">			        
+			<div class="col-xs-12 col-sm-12">
+				<div class="page-header">
+	                <h1 class="text-center">Replanificar solicitud</h1>
+                </div>
+                <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoReplanificarSolicitud", "Solicitud")">                           
+                    <div class="form-group">
+                        <div class="col-lg-2"></div>
+                        <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                                    value="@Model.idSolicitud" required>
+                                        
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-lg-12"><h4 class="text-center">Datos del solicitante</h4></div>
+                        <br>
+                        <br>
+                        <br class="visible-lg">
+                        <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="@Model.nombre" required
+                                    disabled>
+                        </div>
+                        <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="empresa" name="empresa" value="@Model.empresa"
+                                    disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="correo" class="col-lg-2 control-label">Correo:</label>
+                        <div class="col-lg-4">
+                            <input type="email" class="form-control" id="correo" name="correo" value="@Model.correo"
+                                    disabled>
+                        </div>
+                        <label for="fono" class="col-lg-2 control-label">Teléfono:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="@Model.telefono"
+                                    pattern="[(]0[0-9][0-9][)]2[0-9][0-9][0-9][0-9][0-9][0-9]"
+                                    disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="celular" class="col-lg-2 control-label">Celular:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="celular" name="celular" value="@Model.celular"
+                                    pattern="[(]9[)][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+                                    disabled>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-lg-12"><h4 class="text-center">Datos del lugar del servicio</h4></div>
+                        <br>
+                        <br>
+                        <br class="visible-lg">
+                        <label for="gerencia" class="col-lg-2 control-label">Gerencia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="gerencia" name="gerencia" value="@Model.gerencia"
+                                    disabled>
+                        </div>
+                        <label for="superintendencia" class="col-lg-2 control-label">Superintendencia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="superintendencia" name="superintendencia" value="@Model.superintendencia"
+                                    disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="area" class="col-lg-2 control-label">Área</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="area" name="area" value="@Model.area"
+                                    disabled>
+                        </div>
+                        <label for="centroDeCosto" class="col-lg-2 control-label">Centro de costo</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="centroDeCosto" name="centroDeCosto" value="@Model.centroCosto"
+                                    disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="descripcionLugar" class="col-lg-2 control-label">Descripción del lugar del servicio</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" id="descripcionLugar" name="descripcionLugar"
+                                        style="resize:none !important" disabled>@Model.descripcionLugar</textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <h4 class="text-center">Datos del servicio solicitado</h4>
+                                <br>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="fechaInicio" class="col-lg-2 control-label">Fecha de inicio</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fecha" name="fecha" value="@string.Format("{0:dd-MM-yyyy}", Model.inicio.Date)"
+                                        data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                        placeholder="MM-DD-AAAA" disabled>
+                            </div>
+                            <label for="horaInicio" class="col-lg-2 control-label">Hora de inicio</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="horaInicio" name="horaInicio" value="@(Model.inicio.Hour.ToString() + ":" + Model.inicio.Minute.ToString())"
+                                        pattern="[0-9][0-9]:[0-9][0-9]"
+                                        placeholder="HH:MM" disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="fechaTermino" class="col-lg-2 control-label">Fecha de término</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fechaTermino" name="fechaTermino" value="@string.Format("{0:dd-MM-yyyy}", Model.fin.Date)"
+                                        data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                        disabled>
+                            </div>
+                            <label for="horaTermino" class="col-lg-2 control-label">Hora de término</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="horaTermino" name="horaTermino" value="@(Model.fin.Hour.ToString() + ":" + Model.fin.Minute.ToString())"
+                                        pattern="[0-9][0-9]:[0-9][0-9]"
+                                        placeholder="HH:MM" disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="criticidad" class="col-lg-2 control-label">Criticidad</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="criticidad" name="criticidad" value="@Model.criticidad"
+                                        disabled>
+                            </div>
+                            <label for="TiempoEstimadoOperacion" class="col-lg-2 control-label">Tiempo estimado de operación (hrs.)</label>
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" id="TiempoEstimadoOperacion" name="TiempoEstimadoOperacion" value="@Model.tiempoEstimadoOperacion"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="peso" class="col-lg-2 control-label">Peso (toneladas)</label>
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" id="peso" name="peso" value="@Model.peso"
+                                        disabled>
+                            </div>
+                            <label for="turnoSolicitante" class="col-lg-2 control-label">Turno de trabajo</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="turnoSolicitante" name="turnoSolicitante" value="@Model.turno"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="altoCarga" class="col-lg-2 control-label">Alto de carga (mts.)</label>
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" id="altoCarga" name="altoCarga" value="@Model.alto"
+                                        disabled>
+                            </div>
+                            <label for="anchoCarga" class="col-lg-2 control-label">Ancho de carga (mts.)</label>
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" id="anchoCarga" name="anchoCarga" value="@Model.ancho"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="largoCarga" class="col-lg-2 control-label">Largo de carga (mts.)</label>
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" id="largoCarga" name="largoCarga" value="@Model.largo"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="descripcionCarga" class="col-lg-2 control-label">Descripción de la carga</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="descripcionCarga" name="descripcionCarga"
+                                            style="resize:none !important" disabled>@Model.descripcionCarga</textarea>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" id="descripcionServicio" name="descripcionServicio"
+                                                style="resize:none !important" disabled>@Model.descripcionServicio</textarea>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br>
+                                    <div class="col-lg-6">
+                                        @if (Model.solicitadoAnteriormente == true)
+                                        {
+                                            <input type="checkbox" name="solicitadoAnteriormente" value="@ViewData["true"]" checked disabled>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="solicitadoAnteriormente" value="@ViewData["true"]" disabled>
+                                        }
+                                        El servicio requerido ha sido solicitado anteriormente<br>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        @if (Model.requiereRigger == true)
+                                        {
+                                            <input type="checkbox" name="riggerCalificado" value="true" checked disabled>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="riggerCalificado" value="true" disabled>
+                                        }
+                                        El servicio solicitado requiere un rigger calificado<br>
+
+                                    </div>
+                                    <br class="visible-lg">
+                                    <div class="col-lg-6">
+                                        @if (Model.requiereManiobra == true)
+                                        {
+                                            <input type="checkbox" name="requiereManiobra" value="true" checked disabled>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="requiereManiobra" value="true" disabled>
+                                        }
+                                        El servicio solicitado requiere maniobra<br>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        @if (Model.cuentaConManiobra == true)
+                                        {
+                                            <input type="checkbox" name="cuentaConManiobra" value="true" checked disabled>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="cuentaConManiobra" value="true" disabled>
+                                        }
+                                        El servicio cuenta con maniobra<br>
+                                    </div>
+                                <div>
+                                    <br>
+                                    <hr />
+                                    @if (!string.IsNullOrEmpty(Model.rutaImagen))
+{
+                                    <h2 class="text-center">Imagen de la carga:</h2>
+                                    <img class="center-block img-rounded" src="@Url.Content(@Model.rutaImagen)" width="30%">
+                                    }
+                                </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <h4 class="text-center">Corrección de los datos del servicio solicitado <small>modifique estos datos solo si es necesario</small></h4>
+                                        <br>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="criticidadCorreccion" class="col-lg-2 control-label">Criticidad</label>
+                                    <div class="col-lg-4">
+                                        <select class="form-control" id="criticidadCorreccion" name="criticidadCorreccion"
+                                                required>
+                                            <option value="@Model.criticidadCorregida" selected>@Model.criticidadCorregida</option>
+                                            @{
+                                                List<string> criticidades = (List<string>)ViewData["criticidad"];
+                                                for (int i = 0; i < criticidades.Count; i++)
+                                                {
+                                                    if (!criticidades[i].Equals(Model.criticidad))
+                                                    {
+                                                        <option value="@criticidades[i]">@criticidades[i]</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <label for="TiempoEstimadoOperacionCorreccion" class="col-lg-2 control-label">Tiempo estimado de operación (hrs.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="TiempoEstimadoOperacionCorreccion" name="TiempoEstimadoOperacionCorreccion" value="@Model.tiempoEstimadoOperacionCorregido"
+                                                placeholder="Ingrese la hora de inicio del servicio" required>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="pesoCorreccion" class="col-lg-2 control-label">Peso (toneladas)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="pesoCorreccion" name="pesoCorreccion" value="@Model.pesoCorregido"
+                                                placeholder="Ingrese el peso de la carga a levantar" required>
+                                    </div>
+                                    <label for="turnoSolicitanteCorreccion" class="col-lg-2 control-label">Turno de trabajo</label>
+                                    <div class="col-lg-4">
+                                        <select class="form-control" id="turnoSolicitanteCorreccion" name="turnoSolicitanteCorreccion"
+                                                required>
+                                            <option value="@Model.turnoCorregido" selected>@Model.turnoCorregido</option>
+
+                                            @if (Model.turnoCorregido.Equals(ViewData["turnoDia"]))
+                                            {
+                                                <option value="@ViewData["turnoNoche"]">@ViewData["turnoNoche"]</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@ViewData["turnoDia"]">@ViewData["turnoDia"]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="altoCarga" class="col-lg-2 control-label">Alto de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number2" name="altoCargaCorreccion" value="@Model.altoCorregido"
+                                                placeholder="Ingrese el alto de la carga a levantar" required>
+                                    </div>
+                                    <label for="anchoCarga" class="col-lg-2 control-label">Ancho de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number3" name="anchoCargaCorreccion" value="@Model.anchoCorregido"
+                                                placeholder="Ingrese el ancho de la carga a levantar" required>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="largoCarga" class="col-lg-2 control-label">Largo de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number4" name="largoCargaCorreccion" value="@Model.largoCorregido"
+                                                placeholder="Ingrese el largo de la carga a levantar" required>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="descripcionCarga" class="col-lg-2 control-label">Descripción de la carga</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" id="Textarea1" name="descripcionCargaCorreccion"
+                                                    style="resize:none !important" placeholder="Ingrese una descipción de la carga a levantar">@Model.descripcionCargaCorregida</textarea>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control" id="Textarea2" name="descripcionServicioCorreccion"
+                                                        style="resize:none !important" placeholder="Ingrese una descripción del servicio a realizar">@Model.descripcionCargaCorregida</textarea>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group">
+                                            <div class="col-lg-12">
+                                                <h4 class="text-center">Asignación de recursos <small>Ingrese aquí el periodo y los recursos para el servicio</small></h4>
+                                                <br>
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="fechaInicio" class="col-lg-2 control-label">Fecha de inicio</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="fechaInicioCorreccion" name="fechaInicioCorreccion" value="@string.Format("{0:dd/MM/yyyy}", Model.inicioCorregido.Date)"
+                                                        data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                                        placeholder="DD-MM-AAAA" required>
+                                            </div>
+                                            <label for="horaInicio" class="col-lg-2 control-label">Hora de inicio</label>
+                                            <div class="col-lg-4">
+                                                @{
+                                                    int hora = Model.inicioCorregido.Hour;
+                                                    int minuto = Model.inicioCorregido.Minute;
+                                                    string amPm = "AM";
+                                                    if (hora >= 12)
+                                                    {
+                                                        hora -= 12;
+                                                        amPm = "PM";
+                                                    }
+
+                                                    string cadenaHora = hora + "";
+                                                    if (cadenaHora.Length == 1)
+                                                    {
+                                                        cadenaHora = "0" + cadenaHora;
+                                                    }
+
+                                                    string cadenaMinuto = minuto + "";
+                                                    if (cadenaMinuto.Length == 1)
+                                                    {
+                                                        cadenaMinuto = "0" + cadenaMinuto;
+                                                    }
+
+                                                    <input type="text" class="form-control" id="horaInicioCorreccion" name="horaInicioCorreccion" value="@(cadenaHora + ":" + cadenaMinuto + " " + amPm)"
+                                                            data-date-format="hh:mm A" pattern="\d{1,2}[:]\d{1,2}[ ][A,P][M]"
+                                                            placeholder="HH:MM" required>
+                                                }
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="fechaTermino" class="col-lg-2 control-label">Fecha de término</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="fechaTerminoCorreccion" name="fechaTerminoCorreccion" value="@string.Format("{0:dd/MM/yyyy}", Model.finCorregido.Date)"
+                                                        data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                                        placeholder="DD-MM-AAAA" required>
+                                            </div>
+                                            <label for="horaTermino" class="col-lg-2 control-label">Hora de término</label>
+                                            <div class="col-lg-4">
+                                                @{
+                                                    hora = Model.finCorregido.Hour;
+                                                    minuto = Model.finCorregido.Minute;
+                                                    amPm = "AM";
+                                                    if (hora >= 12)
+                                                    {
+                                                        hora -= 12;
+                                                        amPm = "PM";
+                                                    }
+
+                                                    cadenaHora = hora + "";
+                                                    if (cadenaHora.Length == 1)
+                                                    {
+                                                        cadenaHora = "0" + cadenaHora;
+                                                    }
+
+                                                    cadenaMinuto = minuto + "";
+                                                    if (cadenaMinuto.Length == 1)
+                                                    {
+                                                        cadenaMinuto = "0" + cadenaMinuto;
+                                                    }
+
+                                                    <input type="text" class="form-control" id="horaTerminoCorreccion" name="horaTerminoCorreccion" value="@(cadenaHora + ":" + cadenaMinuto + " " + amPm)"
+                                                            data-date-format="hh:mm A" pattern="\d{1,2}[:]\d{1,2}[ ][A,P][M]"
+                                                            placeholder="HH:MM" required>
+                                                }
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <div class="well well-lg">
+                                                <h4 class="text-center">Recursos a asignar</h4>
+                                                <br>
+                                                <label for="familiaEquipo" class="col-lg-2 control-label">Familia de equipo</label>
+                                                <div class="col-lg-4">
+                                                    @if (Model.idEquipo2 != "--")
+                                                    {
+                                                        <select class="form-control" id="familiaEquipo" name="familiaEquipo"
+                                                                required disabled>
+                                                            <option value="Seleccione una opción">Seleccione una opción</option>
+                                                            @{
+                                                                List<WebIzaje.Models.Familia_Equipo> familias = (List<WebIzaje.Models.Familia_Equipo>)ViewData["familiasEquipo"];
+                                                                foreach (WebIzaje.Models.Familia_Equipo familia in (familias))
+                                                                {
+                                                                    <option value="@familia.nombre">@familia.nombre</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    }
+                                                    else
+                                                    {
+                                                        <select class="form-control" id="familiaEquipo" name="familiaEquipo"
+                                                                required>
+                                                            <option value="Seleccione una opción">Seleccione una opción</option>
+                                                            @{
+                                                        List<WebIzaje.Models.Familia_Equipo> familias = (List<WebIzaje.Models.Familia_Equipo>)ViewData["familiasEquipo"];
+                                                        foreach (WebIzaje.Models.Familia_Equipo familia in (familias))
+                                                        {
+                                                            <option value="@familia.nombre">@familia.nombre</option>
+                                                        }
+}
+                                                        </select>
+                                                    }
+                                                </div>
+                                                <label for="tipoEquipo" class="col-lg-2 control-label">Tipo de equipo</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="tipoEquipo" name="tipoEquipo"
+                                                            required disabled>
+                                                    </select>
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="equipo" class="col-lg-2 control-label">Equipo</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="equipo" name="equipo"
+                                                            required disabled>
+                                                     </select>
+                                                </div>
+                                                <label for="operador" class="col-lg-2 control-label">Operador</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="operador" name="operador"
+                                                            required disabled>
+                                                    </select>
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="rigger" class="col-lg-2 control-label">Rigger</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="rigger" name="rigger"
+                                                            required disabled>
+                                                        </select>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-primary pull-right" id="botonAsignarRecursos">Agregar estos recursos al servicio</button>
+                                                </div>
+                                                <input type="text" class="form-control hidden" id="equipo1" name="equipo1" value="@Model.idEquipo1" required>
+                                                <input type="text" class="form-control hidden" id="operador1" name="operador1" value="@Model.idOperador1" required>
+                                                <input type="text" class="form-control hidden" id="rigger1" name="rigger1" value="@Model.idRigger1" required>
+                                                <input type="text" class="form-control hidden" id="equipo2" name="equipo2" value="@Model.idEquipo2" required>
+                                                <input type="text" class="form-control hidden" id="operador2" name="operador2" value="@Model.idOperador2" required>
+                                                <input type="text" class="form-control hidden" id="rigger2" name="rigger2" value="@Model.idRigger2" required>
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <div class="col-lg-1">
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Datos Equipo</th>
+                                                            <th>Operador</th>
+                                                            <th>Rigger</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td id="celdaEquipo1">@Model.idEquipo1</td>
+                                                            <td id="celdaOperador1">@Model.idOperador1</td>
+                                                            <td id="celdaRigger1">@Model.idRigger1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="celdaEquipo2">@Model.idEquipo2</td>
+                                                            <td id="celdaOperador2">@Model.idOperador2</td>
+                                                            <td id="celdaRigger2">@Model.idRigger2</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-lg-1">
+                                            </div>
+                                            <div class="col-lg-4 col-lg-offset-4">
+                                                <a class="btn btn-danger btn-lg" id="eliminarRecursos">Eliminar Recursos Asignados</a>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verPlanificadas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                                            <button type="submit" class="btn btn-primary btn-lg">Replanificar solicitud</button>
+                                        </div>
+                                    </form>
+                    </div>			        
+		        </div>
+	</div>
+
+
+    @section scripts{
+
+    <script type="text/javascript">
+        $("#familiaEquipo").change(function () {
+
+            //Se deshabilitan los combobox que corresponden
+            $("#tipoEquipo").prop('disabled', false);
+            $("#equipo").prop('disabled', true);
+            $("#operador").prop('disabled', true);
+            $("#rigger").prop('disabled', true);
+            $("#botonAsignarRecursos").attr("disabled", "disabled");
+
+            var valor = $("#familiaEquipo").val();
+
+            if (valor == "Seleccione una opción") {
+                $("#tipoEquipo").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerTiposEquipo",
+                data: { "familia": valor },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#tipoEquipo").empty();
+
+                    $("#tipoEquipo").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        $("#tipoEquipo").append("<option>" + arr[i] + "</option>");
+                    }
+                }
+            });
+        });
+
+        $("#tipoEquipo").change(function () {
+
+            //Se habilitan y deshabilitan combobox
+            $("#equipo").prop('disabled', false);
+            $("#operador").prop('disabled', true);
+            $("#rigger").prop('disabled', true);
+            $("#botonAsignarRecursos").attr("disabled", "disabled");
+
+            var valor = $("#tipoEquipo").val();
+            var fechaInicio = $("#fechaInicioCorreccion").val();
+            fechaInicio = fechaInicio.split("/")[0] + "-" + fechaInicio.split("/")[1] + "-" + fechaInicio.split("/")[2];
+            var horaInicio = $("#horaInicioCorreccion").val();
+            if (horaInicio.split(" ")[1] == "AM") {
+                horaInicio = horaInicio.split(" ")[0];
+            }
+            else {
+                horaInicio = horaInicio.split(" ")[0];
+                var hora = horaInicio.split(":")[0];
+                var minuto = horaInicio.split(":")[1];
+
+                var horaInt = parseInt(hora);
+                horaInt += 12;
+
+                horaInicio = horaInt + ":" + minuto;
+
+            }
+
+            var fechaTermino = $("#fechaTerminoCorreccion").val();
+            fechaTermino = fechaTermino.split("/")[0] + "-" + fechaTermino.split("/")[1] + "-" + fechaTermino.split("/")[2];
+            var horaTermino = $("#horaTerminoCorreccion").val();
+            horaTermino = horaTermino.split(" ")[0];
+
+            if (horaTermino.split(" ")[1] == "AM") {
+                horaTermino = horaTermino.split(" ")[0];
+            }
+            else {
+                horaTermino = horaTermino.split(" ")[0];
+                var hora = horaTermino.split(":")[0];
+                var minuto = horaTermino.split(":")[1];
+
+                var horaInt = parseInt(hora);
+                horaInt += 12;
+
+                horaTermino = horaInt + ":" + minuto;
+
+            }
+
+            var inicio = fechaInicio + "/" + horaInicio;
+            var fin = fechaTermino + "/" + horaTermino;
+
+            if (valor == "Seleccione una opción" || valor == "") {
+                $("#equipo").prop('disabled', true);
+                return;
+            }
+
+            var idSol = "@(Model.idSolicitud)";
+
+            console.log(valor + " - " + inicio + " - " + fin + " - " + idSol);
+
+            $.ajax({
+                url: "obtenerEquipos",
+                data: {
+                    "tipoEquipo": valor,
+                    "inicio": inicio,
+                    "fin": fin,
+                    "idSol": idSol
+                },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#equipo").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + $("#equipo1").val());
+                        if ($("#equipo1").val() != arr[i].split('/')[0])
+                        {
+                            $("#equipo").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                        }
+                    }
+                }
+
+            });
+        });
+
+        $("#equipo").change(function () {
+
+            //Se habilitan y deshabilitan combobox
+            $("#operador").prop('disabled', false);
+            $("#rigger").prop('disabled', false);
+
+            var valor = $("#equipo").val();
+
+            var fechaInicio = $("#fechaInicioCorreccion").val();
+            fechaInicio = fechaInicio.split("/")[0] + "-" + fechaInicio.split("/")[1] + "-" + fechaInicio.split("/")[2];
+            var horaInicio = $("#horaInicioCorreccion").val();
+            if (horaInicio.split(" ")[1] == "AM") {
+                horaInicio = horaInicio.split(" ")[0];
+            }
+            else {
+                horaInicio = horaInicio.split(" ")[0];
+                var hora = horaInicio.split(":")[0];
+                var minuto = horaInicio.split(":")[1];
+
+                var horaInt = parseInt(hora);
+                horaInt += 12;
+
+                horaInicio = horaInt + ":" + minuto;
+
+            }
+
+            var fechaTermino = $("#fechaTerminoCorreccion").val();
+            fechaTermino = fechaTermino.split("/")[0] + "-" + fechaTermino.split("/")[1] + "-" + fechaTermino.split("/")[2];
+            var horaTermino = $("#horaTerminoCorreccion").val();
+            horaTermino = horaTermino.split(" ")[0];
+
+            if (horaTermino.split(" ")[1] == "AM") {
+                horaTermino = horaTermino.split(" ")[0];
+            }
+            else {
+                horaTermino = horaTermino.split(" ")[0];
+                var hora = horaTermino.split(":")[0];
+                var minuto = horaTermino.split(":")[1];
+
+                var horaInt = parseInt(hora);
+                horaInt += 12;
+
+                horaTermino = horaInt + ":" + minuto;
+
+            }
+
+            var inicio = fechaInicio + "/" + horaInicio;
+            var fin = fechaTermino + "/" + horaTermino;
+
+            if (valor == "Seleccione una opción" || valor == "") {
+                $("#operador").prop('disabled', true);
+                $("#rigger").prop('disabled', true);
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+                return;
+            }
+
+            var idSol = "@(Model.idSolicitud)";
+            var turno = $("#turnoSolicitanteCorreccion").val();
+
+            console.log(valor + " - " + inicio + " - " + fin + " - " + turno + " - " + idSol);
+
+            $.ajax({
+                url: "obtenerOperadorRigger",
+                data: {
+                    "equipo": valor,
+                    "inicio": inicio,
+                    "fin": fin,
+                    "turno": turno,
+                    "idSol": idSol
+                },
+
+                success: function (retorno) {
+
+                    console.log(retorno);
+                    var result = retorno.split(';');
+
+                    var arr = result[0].split(',');
+                    var arr2 = result[1].split(',');
+
+                    var operador1 = $("#operador1").val();
+                    var rigger1 = $("#rigger1").val();
+
+                    $("#operador").empty();
+
+                    $("#operador").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        if (operador1 != arr[i].split('/')[0]) {
+                            $("#operador").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                        }
+                    }
+
+                    $("#rigger").empty();
+
+                    $("#rigger").append("<option>" + "Seleccione una opción" + "</option>");
+                    $("#rigger").append("<option>" + "El servicio posee un rigger propio" + "</option>");
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (rigger1 != arr2[i].split('/')[0]) {
+                            $("#rigger").append("<option value='"+arr2[i].split('/')[0]+"'>" + arr2[i] + "</option>");
+                        }
+                    }
+                }
+
+            });
+        });
+
+        $("#operador").change(function () {
+
+            var valor1 = $("#operador").val();
+            var valor2 = $("#rigger").val();
+
+            if (valor1 != "Seleccione una opción" && valor2 != "Seleccione una opción" && valor1 != "" && valor2 != "") {
+                $("#botonAsignarRecursos").removeAttr("disabled");
+                return;
+            }
+            else {
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+            }
+        });
+
+        $("#rigger").change(function () {
+
+            var valor1 = $("#operador").val();
+            var valor2 = $("#rigger").val();
+
+            if (valor1 != "Seleccione una opción" && valor2 != "Seleccione una opción" && valor1 != "" && valor2 != "") {
+                $("#botonAsignarRecursos").removeAttr("disabled");
+                return;
+            }
+            else {
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+            }
+        });
+
+        $("#botonAsignarRecursos").click(function () {
+
+            var equipo = $("#equipo").val();
+            var operador = $("#operador").val();
+            var rigger = $("#rigger").val();
+
+            if ($("#celdaEquipo1").html() == "--") {
+                //Se muestra la información ingresada en la tabla
+                $("#celdaEquipo1").empty();
+                $("#celdaOperador1").empty();
+                $("#celdaRigger1").empty();
+                $("#celdaEquipo1").append(equipo);
+                $("#celdaOperador1").append(operador);
+                $("#celdaRigger1").append(rigger);
+
+                //Se agregan los valores ingresados a los input ocultos
+                $("#equipo1").val(equipo);
+                $("#operador1").val(operador);
+                $("#rigger1").val(rigger);
+
+                //Se deshabilitan los combobox
+                $('#familiaEquipo :nth-child(1)').prop('selected', true);
+                $("#tipoEquipo").prop('disabled', true);
+                $("#equipo").prop('disabled', true);
+                $("#operador").prop('disabled', true);
+                $("#rigger").prop('disabled', true);
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+                $("#eliminarRecursos").removeAttr("disabled");
+                $("#botonPlanificar").removeAttr("disabled");
+            }
+            else if ($("#celdaEquipo2").html() == "--") {
+                $("#celdaEquipo2").empty();
+                $("#celdaOperador2").empty();
+                $("#celdaRigger2").empty();
+                $("#celdaEquipo2").append(equipo);
+                $("#celdaOperador2").append(operador);
+                $("#celdaRigger2").append(rigger);
+
+                $("#equipo2").val(equipo);
+                $("#operador2").val(operador);
+                $("#rigger2").val(rigger);
+
+                $('#familiaEquipo :nth-child(1)').prop('selected', true);
+                $("#familiaEquipo").prop('disabled', true);
+                $("#tipoEquipo").prop('disabled', true);
+                $("#equipo").prop('disabled', true);
+                $("#operador").prop('disabled', true);
+                $("#rigger").prop('disabled', true);
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+                $("#eliminarRecursos").removeAttr("disabled");
+                $("#botonPlanificar").removeAttr("disabled");
+            }
+            reiniciarComboboxPorCambioFecha();
+        });
+
+        $("#eliminarRecursos").click(function () {
+            if ($("#celdaEquipo2").html() != "--") {
+                //Se actualizan los input
+                $("#equipo2").val("--");
+                $("#operador2").val("--");
+                $("#rigger2").val("--");
+
+                //Se muestra la información ingresada en la tabla
+                $("#celdaEquipo2").empty();
+                $("#celdaOperador2").empty();
+                $("#celdaRigger2").empty();
+                $("#celdaEquipo2").append("--");
+                $("#celdaOperador2").append("--");
+                $("#celdaRigger2").append("--");
+
+
+                //Se deshabilitan los combobox
+                $('#familiaEquipo :nth-child(1)').prop('selected', true);
+                $("#familiaEquipo").prop('disabled', false);
+                $("#tipoEquipo").prop('disabled', true);
+                $("#equipo").prop('disabled', true);
+                $("#operador").prop('disabled', true);
+                $("#rigger").prop('disabled', true);
+                $("#botonAsignarRecursos").attr("disabled", "disabled");
+            }
+            else {
+                if ($("#equipo1").html() != "--") {
+                    $("#celdaEquipo1").empty();
+                    $("#celdaOperador1").empty();
+                    $("#celdaRigger1").empty();
+                    $("#celdaEquipo1").append("--");
+                    $("#celdaOperador1").append("--");
+                    $("#celdaRigger1").append("--");
+
+                    $("#eliminarRecursos").attr("disabled", "disabled");
+                    $("#familiaEquipo").prop('disabled', false);
+                    $("#equipo1").val("--");
+                    $("#operador1").val("--");
+                    $("#rigger1").val("--");
+                    $("#botonPlanificar").attr("disabled", "disabled");
+                    $("#botonPlanificar").attr("disabled", "disabled");
+                }
+                else {
+                    $("#eliminarRecursos").attr("disabled", "disabled");
+                }
+                reiniciarComboboxPorCambioFecha();
+            }
+        });
+
+        $("#fechaInicioCorreccion").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fechaTerminoCorreccion").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+
+        $("#horaInicioCorreccion").datetimepicker({
+            format: 'hh/mm'
+        });
+        $("#horaTerminoCorreccion").datetimepicker({
+            format: 'hh/mm'
+        });
+
+        $("#fechaInicioCorreccion").click(function () {
+            reiniciarComboboxPorCambioFecha();
+        });
+        $("#fechaTerminoCorreccion").click(function () {
+            reiniciarComboboxPorCambioFecha();
+        });
+
+        $("#horaInicioCorreccion").click(function () {
+            reiniciarComboboxPorCambioFecha();
+        });
+        $("#horaTerminoCorreccion").click(function () {
+            reiniciarComboboxPorCambioFecha();
+        });
+
+        function reiniciarComboboxPorCambioFecha()
+        {
+            //Se deshabilitan los combobox que corresponden
+            $("#familiaEquipo").val($("#familiaEquipo option:first").val());
+            $("#tipoEquipo").prop('disabled', true);
+            $("#equipo").prop('disabled', true);
+            $("#operador").prop('disabled', true);
+            $("#rigger").prop('disabled', true);
+            $("#botonAsignarRecursos").attr("disabled", "disabled");
+            if ($("#celdaEquipo1").html() == "--")
+            {
+                $("#botonPlanificar").attr("disabled", "disabled");
+            }
+        }
+
+        $(".footer").hide();
+    </script>
+}

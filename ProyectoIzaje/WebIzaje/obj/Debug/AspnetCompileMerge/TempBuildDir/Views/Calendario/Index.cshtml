@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Calendario";
+}
+<div class="container">
+    <div class="page-header">
+        <h1 class="text-center">Calendario de Solicitudes</h1>
+    </div>
+
+    <div class="page-header">
+        <div class="pull-right form-inline">
+            <div class="btn-group">
+                <button class="btn btn-primary" data-calendar-nav="prev"><i class="glyphicon glyphicon-chevron-left"></i>&nbsp;Anterior</button>
+                <button class="btn" data-calendar-nav="today">Today</button>
+                <button class="btn btn-primary" data-calendar-nav="next">Siguiente&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-success" data-calendar-view="year">Año</button>
+                <button class="btn btn-success active" data-calendar-view="month">Mes</button>
+                <button class="btn btn-success" data-calendar-view="week">Semana</button>
+                <button class="btn btn-success" data-calendar-view="day">Dia</button>
+            </div>
+        </div>
+        <h3></h3>
+    </div>
+    
+    <div class="clearfix"></div>
+    <div id="calendar"></div>
+    <br />
+
+</div>
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>
+
+@section scripts{
+<script type="text/javascript">        
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", '@Url.Action("getEventos","Calendario")', false);
+    xmlhttp.send();
+
+    console.log(xmlhttp.responseText);
+
+    var obj = $.parseJSON(xmlhttp.responseText);
+    
+    var date = new Date;
+    var y = date.getFullYear();
+    var m = date.getMonthFormatted();
+    var d = date.getDateFormatted();
+
+    var fecha = y + "-" + m + "-" + d;
+
+    console.log(jstz.determine().toLocaleString())
+
+    var calendar = $('#calendar').calendar({
+       
+            events_source: obj,
+            language: 'es-ES',
+            timezone: jstz.determine().name(),
+            view: 'month',
+            tmpl_path: '/Scripts/calendar/view/',
+            tmpl_cache: false,
+            day: fecha,
+            onAfterEventsLoad: function(events) {
+                if (!events) {
+                    return;
+                }
+            },
+            onAfterViewLoad: function(view) {
+                $('.page-header h3').text(this.getTitle());
+                $('.btn-group button').removeClass('active');
+                $('button[data-calendar-view="' + view + '"]').addClass('active');
+            },
+            classes: {
+                months: {
+                    general: 'label'
+                }
+            }
+    });
+</script>
+}

@@ -1,0 +1,374 @@
+﻿@model IEnumerable<WebIzaje.Models.DetalleEstadoPago>
+@{
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 9);
+}
+<style>
+    
+    .table-res {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+</style>
+<div class="container">
+            <div class="page-header">
+                <h1 class="text-center">Estados De Pago</h1>
+            </div><!-- cierre de page header-->
+            <!--aqui debe ir el foreach de la lista de objetos-->
+            <br />
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8 text-center">ID Estado Pago :</label>
+                    <div class="col-lg-4">
+                    <label class="control-label col-lg-4" id="id_estado_pago">@ViewData["id"]</label>   
+                    </div>
+                </div>
+                
+            </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label class="label label-primary col-lg-8 text-center">UF :</label>
+                <div class="col-lg-4">
+               <label class="control-label col-lg-4" id="uf">@ViewData["uf"]</label>
+                </div>
+            </div>
+        <br />
+        <br />
+        <hr />
+    </div>
+    <div class="table-res" id="tabla_lista_detalle ">
+        @grid.GetHtml(
+            columns: grid.Columns(
+
+            grid.Column("fecha",
+            header: string.Format("Fecha ", grid.SortColumn == "fecha" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.fecha.ToString("dd-MM-yyyy")</span>
+            </text>),
+
+                             grid.Column("operador",
+                             header: "Operador",
+                             canSort: false),
+
+                             grid.Column("tagequipo",
+                             header: "Tag Equipo",
+                             canSort: false),
+
+                             grid.Column("area",
+                             header: "Area",
+                             canSort: false),
+
+                             grid.Column("responsable",
+                             header: "Responsable",
+                             canSort: false),
+
+                             grid.Column("empresa",
+                             header: "Empresa",
+                             canSort: false),
+
+                             grid.Column("centro_costo",
+                             header: "Centro de Costo",
+                             canSort: false),
+
+                             grid.Column("i_horometro",
+                             header: "Inicio Horometro",
+                             canSort: false),
+
+                             grid.Column("f_horometro",
+                             header: "Fin Horometro",
+                             canSort: false),
+
+                             grid.Column("d_horometro",
+                             header: "Delta Horometro",
+                             canSort: false),
+
+                             grid.Column("salto_horometro",
+                             header: "Salto Horometro",
+                             canSort: false),
+
+                             grid.Column("i_reloj",
+                             header: "Inicio Reloj",
+                             canSort: false),
+                             grid.Column("f_reloj",
+                             header: "Fin Reloj",
+                             canSort: false),
+
+                             grid.Column("d_reloj",
+                             header: "Delta Reloj",
+                             canSort: false),
+
+                             grid.Column("contador_deltareloj",
+                             header: "Contador",
+                             canSort: false),
+
+                             grid.Column("valor_dia",
+                             header: "Valor Dia",
+                             canSort: false),
+
+                             grid.Column("valor_mlp",
+                             header: "Valor MLP",
+                             canSort: false),
+
+                             grid.Column("valor_distribucion",
+                             header: "Valor Distribucion",
+                             canSort: false)
+
+                            ), tableStyle: "table table-hover table-bordered table-striped", 
+                            nextText:">",
+                            previousText:"<")
+
+    </div>
+  <!--  <div class="table-res">
+        <table class="table table-hover table-bordered table-striped ">
+            <thead>
+                <tr>
+
+                    <th>Fecha</th>
+                    <th>Operador</th>
+                    <th>Tag Equipo</th>
+                    <th>Tipo Equipo</th>
+                    <th>Area</th>
+                    <th>Responsable</th>
+                    <th>Empresa</th>
+                    <th>Centro Costo</th>
+                    <th>Inicio Horometro</th>
+                    <th>Fin Horometro</th>
+                    <th>Delta Horometro</th>
+                    <th>Salto Horometro</th>
+                    <th>Inicio Reloj</th>
+                    <th>Fin Reloj</th>
+                    <th>Delta Reloj</th>
+                    <th>Contador</th>
+                    <th>Valor Dia</th>
+                    <th>Valor Mlp</th>
+                    <th>Valor Distribucion</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(WebIzaje.Models.DetalleEstadoPago datos in (List<WebIzaje.Models.DetalleEstadoPago>)Model)
+                {
+                <tr>
+
+                    <td>@datos.fecha</td> 
+                    <td>@datos.operador</td>
+                    <td>@datos.tagequipo</td>
+                    <td>@datos.tipoequipo</td>
+                    <td>@datos.area</td>
+                    <td>@datos.responsable</td>
+                    <td>@datos.empresa</td>
+                    <td>@datos.centro_costo</td>
+                    <td>@datos.i_horometro</td>
+                    <td>@datos.f_horometro</td>
+                    <td>@datos.d_horometro</td>
+                    <td>@datos.salto_horometro</td>
+                    <td>@datos.i_reloj</td>
+                    <td>@datos.f_reloj</td>
+                    <td>@datos.d_reloj</td>
+                    <td>@datos.contador_deltareloj</td>
+                    <td>@datos.valor_dia</td>
+                    <td>@datos.valor_mlp</td>
+                    <td>@datos.valor_distribucion</td>
+                    
+                   
+                </tr>
+                }
+
+
+            </tbody>
+           
+
+        </table>
+    </div>
+      -->
+           
+            <hr />
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Totales</h3>
+        </div>
+        <div class="panel-body">
+           
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Delta Horometro</label>
+                    <label class="control-label col-lg-4" id="d_horometro">@ViewData["total_delta_horometro"]</label>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label  label-primary  col-lg-8">Delta Reloj</label>
+                    <label class="control-label col-lg-4" id="d_reloj">@ViewData["total_delta_reloj"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary  col-lg-8">Valor Dia</label>
+                    <label class="control-label col-lg-4" id="valor_dia">@ViewData["total_valor_dia"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Valor MLP</label>
+                    <label class="control-label col-lg-4" id="valor_mlp">@ViewData["total_valor_mlp"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Valor Distribucion</label>
+                    <label class="control-label col-lg-4" id="valor_distribucion">@ViewData["total_valor_distribucion"]</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="label label-primary col-lg-8">Saltos Horometro</label>
+                    <label class="control-label col-lg-4" id="saltos_horometro">@ViewData["total_saltos_horometro"]</label>
+                </div>
+            </div>
+            </div>
+    </div>
+    @{
+        List<WebIzaje.Models.RiggerDiasTrabajados> modelo_rigger = (List<WebIzaje.Models.RiggerDiasTrabajados>)ViewData["Riggers"];
+        WebGrid gridrigger = new WebGrid(modelo_rigger, rowsPerPage: 9);
+    }
+    <br />
+    
+    <h3 class="text-center">Servicios Realizados por Riggers</h3>
+    <br />
+   <div class="table-res" id="tabla_rigger">
+        @gridrigger.GetHtml(
+            columns: gridrigger.Columns(
+
+            gridrigger.Column("id_solicitud",
+            header: string.Format("ID Solicitud {0}", gridrigger.SortColumn == "id_solicitud" ? gridrigger.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.id_solicitud</span>
+            </text>),
+
+                                             gridrigger.Column("nombre_rigger",
+                                             header: "Nombre Rigger",
+                                             canSort: false),
+
+                                             gridrigger.Column("rut_rigger",
+                                             header: "Rut Rigger",
+                                             canSort: false),
+
+                                             gridrigger.Column("fecha_inicio",
+                                             header: string.Format("Fecha Inicio ", gridrigger.SortColumn == "fecha_inicio" ? gridrigger.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted"
+                                             ),
+
+                                             gridrigger.Column("fecha_fin",
+                                             header: "Fecha Termino",
+                                             canSort: false),
+
+                                             gridrigger.Column("dias_trabajados",
+                                             header: "Dias Trabajados por Solicitud",
+                                             canSort: false)
+
+                                            ), tableStyle: "table table-hover table-bordered table-striped",
+                                            nextText: ">",
+                                            previousText: "<")
+    </div>
+    <!--<div class="row">
+        <div class="table-res">
+            <table class="table table-hover table-bordered table-striped ">
+                <thead>
+                    <tr>
+
+                        <th>Id Solcitud </th>
+                        <th>Nombre </th>
+                        <th>Rut</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Termino</th>
+                        <th>Dias Trabajados por Solicitud</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (WebIzaje.Models.RiggerDiasTrabajados datos in (List<WebIzaje.Models.RiggerDiasTrabajados>)ViewData["Riggers"])
+                    {
+                        <tr>
+                            <td>@datos.id_solicitud</td>
+                            <td>@datos.nombre_rigger</td>
+                            <td>@datos.rut_rigger</td>
+                            <td>@datos.fecha_inicio</td>
+                            <td>@datos.fecha_fin</td>
+                            <td>@datos.dias_trabajados</td>
+                        </tr>
+                    }
+
+
+                </tbody>
+
+
+            </table>
+        </div>
+    
+    <div>
+        <ul class="pagination pagination-lg"></ul>
+    </div>
+    </div>-->
+        <br />
+        <h3 class="text-center">Total de Dias Trabajados por cada Rigger</h3>
+        <br />
+        <div class="table-res">
+            <table class="table table-hover table-bordered table-striped ">
+                <thead>
+                    <tr>
+
+                        <th>Nombre </th>
+                        <th>Rut</th>
+                        <th>Total Dias Trabajados</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (WebIzaje.Models.RiggerTotales datos in (List<WebIzaje.Models.RiggerTotales>)ViewData["TotalesRiggers"])
+                    {
+
+                        if(datos.total_dias_trabajados<10)
+                        { 
+                        <tr class="danger" >
+
+                            <td>@datos.nombre_rigger</td>
+                            <td>@datos.rut_rigger</td>
+                            <td>@datos.total_dias_trabajados</td>
+                        </tr>
+                    }
+                    else
+                        { 
+                            <tr>
+
+                            <td>@datos.nombre_rigger</td>
+                            <td>@datos.rut_rigger</td>
+                            <td>@datos.total_dias_trabajados</td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <caption class="text-left">
+                        <strong>&nbsp;&nbsp;Nota:&nbsp;</strong><span class="text-info">Las filas destacadas con color rojo, indican que el Rigger trabajó menos de 10 días.</span>
+                    </caption>
+                </tfoot>
+
+            </table>
+        
+    </div>
+        <br />
+    <div class="modal-footer">
+        <a href="@Url.Action("Generar_Excel","EstadoPago",new { id = @ViewData["id"]})" type="button" class="btn btn-success"><i class="glyphicon glyphicon-export"></i>Generar Excel</a>
+    </div>
+            <!-- cierre row muestra de equipos-->
+
+        </div><!-- cierre container-->
+
+
+

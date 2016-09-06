@@ -1,0 +1,82 @@
+﻿@model List<WebIzaje.Models.Solicitud>
+
+@{
+    ViewBag.Title = "Solicitudes Nuevas";
+}
+
+<div class="container">
+
+  
+    @if(ViewData["mensaje"]!=null){
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+            &times;
+        </button>@ViewData["mensaje"]</div>
+    }
+                    
+    <div class="page-header">
+        <h2 class="text-center">Solicitudes nuevas</h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class=" table table-hover">
+            <thead>
+                <tr>
+                    <th>Id de solicitud</th>
+                    <th>Empresa solicitante</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                    <th>Editar</th>
+                    @if (Session["rol"] != null && (Session["rol"].ToString().Equals("admin") || Session["rol"].ToString().Equals("izaje")))
+                    {
+                        <th>Planificar</th>
+                    }
+                    @if (Session["rol"] != null && Session["rol"].ToString().Equals("admin"))
+                    {
+                        <th>Eliminar</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td><strong class="text-primary">@Model[i].idSolicitud</strong></td>
+                            <td>@Model[i].empresa</td>
+                            <td>@Model[i].inicio</td>
+                            <td>@Model[i].fin</td>
+                            <td>@Model[i].estado</td>
+                            <td><a href="@Url.Action("editarSolicitud", "Solicitud", new { idSolicitud = Model[i].idSolicitud })"><span class='glyphicon glyphicon-edit text-primary'></span></a></td>
+                            @if (Session["rol"] != null && (Session["rol"].ToString().Equals("admin") || Session["rol"].ToString().Equals("izaje")))
+                            {
+                                <td><a href="@Url.Action("planificarSolicitud", "Solicitud", new { idSolicitud = Model[i].idSolicitud })"><span class='glyphicon glyphicon-time text-primary'></span></a></td>
+                            }
+                            @if (Session["rol"] != null && Session["rol"].ToString().Equals("admin"))
+                            {
+                                <td><a href="@Url.Action("eliminarSolicitud", "Solicitud", new { idSolicitud = Model[i].idSolicitud, nombreVista = "verNuevas" })"><span class="glyphicon glyphicon-trash text-danger"></span></a></td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+         
+</div>
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>

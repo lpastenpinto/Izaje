@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "avisos";
+}
+
+To: @ViewBag.To
+From: pruebamlp@gmail.com
+Subject: @ViewBag.Asunto
+<html>
+<head>
+    <h3>Notificación</h3>
+</head>
+<br />
+<strong>@ViewBag.TipoNotificacion</strong>
+<br />
+@ViewBag.Fecha
+<br />
+<body>    
+    @{
+        string[] datos= (string[])@ViewBag.datosSolicitud;
+    }
+    @if (datos != null && datos.Length > 0)
+    {
+        
+        <br />
+        <br />
+        <strong>La solicitud posee los siguientes datos:</strong>
+        <br />
+        <br />
+        foreach (string linea in datos)
+        {
+            <strong>@linea.Split(';')[0]:</strong>@linea.Split(';')[1]<br />
+        }
+    }
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>@ViewBag.Pendientes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ViewBag.Cuerpo</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

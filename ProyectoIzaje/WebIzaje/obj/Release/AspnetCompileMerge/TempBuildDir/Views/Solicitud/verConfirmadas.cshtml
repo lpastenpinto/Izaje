@@ -1,0 +1,66 @@
+﻿@model List<WebIzaje.Models.Solicitud>
+@{
+    ViewBag.Title = "solicitud confirmadas";
+}
+
+<div class="container">
+
+
+    @if (ViewData["mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>@ViewData["mensaje"]
+        </div>
+    }
+    <div class="page-header">
+        <h2 class="text-center">Solicitudes Confirmadas</h2>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id de solicitud</th>
+                    <th>Empresa solicitante</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Área</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td><strong class="text-primary">@Model[i].idSolicitud</strong></td>
+                            <td>@Model[i].empresa</td>
+                            <td>@Model[i].inicio</td>
+                            <td>@Model[i].fin</td>
+                            <td>@Model[i].area</td>
+                            <td>@Model[i].estado</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>

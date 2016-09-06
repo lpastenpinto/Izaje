@@ -1,0 +1,124 @@
+﻿@model WebIzaje.Models.Solicitud
+
+@{
+    ViewBag.Title = "Autorizar Solicitud";
+}
+
+    <div class="container">
+       
+		        <div class="row">			        
+			        <div class="col-xs-12 col-sm-12">
+				        <div class="page-header">
+	                        <h1 class="text-center">Autorizar solicitud</h1>
+                        </div>
+                        <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoAutorizarSolicitud", "Solicitud")">
+                            <div class="form-group">
+                                <div class="col-lg-2"></div>
+                                <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                                <div class="col-lg-6">
+                                    <input type="text" value="@Model.idSolicitud" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                                            required></div>
+                                <div class="col-lg-2"></div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <div class="col-lg-12"><h4 class="text-center">Datos de la solicitud</h4></div>
+                                <br>
+                                <br>
+                                <br class="visible-lg">
+                                <label for="idSolicitud" class="col-lg-2 control-label">Solicitud:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="idSolicitud" name="idSolicitud" value="@Model.idSolicitud"
+                                           disabled>
+                                </div>
+                                <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="empresa" name="empresa" value="@Model.empresa"
+                                           disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="area" class="col-lg-2 control-label">Área:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="area" name="area" value="@Model.area"
+                                           disabled>
+                                </div>
+                                <label for="lugar" class="col-lg-2 control-label">Lugar:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="lugar" name="lugar" value="@Model.centroCosto"
+                                           disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="fechaInicio" class="col-lg-2 control-label">Fecha Inicio:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" value="@Model.inicioCorregido.ToString()"
+                                           disabled>
+                                </div>
+                                <label for="fechaFin" class="col-lg-2 control-label">Fecha Fin:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="fechaFin" name="fechaFin" value="@Model.finCorregido.ToString()"
+                                           disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="criticidad" class="col-lg-2 control-label">Criticidad:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="criticidad" name="criticidad" value="@Model.criticidad"
+                                           disabled>
+                                </div>
+                                <label for="centroCosto" class="col-lg-2 control-label">Centro de costo:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="centroCosto" name="centroCosto" value="@Model.centroCosto"
+                                           disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio:</label>
+                                <div class="col-lg-4">
+                                    <textarea class="form-control" id="descripcionServicio" name="descripcionServicio"
+                                              style="resize:none !important" disabled>@Model.descripcionServicio</textarea>
+                                    </div>
+                                </div>
+                                <div>
+                                    @if (!string.IsNullOrEmpty(Model.rutaImagen))
+                                    {
+                                        <hr />
+                                        <h2 class="text-center">Imagen de la carga:</h2>
+                                        <img class="center-block img-rounded" src="@Url.Content(@Model.rutaImagen)" width="30%">
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verPlanificadas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                                    <button type="submit" class="btn btn-primary btn-lg">Autorizar esta solicitud</button>
+                                </div>
+                            </form>
+                    </div>			        
+		        </div>
+
+	</div>
+
+    @section scripts{
+    <script type="text/javascript">
+        $("#solicitudElegida").change(function () {
+            var valor = $("#solicitudElegida").val();
+
+            $.ajax({
+                url: "llenarDatosAutorizarSolicitud",
+                data: { "valor": valor },
+
+                success: function (retorno) {
+                    var arr = retorno.split(',');
+
+                    $("#idSolicitud").val(arr[0]);
+                    $("#empresa").val(arr[1]);
+                    $("#area").val(arr[2]);
+                    $("#lugar").val(arr[3]);
+                    $("#fechaInicio").val(arr[4]);
+                }
+
+            });
+
+        });
+    </script>
+    }

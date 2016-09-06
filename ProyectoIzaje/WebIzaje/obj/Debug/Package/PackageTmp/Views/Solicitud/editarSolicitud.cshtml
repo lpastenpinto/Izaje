@@ -1,0 +1,673 @@
+@model WebIzaje.Models.Solicitud
+
+@{
+    ViewBag.Title = "Editar Solicitud";
+}
+
+    <div class="container">
+       
+		        <div class="row">			        
+			        <div class="col-xs-12 col-sm-12">
+				        <div class="page-header">
+	                        <h1 class="text-center">Editar solicitud</h1>
+                        </div>				       
+                        <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoEditarSolicitud", "Solicitud")" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="col-lg-2"></div>
+                                <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="solicitudElegida" name="solicitudElegida" value="@Model.idSolicitud"
+                                           required>
+                                </div>
+                                <div class="col-lg-2"></div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <div class="col-lg-12"><h4 class="text-center">Datos del solicitante</h4></div>
+                                <br>
+                                <br>
+                                <br class="visible-lg">
+                                <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-záéíóú]+[\s][a-zA-záéíóú]+"
+                                           placeholder="Nombre y apellido. Ejemplo: Juan Pérez" value="@Model.nombre" required>
+                                </div>
+                                <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="empresa" name="empresa" value="@Model.empresa"
+                                           placeholder="Ingrese aquí su empresa" required>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="correo" class="col-lg-2 control-label">Correo:</label>
+                                <div class="col-lg-4">
+                                    <input type="email" class="form-control" id="correo" name="correo" value="@Model.correo"
+                                           placeholder="Ingrese su correo electrónico" required>
+                                </div>
+                                <label for="fono" class="col-lg-2 control-label">Teléfono:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="telefono" name="telefono" value="@Model.telefono"
+                                           pattern="[(]0[0-9][0-9][)]2[0-9][0-9][0-9][0-9][0-9][0-9]"
+                                           placeholder="Escriba su fono. Ejemplo (051)2121212">
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="celular" class="col-lg-2 control-label">Celular:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="celular" name="celular" value="@Model.celular"
+                                           pattern="[(]9[)][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+                                           placeholder="Ingrese aquí su celular. Ejemplo (9)89898989">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <div class="col-lg-12"><h4 class="text-center">Datos del lugar del servicio</h4></div>
+                                <br>
+                                <br>
+                                <br class="visible-lg">
+                                <label for="gerencia" class="col-lg-2 control-label">Gerencia</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="gerencia" name="gerencia"
+                                            required>
+                                        <option value="@Model.gerencia" selected>@Model.gerencia</option>
+                                        @for (int i = 0; i < ((string[])ViewData["gerencias"]).Length; i++)
+                                        {
+                                            string dato = ((string[])ViewData["gerencias"])[i];
+                                            if (Model.gerencia != dato)
+                                            {
+                                                <option value="@dato">@dato</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <label for="superintendencia" class="col-lg-2 control-label">Superintendencia</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="superintendencia" name="superintendencia"
+                                            required>
+                                        <option value="@Model.superintendencia" selected>@Model.superintendencia</option>
+                                        @for (int i = 0; i < ((string[])ViewData["superintendencias"]).Length; i++)
+                                        {
+                                            string dato = ((string[])ViewData["superintendencias"])[i];
+                                            if (!Model.superintendencia.Equals(dato))
+                                            {
+                                                <option value="@dato">@dato</option>
+                                            }
+                                        }@**@
+                                    </select>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="area" class="col-lg-2 control-label">Área</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="area" name="area"
+                                            required>
+                                        <option value="@Model.area" selected>@Model.area</option>
+                                        @for (int i = 0; i < ((string[])ViewData["areas"]).Length; i++)
+                                        {
+                                            string dato = ((string[])ViewData["areas"])[i];
+                                            if (!Model.area.Equals(dato))
+                                            {
+                                                <option value="@dato">@dato</option>
+                                            }
+                                        }@**@
+                                    </select>
+                                </div>
+                                <label for="centroDeCosto" class="col-lg-2 control-label">Centro de costo</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="centroDeCosto" name="centroDeCosto"
+                                            required>
+                                        <option value="@Model.centroCosto" selected>@Model.centroCosto</option>
+                                        @for (int i = 0; i < ((string[])ViewData["centrosDeCosto"]).Length; i++)
+                                        {
+                                            string dato = ((string[])ViewData["centrosDeCosto"])[i];
+                                            if (!Model.centroCosto.Equals(dato))
+                                            {
+                                                <option value="@dato">@dato</option>
+                                            }
+                                        }@**@
+                                    </select>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="descripcionLugar" class="col-lg-2 control-label">Descripción del lugar del servicio</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" id="descripcionLugar" name="descripcionLugar"
+                                    style="resize:none !important" placeholder="ingrese una descripción del lugar en donde se realizará el servicio">@Model.descripcionLugar</textarea>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <h4 class="text-center">Datos del servicio solicitado</h4>
+                                    <br>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="fechaInicio" class="col-lg-2 control-label">Fecha de inicio</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" value="@string.Format("{0:dd/MM/yyyy}", Model.inicio.Date)"
+                                           data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                           placeholder="DD-MM-AAAA" required>
+                                    <div class="alert alert-danger hidden" id="errorFechaInicio">Esta fecha debe ser anterior o igual a la fecha de término</div>
+                                </div>
+                                <label for="horaInicio" class="col-lg-2 control-label">Hora de inicio</label>                                
+                                <div class="col-lg-4">
+                                    @{
+                                        string hora = Model.inicio.Hour.ToString();
+                                        string minuto = Model.inicio.Minute.ToString();
+                                        string AmPm = "AM";
+
+                                        if (int.Parse(hora) >= 12)
+                                        {
+                                            AmPm = "PM";
+                                            hora = (int.Parse(hora) - 12) + "";
+                                            if (hora.Length < 2)
+                                            {
+                                                hora = "0" + hora;
+                                            }
+                                        }
+                                        <input type="text" class="form-control" id="horaInicio" name="horaInicio" value="@(hora + ":" + minuto + " " + AmPm)"
+                                               data-date-format="hh:mm A" pattern="\d{1,2}[:]\d{1,2}[ ][A,P][M]"
+                                               placeholder="HH:MM" required>
+                                    }                                    
+                                    <div class="alert alert-danger hidden" id="errorHoraInicio">La hora de inicio no puede ser posterior a la hora de término</div>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaTermino" class="col-lg-2 control-label">Fecha de término</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="fechaTermino" name="fechaTermino" value="@string.Format("{0:dd/MM/yyyy}", Model.fin.Date)"
+                                               data-date-format="DD/MM/YYYY" pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                               placeholder="DD-MM-AAAA" required>
+                                        <div class="alert alert-danger hidden" id="errorFechaTermino">Esta fecha debe ser posterior o igual a la fecha de inicio</div>
+                                    </div>
+                                    <label for="horaTermino" class="col-lg-2 control-label">Hora de término</label>
+                                    <div class="col-lg-4">
+                                        @{
+                                            hora = Model.fin.Hour.ToString();
+                                            minuto = Model.fin.Minute.ToString();
+                                            AmPm = "AM";
+
+                                            if (int.Parse(hora) >= 12)
+                                            {
+                                                AmPm = "PM";
+                                                hora = (int.Parse(hora) - 12) + "";
+                                                if (hora.Length < 2)
+                                                {
+                                                    hora = "0" + hora;
+                                                }
+                                            }
+                                            <input type="text" class="form-control" id="horaTermino" name="horaTermino" value="@(hora + ":" + minuto + " " + AmPm)"
+                                                   data-date-format="hh:mm A" pattern="\d{1,2}[:]\d{1,2}[ ][A,P][M]"
+                                                   placeholder="HH:MM" required>
+                                        }
+                                        <div class="alert alert-danger hidden" id="errorHoraTermino">La hora de término no puede ser anterior a la hora de inicio</div>
+                                    </div>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                            <div class="form-group">
+                                <label for="criticidad" class="col-lg-2 control-label">Criticidad</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="Select6" name="criticidad"
+                                            required>
+                                        <option value="@Model.criticidad" selected>@Model.criticidad</option>
+                                        @{
+                                            List<string> criticidades = (List<string>)ViewData["criticidad"];
+                                            for (int i = 0; i < criticidades.Count; i++)
+                                            {
+                                                if (!criticidades[i].Equals(Model.criticidad))
+                                                {
+                                                    <option value="@criticidades[i]">@criticidades[i]</option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <label for="TiempoEstimadoOperacion" class="col-lg-2 control-label">Tiempo estimado de operación (hrs.)</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="Number1" name="TiempoEstimadoOperacion" value="@Model.tiempoEstimadoOperacion"
+                                           placeholder="Ingrese la hora de inicio del servicio" required>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="peso" class="col-lg-2 control-label">Peso (toneladas)</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="peso" name="peso" value="@Model.peso"
+                                           placeholder="Ingrese el peso de la carga a levantar" required>
+                                </div>
+                                <label for="turnoSolicitante" class="col-lg-2 control-label">Turno de trabajo</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="Select7" name="turnoSolicitante"
+                                            required>
+                                        <option value="@Model.turno" selected>@Model.turno</option>
+
+                                        @if (Model.turno.Equals(ViewData["turnoDia"]))
+                                        {
+                                            <option value="@ViewData["turnoNoche"]">@ViewData["turnoNoche"]</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@ViewData["turnoDia"]">@ViewData["turnoDia"]</option>
+                                        }
+                                    </select>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="altoCarga" class="col-lg-2 control-label">Alto de carga (mts.)</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="Number2" name="altoCarga" value="@Model.alto"
+                                           placeholder="Ingrese el alto de la carga a levantar" required>
+                                </div>
+                                <label for="anchoCarga" class="col-lg-2 control-label">Ancho de carga (mts.)</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="Number3" name="anchoCarga" value="@Model.ancho"
+                                           placeholder="Ingrese el ancho de la carga a levantar" required>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="largoCarga" class="col-lg-2 control-label">Largo de carga (mts.)</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="Number4" name="largoCarga" value="@Model.largo"
+                                           placeholder="Ingrese el largo de la carga a levantar" required>
+                                </div>
+                                <label for="imagenCarga" class="col-lg-2 control-label">Reeplazar imagen de la carga a levantar (opcional)</label>
+                                <div class="col-lg-4">
+                                    <input type="file" class="form-control" id="File1" name="imagenCarga"
+                                           placeholder="Ingrese el largo de la carga a levantar">
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="descripcionCarga" class="col-lg-2 control-label">Descripción de la carga</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" id="Textarea2" name="descripcionCarga"
+                                              style="resize:none !important" placeholder="Ingrese una descipción de la carga a levantar">@Model.descripcionCarga</textarea>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" id="Textarea3" name="descripcionServicio"
+                                                  style="resize:none !important" placeholder="Ingrese una descripción del servicio a realizar">@Model.descripcionServicio</textarea>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br>
+                                        <div class="col-lg-6">
+                                            @if (Model.solicitadoAnteriormente == true)
+                                            {
+                                                <input type="checkbox" name="solicitadoAnteriormente" value="true" checked>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="solicitadoAnteriormente" value="true">
+                                            }
+                                            El servicio requerido ha sido solicitado anteriormente<br>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            @if (Model.requiereRigger == true)
+                                            {
+                                                <input type="checkbox" name="riggerCalificado" value="true" checked>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="riggerCalificado" value="true">
+                                            }
+                                            El servicio solicitado requiere un rigger calificado<br>
+
+                                        </div>
+                                        <br class="visible-lg">
+                                        <div class="col-lg-6">
+                                            @if (Model.requiereManiobra == true)
+                                            {
+                                                <input type="checkbox" name="requiereManiobra" value="true" checked>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="requiereManiobra" value="true">
+                                            }
+                                            El servicio solicitado requiere maniobra<br>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            @if (Model.cuentaConManiobra == true)
+                                            {
+                                                <input type="checkbox" name="cuentaConManiobra" value="true" checked>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="cuentaConManiobra" value="true">
+                                            }
+                                            El servicio cuenta con maniobra<br>
+
+                                        </div>
+                                        <div>
+                                            <br>
+                                            <hr />
+                                            @if (!string.IsNullOrEmpty(Model.rutaImagen))
+                                            {
+                                                <h2 class="text-center">Imagen de la carga:</h2>
+                                                <img class="center-block img-rounded" src="@Url.Content(@Model.rutaImagen)" width="50%">
+                                            }
+                                        </div>
+                                    </div>
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verNuevas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                                <button type="submit" class="btn btn-primary btn-lg" id="enviar">Enviar solicitud</button>
+                            </div>
+                        </form>
+                    </div>			        
+		        </div>
+	</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $("#solicitudElegida").change(function () {
+            var valor = $("#solicitudElegida").val();
+
+            $.ajax({
+                url: "llenarDatosEditarSolicitud",
+                data: { "valor": valor },
+
+                success: function (retorno) {
+                    var arr = retorno.split(',');
+
+                    $("#nombre").val(arr[0]);
+                    $("#empresa").val(arr[1]);
+                    $("#correo").val(arr[2]);
+                    $("#telefono").val(arr[3]);
+                    $("#celular").val(arr[4]);
+                }
+
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#gerencia").change(function () {
+
+            $("#superintendencia").prop('disabled', false);
+            $("#area").prop('disabled', true);
+            $("#centroDeCosto").prop('disabled', true);
+            $("#enviar").attr("disabled", "disabled");
+
+            var valor = $("#gerencia").val();
+
+            if (valor == "Seleccione una opción") {
+                $("#superintendencia").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerSuperintendenciaJQ",
+                data: { "gerencia": valor },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#superintendencia").empty();
+
+                    $("#superintendencia").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        $("#superintendencia").append("<option>" + arr[i] + "</option>");
+                    }
+
+                }
+
+            });
+        });
+
+        $("#superintendencia").change(function () {
+
+            $("#area").prop('disabled', false);
+            $("#centroDeCosto").prop('disabled', true);
+            $("#enviar").attr("disabled", "disabled");
+
+            var valor = $("#superintendencia").val();
+
+            if (valor == "Seleccione una opción") {
+                $("#area").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerAreaJQ",
+                data: { "superintendencia": valor },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#area").empty();
+
+                    $("#area").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        $("#area").append("<option>" + arr[i] + "</option>");
+                    }
+                }
+            });
+        });
+
+        $("#area").change(function () {
+
+            $("#centroDeCosto").prop('disabled', false);
+            $("#enviar").attr("disabled", "disabled");
+
+            var valor = $("#area").val();
+
+            $.ajax({
+                url: "obtenerCentroCostoJQ",
+                data: { "area": valor },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#centroDeCosto").empty();
+
+                    $("#centroDeCosto").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        $("#centroDeCosto").append("<option>" + arr[i] + "</option>");
+                    }
+                }
+
+            });
+        });
+
+        $("#centroDeCosto").change(function () {
+            verificarCampos();
+        });
+
+        $("#fechaTermino").focusout(function () {
+
+            verificarCampos();
+        });
+
+        $("#fechaInicio").focusout(function () {
+            verificarCampos();
+        });
+
+        $("#horaInicio").focusout(function () {
+            verificarCampos();
+        });
+
+        $("#horaTermino").focusout(function () {
+            verificarCampos();
+        });
+
+        function verificarCampos() {
+            var habilitarCampo = true;
+
+            var valor = $("#centroDeCosto").val();
+
+            console.log("VALOR: '" + valor + "'");
+
+            if (valor == "Seleccione una opción" || valor == "" || valor == null) {
+                habilitarCampo = false;
+            }
+
+            var inicio = $("#fechaInicio").val();
+            var fin = $("#fechaTermino").val();
+
+            var añoInicio = inicio.split("/")[2];
+            var mesInicio = inicio.split("/")[1];
+            var diaInicio = inicio.split("/")[0];
+
+            var añoFin = fin.split("/")[2];
+            var mesFin = fin.split("/")[1];
+            var diaFin = fin.split("/")[0];
+
+            console.log(añoInicio + " - " + mesInicio + " - " + diaInicio + " | " + añoFin + " - " + mesFin + " - " + diaFin);
+
+            apInicio = $("#horaInicio").val().split(" ")[1];
+            apFin = $("#horaTermino").val().split(" ")[1];
+
+            var hInicio = $("#horaInicio").val().split(" ")[0];
+            var hTermino = $("#horaTermino").val().split(" ")[0];
+
+            var horaInicio = hInicio.split(":")[0];
+            var minutoInicio = hInicio.split(":")[1];
+
+            var horaTermino = hTermino.split(":")[0];
+            var minutoTermino = hTermino.split(":")[1];
+
+            console.log(horaInicio + ":" + minutoInicio + " " + apInicio + " - " + horaTermino + ":" + minutoTermino + " " + apFin);
+
+            if (parseInt(añoInicio) > parseInt(añoFin)) {
+                $("#errorFechaInicio").removeClass("hidden");
+                $("#errorFechaTermino").removeClass("hidden");
+                habilitarCampo = false;
+            }
+            else if (parseInt(añoInicio) == parseInt(añoFin)) {
+                if (parseInt(mesInicio) > parseInt(mesFin)) {
+                    $("#errorFechaInicio").removeClass("hidden");
+                    $("#errorFechaTermino").removeClass("hidden");
+                    habilitarCampo = false;
+                }
+                else if (parseInt(mesInicio) == parseInt(mesFin)) {
+                    if (parseInt(diaInicio) > parseInt(diaFin)) {
+                        $("#errorFechaInicio").removeClass("hidden");
+                        $("#errorFechaTermino").removeClass("hidden");
+                        habilitarCampo = false;
+                    }
+                    else if (parseInt(diaInicio) == parseInt(diaFin)) {
+                        console.log("dias iguales");
+                        $("#errorFechaInicio").addClass("hidden");
+                        $("#errorFechaTermino").addClass("hidden");
+
+                        if (apInicio == "AM" && apFin == "AM") {
+                            if (horaInicio == "12") horaInicio = "00";
+                            if (horaTermino == "12") horaTermino = "00";
+                            if (parseInt(horaInicio) > parseInt(horaTermino) ||
+                                (parseInt(horaInicio) == parseInt(horaTermino) &&
+                                parseInt(minutoInicio) > parseInt(minutoTermino))) {
+                                console.log("Hora de término es menor a hora de Inicio: " + horaInicio + ":" + minutoInicio
+                                    + " - " + horaTermino + ":" + minutoTermino);
+                                $("#errorHoraInicio").removeClass("hidden");
+                                $("#errorHoraTermino").removeClass("hidden");
+                                habilitarCampo = false;
+                            }
+                            else {
+                                $("#errorFechaInicio").addClass("hidden");
+                                $("#errorFechaTermino").addClass("hidden");
+                                $("#errorHoraInicio").addClass("hidden");
+                                $("#errorHoraTermino").addClass("hidden");
+                            }
+                        }
+                        else if (apInicio == "PM") {
+                            if (apFin == "AM") {
+                                $("#errorHoraInicio").removeClass("hidden");
+                                $("#errorHoraTermino").removeClass("hidden");
+                                habilitarCampo = false;
+                            }
+                            else {
+                                if (parseInt(horaInicio) > parseInt(horaTermino) ||
+                                (parseInt(horaInicio) == parseInt(horaTermino) &&
+                                parseInt(minutoInicio) > parseInt(minutoTermino))) {
+                                    if (horaInicio == "12") horaInicio = "00";
+                                    if (horaTermino == "12") horaTermino = "00";
+                                    $("#errorHoraInicio").removeClass("hidden");
+                                    $("#errorHoraTermino").removeClass("hidden");
+                                    habilitarCampo = false;
+                                }
+                                else {
+                                    $("#errorFechaInicio").addClass("hidden");
+                                    $("#errorFechaTermino").addClass("hidden");
+                                    $("#errorHoraInicio").addClass("hidden");
+                                    $("#errorHoraTermino").addClass("hidden");
+                                }
+                            }
+                        }
+                        else {
+                            $("#errorFechaInicio").addClass("hidden");
+                            $("#errorFechaTermino").addClass("hidden");
+                            $("#errorHoraInicio").addClass("hidden");
+                            $("#errorHoraTermino").addClass("hidden");
+                        }
+                    }
+                    else {
+                        $("#errorFechaInicio").addClass("hidden");
+                        $("#errorFechaTermino").addClass("hidden");
+                        $("#errorHoraInicio").addClass("hidden");
+                        $("#errorHoraTermino").addClass("hidden");
+                    }
+                }
+                else {
+                    $("#errorFechaInicio").addClass("hidden");
+                    $("#errorFechaTermino").addClass("hidden");
+                    $("#errorHoraInicio").addClass("hidden");
+                    $("#errorHoraTermino").addClass("hidden");
+                }
+            }
+            else {
+                $("#errorFechaInicio").addClass("hidden");
+                $("#errorFechaTermino").addClass("hidden");
+                $("#errorHoraInicio").addClass("hidden");
+                $("#errorHoraTermino").addClass("hidden");
+            }
+
+            if (añoInicio == undefined || añoFin == undefined) habilitarCampo = false;
+            if (horaInicio == undefined || horaTermino == undefined) habilitarCampo = false;
+
+            if (habilitarCampo) {
+                console.log("Habilitando botón");
+                $("#enviar").removeAttr("disabled");
+            }
+            else {
+                $("#enviar").attr("disabled", "disabled");
+            }
+        }
+
+        $("#fechaInicio").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fechaTermino").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+
+        $("#horaInicio").datetimepicker({
+            format: 'hh/mm'
+        });
+        $("#horaTermino").datetimepicker({
+            format: 'hh/mm'
+        });
+
+        $(".footer").hide();
+    </script>
+}

@@ -1,0 +1,578 @@
+﻿@model WebIzaje.Models.Solicitud
+@{
+    ViewBag.Title = "Ver Solicitud";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="page-header">
+                <h1 class="text-center">Datos de la solicitud</h1>
+            </div>
+            <form class="form-horizontal" role="form" method="post">
+                <div class="form-group">
+                    <div class="col-lg-2"></div>
+                    <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                               value="@Model.idSolicitud" disabled>
+
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-lg-12"><h4 class="text-center">Datos del solicitante</h4></div>
+                    <br>
+                    <br>
+                    <br class="visible-lg">
+                    <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="@Model.nombre" disabled
+                               disabled>
+                    </div>
+                    <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="empresa" name="empresa" value="@Model.empresa"
+                               disabled>
+                    </div>
+                    <br class="visible-lg">
+                    <br class="visible-lg">
+                    <label for="correo" class="col-lg-2 control-label">Correo:</label>
+                    <div class="col-lg-4">
+                        <input type="email" class="form-control" id="correo" name="correo" value="@Model.correo"
+                               disabled>
+                    </div>
+                    <label for="fono" class="col-lg-2 control-label">Teléfono:</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="@Model.telefono"
+                               pattern="[(]0[0-9][0-9][)]2[0-9][0-9][0-9][0-9][0-9][0-9]"
+                               disabled>
+                    </div>
+                    <br class="visible-lg">
+                    <br class="visible-lg">
+                    <label for="celular" class="col-lg-2 control-label">Celular:</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="celular" name="celular" value="@Model.celular"
+                               pattern="[(]9[)][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+                               disabled>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-lg-12"><h4 class="text-center">Datos del lugar del servicio</h4></div>
+                    <br>
+                    <br>
+                    <br class="visible-lg">
+                    <label for="gerencia" class="col-lg-2 control-label">Gerencia</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="gerencia" name="gerencia" value="@Model.gerencia"
+                               disabled>
+                    </div>
+                    <label for="superintendencia" class="col-lg-2 control-label">Superintendencia</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="superintendencia" name="superintendencia" value="@Model.superintendencia"
+                               disabled>
+                    </div>
+                    <br class="visible-lg">
+                    <br class="visible-lg">
+                    <label for="area" class="col-lg-2 control-label">Área</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="area" name="area" value="@Model.area"
+                               disabled>
+                    </div>
+                    <label for="centroDeCosto" class="col-lg-2 control-label">Centro de costo</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="centroDeCosto" name="centroDeCosto" value="@Model.centroCosto"
+                               disabled>
+                    </div>
+                    <br class="visible-lg">
+                    <br class="visible-lg">
+                    <label for="descripcionLugar" class="col-lg-2 control-label">Descripción del lugar del servicio</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" id="descripcionLugar" name="descripcionLugar"
+                                  style="resize:none !important" disabled>
+                            @Model.descripcionLugar
+                            </textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <h4 class="text-center">Datos del servicio solicitado</h4>
+                            <br>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="fechaInicio" class="col-lg-2 control-label">Fecha de inicio</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="fecha" name="fecha" value="@string.Format("{0:dd/MM/yyyy}", Model.inicio.Date)"
+                                   pattern="[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]"
+                                   placeholder="MM-DD-AAAA" disabled>
+                        </div>
+                        <label for="horaInicio" class="col-lg-2 control-label">Hora de inicio</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="horaInicio" name="horaInicio" value="@(Model.inicio.Hour.ToString() + ":" + Model.inicio.Minute.ToString())"
+                                   pattern="[0-9][0-9]:[0-9][0-9]"
+                                   placeholder="HH:MM" disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="fechaTermino" class="col-lg-2 control-label">Fecha de término</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="fechaTermino" name="fechaTermino" value="@string.Format("{0:dd/MM/yyyy}", Model.fin.Date)"
+                                   pattern="[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]"
+                                   disabled>
+                        </div>
+                        <label for="horaTermino" class="col-lg-2 control-label">Hora de término</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="horaTermino" name="horaTermino" value="@(Model.fin.Hour.ToString() + ":" + Model.fin.Minute.ToString())"
+                                   pattern="[0-9][0-9]:[0-9][0-9]"
+                                   placeholder="HH:MM" disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="criticidad" class="col-lg-2 control-label">Criticidad</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="criticidad" name="criticidad" value="@Model.criticidad"
+                                   disabled>
+                        </div>
+                        <label for="TiempoEstimadoOperacion" class="col-lg-2 control-label">Tiempo estimado de operación (hrs.)</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="TiempoEstimadoOperacion" name="TiempoEstimadoOperacion" value="@Model.tiempoEstimadoOperacion"
+                                   disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="peso" class="col-lg-2 control-label">Peso (toneladas)</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="peso" name="peso" value="@Model.peso"
+                                   disabled>
+                        </div>
+                        <label for="turnoSolicitante" class="col-lg-2 control-label">Turno de trabajo</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" id="turnoSolicitante" name="turnoSolicitante" value="@Model.turno"
+                                   disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="altoCarga" class="col-lg-2 control-label">Alto de carga (mts.)</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="altoCarga" name="altoCarga" value="@Model.alto"
+                                   disabled>
+                        </div>
+                        <label for="anchoCarga" class="col-lg-2 control-label">Ancho de carga (mts.)</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="anchoCarga" name="anchoCarga" value="@Model.ancho"
+                                   disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="largoCarga" class="col-lg-2 control-label">Largo de carga (mts.)</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="largoCarga" name="largoCarga" value="@Model.largo"
+                                   disabled>
+                        </div>
+                        <label for="imagenCarga" class="col-lg-2 control-label">Imagen de la carga a levantar</label>
+                        <div class="col-lg-4">
+                            <input type="file" class="form-control" id="imagenCarga" name="imagenCarga"
+                                   disabled>
+                        </div>
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <br class="visible-lg">
+                        <label for="descripcionCarga" class="col-lg-2 control-label">Descripción de la carga</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" id="descripcionCarga" name="descripcionCarga"
+                                      style="resize:none !important" disabled>
+                                @Model.descripcionCarga
+                                </textarea>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="descripcionServicio" name="descripcionServicio"
+                                          style="resize:none !important" disabled>
+                                    @Model.descripcionServicio
+                                    </textarea>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br>
+                                <div class="col-lg-6">
+                                    @if (Model.solicitadoAnteriormente == true)
+                                    {
+                                        <input type="checkbox" name="solicitadoAnteriormente" value="@ViewData["true"]" checked disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="solicitadoAnteriormente" value="@ViewData["true"]" disabled>
+                                    }
+                                    El servicio requerido ha sido solicitado anteriormente<br>
+                                </div>
+                                <div class="col-lg-6">
+                                    @if (Model.requiereRigger == true)
+                                    {
+                                        <input type="checkbox" name="riggerCalificado" value="true" checked disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="riggerCalificado" value="true" disabled>
+                                    }
+                                    El servicio solicitado requiere un rigger calificado<br>
+
+                                </div>
+                                <br class="visible-lg">
+                                <div class="col-lg-6">
+                                    @if (Model.requiereManiobra == true)
+                                    {
+                                        <input type="checkbox" name="requiereManiobra" value="true" checked disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="requiereManiobra" value="true" disabled>
+                                    }
+                                    El servicio solicitado requiere maniobra<br>
+                                </div>
+                                <div class="col-lg-6">
+                                    @if (Model.cuentaConManiobra == true)
+                                    {
+                                        <input type="checkbox" name="cuentaConManiobra" value="true" checked disabled>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="cuentaConManiobra" value="true" disabled>
+                                    }
+                                    El servicio cuenta con maniobra<br>
+                                </div>
+                                <div>
+                                    <br>
+                                    <hr />
+                                    @if (!string.IsNullOrEmpty(Model.rutaImagen))
+                                    {
+                                        <h2 class="text-center">Imagen de la carga:</h2>
+                                        <img class="center-block img-rounded" src="@Url.Content(@Model.rutaImagen)" width="50%">
+                                    }
+                                </div>
+                            </div>
+                            @if (!Model.estado.Equals("NUEVA"))
+                            {
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <h4 class="text-center">Datos Corregidos</h4>
+                                        <br>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="criticidadCorreccion" class="col-lg-2 control-label">Criticidad</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="criticidadCorreccion" name="criticidadCorreccion"
+                                               value="@Model.criticidadCorregida" disabled>
+                                    </div>
+                                    <label for="TiempoEstimadoOperacionCorreccion" class="col-lg-2 control-label">Tiempo estimado de operación (hrs.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="TiempoEstimadoOperacionCorreccion" name="TiempoEstimadoOperacionCorreccion" value="@Model.tiempoEstimadoOperacionCorregido"
+                                               placeholder="Ingrese la hora de inicio del servicio" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="pesoCorreccion" class="col-lg-2 control-label">Peso (toneladas)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="pesoCorreccion" name="pesoCorreccion" value="@Model.pesoCorregido"
+                                               placeholder="Ingrese el peso de la carga a levantar" disabled>
+                                    </div>
+                                    <label for="turnoSolicitanteCorreccion" class="col-lg-2 control-label">Turno de trabajo</label>
+                                    <div class="col-lg-4">
+                                        <input class="form-control" id="turnoSolicitanteCorreccion" name="turnoSolicitanteCorreccion"
+                                               value="@Model.turnoCorregido" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="altoCarga" class="col-lg-2 control-label">Alto de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number2" name="altoCargaCorreccion" value="@Model.altoCorregido"
+                                               placeholder="Ingrese el alto de la carga a levantar" disabled>
+                                    </div>
+                                    <label for="anchoCarga" class="col-lg-2 control-label">Ancho de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number3" name="anchoCargaCorreccion" value="@Model.anchoCorregido"
+                                               placeholder="Ingrese el ancho de la carga a levantar" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="largoCarga" class="col-lg-2 control-label">Largo de carga (mts.)</label>
+                                    <div class="col-lg-4">
+                                        <input type="number" class="form-control" id="Number4" name="largoCargaCorreccion" value="@Model.largoCorregido"
+                                               placeholder="Ingrese el largo de la carga a levantar" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="descripcionCarga" class="col-lg-2 control-label">Descripción de la carga</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" id="Textarea1" name="descripcionCargaCorreccion"
+                                                  style="resize:none !important" placeholder="Ingrese una descipción de la carga a levantar" disabled>
+                                            @Model.descripcionCargaCorregida
+                                            </textarea>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control" id="Textarea2" name="descripcionServicioCorreccion"
+                                                      style="resize:none !important" placeholder="Ingrese una descripción del servicio a realizar" disabled>
+                                                @Model.descripcionCargaCorregida
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <h4 class="text-center">Fechas de planificación del servicio</h4>
+                                            <br>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="fechaInicio" class="col-lg-2 control-label">Fecha de inicio</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="fechaInicioCorreccion" name="fechaInicioCorreccion" value="@string.Format("{0:dd-MM-yyyy}", Model.inicioCorregido.Date)"
+                                                   pattern="[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]"
+                                                   placeholder="DD-MM-AAAA" disabled>
+                                        </div>
+                                        <label for="horaInicio" class="col-lg-2 control-label">Hora de inicio</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="horaInicioCorreccion" name="horaInicioCorreccion" value="@(Model.inicioCorregido.Hour.ToString() + ":" + Model.inicioCorregido.Minute.ToString())"
+                                                   pattern="\d{1,2}[:]\d{1,2}"
+                                                   placeholder="HH:MM" disabled>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="fechaTermino" class="col-lg-2 control-label">Fecha de término</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="fechaTerminoCorreccion" name="fechaTerminoCorreccion" value="@string.Format("{0:dd-MM-yyyy}", Model.finCorregido.Date)"
+                                                   pattern="[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]"
+                                                   placeholder="DD-MM-AAAA" disabled>
+                                        </div>
+                                        <label for="horaTermino" class="col-lg-2 control-label">Hora de término</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="horaTerminoCorreccion" name="horaTerminoCorreccion" value="@(Model.finCorregido.Hour.ToString() + ":" + Model.finCorregido.Minute.ToString())"
+                                                   pattern="\d{1,2}[:]\d{1,2}"
+                                                   placeholder="HH:MM" disabled>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <div>
+                                            <h4 class="text-center">Recursos asignados</h4>
+                                        </div>
+                                        <div class="col-lg-1">
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Datos Equipo</th>
+                                                        <th>Operador</th>
+                                                        <th>Rigger</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td id="celdaEquipo1">@Model.idEquipo1</td>
+                                                        <td id="celdaOperador1">@Model.idOperador1</td>
+                                                        <td id="celdaRigger1">@Model.idRigger1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td id="celdaEquipo2">@Model.idEquipo2</td>
+                                                        <td id="celdaOperador2">@Model.idOperador2</td>
+                                                        <td id="celdaRigger2">@Model.idRigger2</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="clearfix">
+                                        </div>
+                                        @if (Model.estado.Equals("FINALIZADA") || Model.estado.Equals("FINALIZADA")) {
+                                        <div class="form-group">
+                                            <hr />
+                                            <div class="col-lg-12"><h4 class="text-center">Datos de finalización por día</h4></div>
+                                            <br>
+                                            <br>
+                                            <br class="visible-lg">
+                                            <!--agregar foreach para mostrar los datos-->
+                                            @{int i = 0;}
+                                            @for (i = 0; i < Model.fechas.Count; i++)
+                                            {
+                                                <label for="fechaSol1" class="col-lg-2 col-lg-offset-3 control-label">Fecha:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" id="@("fechaSol"+i)" name="@("fechaSol"+i)"
+                                                           value="@string.Format("{0:dd-MM-yyyy}", Model.inicioCorregido.Date.AddDays(i))"
+                                                           readonly>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="tagEquipo1" class="col-lg-2 control-label">Tag equipo 1:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" value="@Model.idEquipo1"
+                                                           disabled>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="horaRelojInicial1" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                                <div class="col-lg-4">
+                                                    <input class="form-control" value="@Model.horaRelojInicial1[i]" required>
+                                                </div>
+                                                <label for="horaRelojFinal1" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                                <div class="col-lg-4">
+                                                    <input class="form-control" value="@Model.horaRelojFinal1[i]" required>
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="horaHorometroInicio" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="number" class="form-control" value="@Model.horaHorometroInicial1[i]">
+                                                </div>
+                                                <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="number" class="form-control" value="@Model.horaHorometroFinal1[i]">
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                if (!Model.idEquipo2.Equals("--"))
+                                                {
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                    <label for="tagEquipo2" class="col-lg-2 control-label">Tag equipo 2:</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value="@Model.idEquipo2"
+                                                               disabled>
+                                                    </div>
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                    <label for="horaRelojInicial2" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control" value="@Model.horaRelojInicial2[i]" required>
+                                                    </div>
+                                                    <label for="horaRelojFinal2" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                                    <div class="col-lg-4">
+                                                        <input class="form-control" value="@Model.horaRelojFinal2[i]" required>
+                                                    </div>
+
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                    <label for="horaHorometroInicio2" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="number" class="form-control" value="@Model.horaHorometroInicial2[i]">
+                                                    </div>
+                                                    <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="number" class="form-control" value="@Model.horaHorometroFinal2[i]">
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                    <br class="visible-lg">
+                                                }
+                                            }
+                                        </div>
+                                        <hr>
+                                        <br>
+                                        }
+                                        <div>
+                                            <h4 class="text-center">Responsables</h4>
+                                        </div>
+                                        <div class="col-lg-1">
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>Planificada por</strong></td>
+                                                        @if (!@Model.planificadaPor.Equals(""))
+                                                        {
+                                                            <td>@Model.planificadaPor</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>--</td>
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Autorizada por</strong></td>
+                                                        @if (!@Model.autorizadaPor.Equals(""))
+                                                        {
+                                                            <td>@Model.autorizadaPor</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>--</td>
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Finalizada por</strong></td>
+                                                        @if (!@Model.finalizadaPor.Equals(""))
+                                                        {
+                                                            <td>@Model.finalizadaPor</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>--</td>
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Confirmada por</strong></td>
+                                                        @if (!@Model.confirmadaPor.Equals(""))
+                                                        {
+                                                            <td>@Model.confirmadaPor</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>--</td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-lg-6 col-sm-offset-3">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        @if (@Model.calculado)
+                                                        {
+                                                            <td>Esta solicitud ha sido calculada en el estado de pago con ID: @Model.estadoPagoCalculado</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>Esta solicitud aún no ha sido calculada en un estado de pago</td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>

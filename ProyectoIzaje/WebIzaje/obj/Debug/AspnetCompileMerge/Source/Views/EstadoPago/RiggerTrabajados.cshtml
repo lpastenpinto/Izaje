@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Rigger Trabajados";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2 class="text-center">Información de Trabajo del Riggers</h2>
+    </div>
+    <div class="table table-responsive">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th>Tipo de Acción</th>
+                    <th>Filtro</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="badge">Ver dias Trabajados</span></td>
+                    <td><a href="#" data-toggle="modal" data-target="#modal_rigger" title="Filtro Vista Reporte"><i class='glyphicon glyphicon-search text-primary'></i></a></td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    
+    <!--Modal filtro rigger-->
+    <div class="modal fade" id="modal_rigger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="text-cabezera">Filtro Rigger</h4>
+                </div>
+                <div class="modal-body">
+                    <label> Estado de Pago:</label>
+                    <br />
+                    
+
+                        <select class="form-control" name="tipo_estadoPago" id="tipo_estadoPago">
+                            <option selected>Seleecione un Id</option>
+                        @foreach (string tipo in (string[])ViewData["id_estado_pago_general"])
+                        {
+                              <option value="@tipo">@tipo</option>
+                        }
+                        </select>
+                    
+                    <br />
+                    <label class="control-label text-center text-info" id="Titulo" ></label>
+                    <br />
+                    <div id="contenedor_tipo">
+
+                    </div>
+                    <br />
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                    <a href="" type="button" id="btn_filtro_rigger" class="btn btn-primary" onclick="funcionFiltroRigger()"><i class="glyphicon glyphicon-ok"></i>Aplicar Filtro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+<script type="text/javascript"> 
+    $("#btn_filtro_rigger").attr("disabled", "disabled");
+
+    $("#tipo_estadoPago").change(function () {
+        var valor = $("#tipo_estadoPago").val();
+        if (valor != "") {
+            
+            $("#btn_filtro_rigger").removeAttr("disabled");
+            $.ajax({
+                url: "rescatar_id_tipo", data: { "id_general": valor },
+                success: function (retorno)
+                {
+                    if (retorno != null)
+                    {
+                        $("#Titulo").html("Ids Por Tipo de Equipo Contenidos")
+                        var dato_retorno = retorno.split(',');
+                        $("#contenedor_tipo").html("");
+                        for (i = 0; i < dato_retorno.length; i++) {
+                            $("#contenedor_tipo").append("<span class='badge'>"+dato_retorno[i]+"</span><br/>");
+                        }
+                    }
+                }
+
+            });
+        }
+        else {
+            $("#btn_filtro_rigger").attr("disabled", "disabled");
+            $("#contenedor_tipo").html("");
+            $("#Titulo").html("");
+        }
+
+    });
+
+    function funcionFiltroRigger()
+    {
+        var id_general = $("#tipo_estadoPago").val();
+        
+        
+            var cadena = "@Url.Action("DetalleRigger", "EstadoPago", new { idGeneral = "id_general"})";
+            cadena = cadena.replace("id_general", id_general);
+        cadena = cadena.replace(";", "&");
+            console.log(cadena);
+            $("#btn_filtro_rigger").attr("href", cadena);
+            $("#modal_rigger").modal("hide");
+        
+    }
+    
+</script>    
+}
+
+

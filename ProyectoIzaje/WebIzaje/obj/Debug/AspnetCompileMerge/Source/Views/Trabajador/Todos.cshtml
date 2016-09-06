@@ -1,0 +1,118 @@
+﻿@model IEnumerable<WebIzaje.Models.TrabajadorDatos>
+@{
+    ViewBag.Title = "Trabajadores";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<div class="container">
+    @if (ViewBag.success == 0)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong>&nbsp;No se pudieron realizar los cambios!.
+        </div> 
+    }
+    @if (ViewBag.success == 1)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-ok-circle text-success"></i></strong>&nbsp;Cambios realizados con exito!.
+        </div>
+    }
+    @if (ViewBag.success == 2)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-info-sign text-warning"></i></strong>&nbsp;Rut ingresado, ya existe!.
+        </div>
+    }
+
+    <div class="page-header">
+        <h2 class="text-center">Trabajadores</h2>
+    </div>
+   
+    <div class="table-responsive">
+
+        @grid.GetHtml(
+            columns: grid.Columns(
+
+        grid.Column("rut",
+                 header: string.Format("Rut {0}", grid.SortColumn == "rut" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.rut</span>
+            </text>),
+        
+        grid.Column("nombre",
+            header: string.Format("Nombre {0}", grid.SortColumn == "nombre" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+        grid.Column("apellidop",
+            header: string.Format("Apellido Paterno {0}", grid.SortColumn == "apellidop" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+        grid.Column("apellidom",
+            header: string.Format("Apellido Materno {0}", grid.SortColumn == "apellidom" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+        grid.Column("fono",
+            header: string.Format("Fono {0}", grid.SortColumn == "fono" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+            
+        grid.Column("rol",
+            header: string.Format("Rol {0}", grid.SortColumn == "rol" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+        grid.Column("",
+            header: "",
+            format: @<text>
+                <a href="@Url.Action("Editar", "Trabajador", new { id = @item.rut })" title="Editar"><i class='glyphicon glyphicon-edit text-primary'></i></a>
+        &emsp;
+                <a href="#" data-toggle="modal" data-target="#myModal" onclick="funcionDelete('@item.rut','@item.nombre')" title="Eliminar"><i class='glyphicon glyphicon-trash text-danger'></i></a>
+            </text>)
+        ), tableStyle: "table table-hover",footerStyle: "pagination")
+    </div>
+
+    <hr />
+    <a href="@Url.Action("Nuevo", "Trabajador")" type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign text-success"></i>&nbsp;Nuevo</a>
+     
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">¿Eliminar Registro?</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center" id="text-modal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                    <a href="" type="button" id="btn_delete" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        function funcionDelete(num, name) {
+            $("#text-modal").html("");
+            var cadena = "@Url.Action("Delete", "Trabajador", new { id = "num"})";
+            cadena = cadena.replace("num",num);
+            $("#btn_delete").attr("href", cadena);
+            $("#text-modal").append("¿Estás seguro de que deseas eliminar a <strong>"+name+"</strong>  de Trabajadores?");
+
+        }
+
+    </script>
+}

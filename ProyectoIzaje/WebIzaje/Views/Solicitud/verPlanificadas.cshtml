@@ -1,0 +1,98 @@
+﻿@model List<WebIzaje.Models.Solicitud>
+@{
+    ViewBag.Title = "ver solicitudes planificadas";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+<div class="container">
+
+    @if (ViewData["mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>@ViewData["mensaje"]
+        </div>
+    }
+
+    <div class="page-header">
+        <h2 class="text-center">Solicitudes planificadas</h2>
+    </div>
+    <div class="table table-responsive">
+        @grid.GetHtml(
+            columns: grid.Columns(
+
+            grid.Column("idSolicitud",
+            header: string.Format("Id de solicitud {0}", grid.SortColumn == "idSolicitud" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+                <span class="badge">@item.idSolicitud</span>
+            </text>),
+
+            grid.Column("inicio",
+            header: string.Format("Inicio {0}", grid.SortColumn == "inicio" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("fin",
+            header: string.Format("Fin {0}", grid.SortColumn == "fin" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+            grid.Column("estado",
+            header: "Estado"),
+            
+            grid.Column("planificadaPor",
+            header: "Planificada por"),
+
+            grid.Column("area",
+            header: "Área",
+            canSort: false),
+
+            grid.Column("",
+            header: "Editar",
+            format: @<text>
+                <a href="@Url.Action("editarSolicitud", "Solicitud", new { idSolicitud = item.idSolicitud })"><span class='glyphicon glyphicon-edit text-primary'></span></a>
+
+            </text>),
+
+            grid.Column("",
+            header: "Replanificar",
+            format: @<text>
+                @if (Session["rol"] != null && (Session["rol"].ToString().Equals("admin") || Session["rol"].ToString().Equals("izaje")))
+                {
+                   <a href="@Url.Action("replanificarSolicitud", "Solicitud", new { idSolicitud = item.idSolicitud })"><span class='glyphicon glyphicon-time text-primary'></span></a>
+                }
+
+            </text>),
+
+            grid.Column("",
+            header: "Autorizar",
+            format: @<text>
+                @if (Session["rol"] != null && (Session["rol"].ToString().Equals("admin") || Session["rol"].ToString().Equals("jefeArea")))
+                {
+                   if (item.area.Equals(Session["area"]) || Session["rol"].ToString().Equals("admin"))
+                      {
+                         <a href="@Url.Action("autorizarSolicitud", "Solicitud", new { idSolicitud = item.idSolicitud })"><span class='glyphicon glyphicon-ok text-primary'></span></a>
+                      }
+                      else
+                      {
+                         <span>Usted no puede autorizar esta solicitud</span> 
+                      }
+                 }
+
+            </text>)
+                                            ), tableStyle: "table table-hover", footerStyle: "pagination")
+
+    </div>
+    
+</div>
+
+
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebIzaje.Models.ResumenEstadoPago>
+@{
+    ViewBag.Title = "Mostrar Estados de Pago";
+}
+
+<div class="container">
+
+    <div class="page-header">
+        @if (ViewBag.success == 0)
+        {
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong> No se ha podido Generar el Estado de pago!.
+            </div>
+        } @if (ViewBag.success == 1)
+        {
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong><i class="glyphicon glyphicon-ok-circle text-success"></i></strong> Se ha Generado un nuevo Estado de Pago Exitosamente!.
+            </div>
+        }
+        <h1 class="text-center">Estados De Pago</h1>
+       
+    </div><!-- cierre de page header-->
+    <form class="form-horizontal" role="form">
+        <table class="table table-striped col-sm-12">
+            <thead>
+                <tr>
+                    <th>ID Estado Pago</th>
+                    <th>Fecha Generado</th>
+                    <th>Tipo Equipo</th>
+                    <th>Uf</th>
+                    <th>Total Valor Dia</th>
+                    <th>Total Valor Mlp</th>
+                    <th>Costo Hora</th>
+                    <th>Valor Distribucion</th>
+                    <th>Resumen Estado Pago</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (WebIzaje.Models.ResumenEstadoPago estadopagos in (List<WebIzaje.Models.ResumenEstadoPago>)Model)
+                {
+
+                    <tr>
+                            <td>@estadopagos.id_estadopago</td>
+                            <td>@estadopagos.fecha_generado</td>
+                            <td>@estadopagos.tipo_equipo</td>
+                            <td>@estadopagos.uf</td>
+                            <td>@estadopagos.total_valor_dia</td>
+                            <td>@estadopagos.total_valor_mlp</td>
+                            <td>@estadopagos.costo_hora</td>
+                            <td>@estadopagos.total_valor_distribucion</td>
+
+                            
+                        
+                        <td><a href="@Url.Action("Listadetalleestadopago", "EstadoPago", new { id_pago = estadopagos.id_estadopago })"><i class="glyphicon glyphicon-edit text-primary"></i></a></td>
+                        
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+        <!-- cierre row muestra de equipos-->
+    </form>
+
+
+</div><!-- cierre container-->

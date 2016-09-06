@@ -1,0 +1,262 @@
+﻿@model IEnumerable<WebIzaje.Models.Solicitud>
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+<div class="container">
+    <div class="page-header">
+        <h2>
+            Servicios
+            <button type="button" class="btn btn-default btn-group pull-right" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-filter"></i>&nbsp;Filtro</button>
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+
+        @grid.GetHtml(
+            columns: grid.Columns(
+
+        grid.Column("idSolicitud",
+                 header: string.Format("Id {0}", grid.SortColumn == "idSolicitud" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            
+            <span class="badge">@item.idSolicitud</span>
+            </text>),
+
+        grid.Column("area",
+                 header: string.Format("Área {0}", grid.SortColumn == "area" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.area</span>
+            </text>),
+
+        grid.Column("centroCosto",
+                 header: string.Format("Centro de Costo {0}", grid.SortColumn == "centroCosto" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.centroCosto</span>
+            </text>),
+
+        grid.Column("inicioCorregido",
+                 header: string.Format("Inicio {0}", grid.SortColumn == "inicioCorregido" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.inicioCorregido</span>
+            </text>),
+
+        grid.Column("finCorregido",
+                 header: string.Format("Fin {0}", grid.SortColumn == "finCorregido" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.finCorregido</span>
+            </text>),
+
+        grid.Column("idEquipo1",
+                 header: string.Format("Equipos {0}", grid.SortColumn == "idEquipo1" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.idEquipo1 - @item.idEquipo2</span>
+            </text>),
+
+        grid.Column("idOperador1",
+                 header: string.Format("Operadores {0}", grid.SortColumn == "idOperador1" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.idOperador1 - @item.idOperador2</span>
+            </text>),
+
+        grid.Column("idRigger1",
+                 header: string.Format("Riggers {0}", grid.SortColumn == "idRigger1" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""), style: "text-muted",
+            format: @<text>
+            <span>@item.idRigger1 - @item.idRigger2</span>
+            </text>),
+
+        grid.Column("",
+            header: "",
+            format: @<text>
+                <a href="@Url.Action("verSolicitud", "Solicitud", new { idSolicitud = item.idSolicitud })" title="Ver Solicitud"><i class='glyphicon glyphicon-edit text-primary'></i></a>
+            </text>)
+         ), tableStyle: "table table-hover", footerStyle: "pagination")
+
+    </div>
+    <hr />
+    @if (string.IsNullOrEmpty(ViewBag.item1))
+    {
+        <span class="label label-warning">E: Todos</span> 
+    }else {<span class="label label-warning">T: @ViewBag.item1</span> 
+    }
+                                                   
+    @if (string.IsNullOrEmpty(ViewBag.item2))
+    {
+        <span class="label label-warning">T: Todos</span> 
+    }
+    else {<span class="label label-warning">T: @ViewBag.item2</span> 
+    }
+
+    @if (string.IsNullOrEmpty(ViewBag.item3))
+    {
+        <span class="label label-warning">F.I: 01-@DateTime.Now.Month-@DateTime.Now.Year</span> 
+    }else {<span class="label label-warning">F.I: @ViewBag.item3</span> 
+    }
+
+    @if (string.IsNullOrEmpty(ViewBag.item4))
+    {
+        DateTime mes = DateTime.Now.AddMonths(1);
+        <span class="label label-warning">F.T: 01-@mes.Month-@mes.Year</span> 
+    }else {<span class="label label-warning">F.T: @ViewBag.item4</span>  
+    }
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-filter"></i>&nbsp;Filtrar</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted">Equipo:</label>
+                                <select class="form-control" id="equipos" name="_equipo">
+                                </select>
+                                <input type="hidden" id="equipo" value="@ViewBag.item1" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted">Trabajador:</label>
+                                <select class="form-control" id="trabajadores" name="_trabajador">
+                                </select>
+                                <input type="hidden" id="trabajador" value="@ViewBag.item2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted">Fecha Inicio:</label>
+                                @if (string.IsNullOrEmpty(ViewBag.item3))
+                                {
+                                    DateTime date = DateTime.Now;
+                                   <input type="text" class="form-control" id="fecha_inicio" name="_fecha_inicio" value="01+'/'+@date.Month+'/'+@date.Year" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa" placeholder="Inicio" /> 
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="fecha_inicio" name="_fecha_inicio" value="@ViewBag.item3" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa" placeholder="Inicio" />
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-muted">Fecha Término:</label>
+                                @if (string.IsNullOrEmpty(ViewBag.item3))
+                                {
+                                    DateTime date = DateTime.Now.AddMonths(1);
+                                    <input type="text" class="form-control" id="fecha_termino" name="_fecha_termino" value="01+'/'+@date.Month+'/'+@date.Year" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa" placeholder="Fin" />
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="fecha_termino" name="_fecha_termino" value="@ViewBag.item4" data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa" placeholder="Fin" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>&nbsp;Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btn-info"><i class="glyphicon glyphicon-check"></i>&nbsp;Aceptar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+
+
+    $(function () {
+        $('#fecha_inicio').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $('#fecha_termino').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fecha_inicio").on("dp.change", function (e) {
+            $('#fecha_termino').data("DateTimePicker").minDate(e.date);
+        });
+        $("#fecha_termino").on("dp.change", function (e) {
+            $('#fecha_inicio').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+
+
+    $.ajax({
+        url: "@Url.Action("GetEquipos","Info")",
+        success: function (items) {
+            $("#equipos").html('');
+            $("#equipos").append("<option value='all'>-- Equipos --</option>");
+
+            if (items.length > 0) {
+                var item = items.split(',');
+                var itemx = $('#equipo').val().trim();
+
+                for (i = 0; i < item.length; i++) {
+                    
+                    if (itemx == item[i].split(':')[0].trim()) {
+                        $("#equipos").append("<option value='" + item[i] + "' selected>" + item[i] + "</option>");
+                    } else {
+                        $("#equipos").append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                    }
+                }
+            }
+        }
+    });
+
+
+
+    $.ajax({
+        url: "@Url.Action("GetTrabajadores","Info")",
+        success: function (items) {
+            $("#trabajadores").html('');
+            $("#trabajadores").append("<option value='all'>-- Trabajador --</option>");
+
+            if (items.length > 0) {
+                var item = items.split(',');
+                var itemx = $('#trabajador').val().trim();
+                for (i = 0; i < item.length; i++) {
+                    
+                    if (itemx == item[i].split(':')[0].trim()) {
+                        $("#trabajadores").append("<option value='" + item[i] + "' selected>" + item[i] + "</option>");
+                    }else{
+                        $("#trabajadores").append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                    }
+
+                }
+            }
+        }
+    });
+
+    $('#btn-info').click(function () {
+        var equipo = $('#equipos').val();
+        if (equipo != "all") {
+            equipo = equipo.split(':')[0];
+        }
+        var trabajador = $('#trabajadores').val();
+        if (trabajador != "all") {
+            trabajador = trabajador.split(':')[0];
+        }
+        var fecha_in = $('#fecha_inicio').val().replace("/", "-");
+        fecha_in = fecha_in.replace("/","-");
+
+        var fecha_out = $('#fecha_termino').val().replace("/","-");
+        fecha_out = fecha_out.replace("/","-");
+
+        window.location = "/Info/All/"+ "item1=" + equipo + ";item2=" + trabajador + ";item3=" + fecha_in + ";item4=" + fecha_out;
+    })
+
+
+    </script>
+}

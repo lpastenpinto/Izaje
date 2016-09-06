@@ -1,0 +1,31 @@
+﻿@model WebIzaje.Models.Marca_Equipo
+@{
+    ViewBag.Title = "Editar Marca Equipo";
+}
+
+
+<div class="container">
+    <div class="panel-body">
+        <div class="page-header">
+            <h2 class="text-center">Editar Marca Equipo</h2>
+        </div>
+    </div>
+    <form action="@Url.Action("Guardar_Editar_Marca_Equipo", "Admin")" class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Marca</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="nombre" value="@Model.marca" required>
+                <input type="text" class="form-control" name="nombre_nuevo" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="Nombre Marca Equipo" value="@Model.marca" required>
+            </div>
+        </div>
+
+        
+        <div class="modal-footer">
+            <a type="button" href="@Url.Action("Marca_Equipos","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+        </div>
+    </form>
+</div>
+
+
+

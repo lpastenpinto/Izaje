@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "pendientes";
+}
+
+To: @ViewBag.To
+From: pruebamlp@gmail.com
+Subject: Notificacion @ViewBag.Asunto
+<html>
+<head>
+    <h1>Notificación</h1>
+</head>
+<br />
+<strong>@ViewBag.Cuerpo</strong>
+<br />
+@foreach (string id in (string[])@ViewBag.Pendientes)
+{ 
+    <strong>ID: @id</strong>
+}
+<br />
+
+</html>
+

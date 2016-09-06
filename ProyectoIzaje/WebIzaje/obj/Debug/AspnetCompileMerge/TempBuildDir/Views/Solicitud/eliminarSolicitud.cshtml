@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Editar Solicitud";
+}
+
+    <div class="container">
+        
+		        <div class="row">			        
+			        <div class="col-xs-12 col-sm-12">
+				        <div class="page-header">
+	                        <h1 class="text-center">Eliminar una solicitud</h1>
+                        </div>				       
+			            <form class="form-horizontal" role="form" method="post" action="agregarSolicitud">
+                          <div class="form-group">                            
+                            <div class="col-lg-2"></div>
+					        <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+					        <div class="col-lg-6">
+					          <select class="form-control" id="solicitudElegida" name="solicitudElegida" 
+							         required>
+                                    @foreach (string cadena in (string[])ViewData["solicitudes"])
+                                    {
+                                        if (Model.idSolicitud.Equals(cadena))
+                                        {
+                                            <option value="@cadena" selected>@cadena</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@cadena">@cadena</option>
+                                        }
+                                    }
+                              </select>
+					        </div>
+                            <div class="col-lg-2"></div>
+					      </div>
+				          <hr>
+				          <div class="form-group">
+                            <div class="col-lg-12"><h4  class="text-center">Resumen de la solicitud</h4></div>
+                            <br>
+                            <br>
+                            <br class="visible-lg">
+                            <label for="nombre" class="col-lg-2 control-label">Nombre del solicitante:</label>
+					        <div class="col-lg-4">
+					          <input type="text" class="form-control" id="nombre" name="nombre" value="@Model.nombre"
+							         disabled required>
+					        </div>
+					        <label for="centroCosto" class="col-lg-2 control-label">Centro de costo:</label>
+					        <div class="col-lg-4">
+                                <input type="text" class="form-control" id="centroCosto" name="centroCosto" value="@Model.centroCosto"
+                                       disabled required>
+					        </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="fechaInicio" class="col-lg-2 control-label">Nombre del solicitante:</label>
+					        <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" value="@string.Format("{0:dd-MM-yyyy}", Model.inicio.Date)"
+                                       disabled required>
+					        </div>
+					        <label for="fechaTermino" class="col-lg-2 control-label">Centro de costo:</label>
+					        <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fechaTermino" name="fechaTermino" value="@string.Format("{0:dd-MM-yyyy}", Model.fin.Date)"
+                                       disabled required>
+					        </div>                            
+				          </div>
+                          <hr />				         
+                          <div class="modal-footer">                    
+                              <button type="submit" class="btn btn-primary btn-lg">Eliminar solicitud</button>
+                            </div>
+				        </form>
+                    </div>			        
+		        </div>
+	</div>
+
+    <script type="text/javascript">
+        $("#solicitudElegida").change(function () {
+            var valor = $("#solicitudElegida").val();
+
+            $.ajax({
+                url: "llenarDatosEliminarSolicitud",
+                data: { "valor": valor },
+
+                success: function (retorno) {
+                    var arr = retorno.split(',');
+
+                    $("#nombre").val(arr[0]);
+                    $("#centroCosto").val(arr[1]);
+                    $("#fechaInicio").val(arr[2]);
+                    $("#fechaTermino").val(arr[3]);
+                    
+                }
+
+            });
+
+        });
+    </script>

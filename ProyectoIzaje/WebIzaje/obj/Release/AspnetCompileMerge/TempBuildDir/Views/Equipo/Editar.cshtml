@@ -1,0 +1,546 @@
+﻿@model WebIzaje.Models.DatosEquipo
+@{
+    ViewBag.Title = "Editar Equipo";
+}
+
+<div class="container">
+    <div class="panel panel-default" id="panel_cuerpo">
+        <div class="panel-body">
+
+            <div class="page-header">
+                <h1 class="text-center">Modificar Equipo</h1>
+            </div><!--cierre page-header-->
+
+            <form class="form-horizontal" role="form" action="@Url.Action("guardarEditar", "Equipo")" method="post" enctype="multipart/form-data">
+                
+                <h6 class="text-center">
+                    @if (!Model.url_imagen.Equals("-1"))
+                    {
+                        <img src="@Url.Content(Model.url_imagen)" width="200px" class="img-rounded" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/Images/crane-default.jpg")" width="200px" class="img-rounded" />
+                    }
+                    <br /><br />
+                    <input type="hidden" name="imagen_url" value="@Model.url_imagen">
+                    <input type="file" name="imagen" align="middle" class="center-block">
+                </h6>
+                <hr />
+
+
+                <h3 class="text-center">Caracteristicas del Equipo</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Familia de Equipo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="familiaE" id="familiaE" required>
+                                    @foreach (string fa in (string[])ViewData["familia_equipo"])
+                                    {
+                                        if (Model.familia_equipo.Equals(fa))
+                                        {
+                                            <option value="@fa" selected="selected">@fa</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@fa">@fa</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Tipo de Equipo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="tipoE" id="tipoE" required>
+                                    <option value="@Model.tipo_equipo" selected="selected">@Model.tipo_equipo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Marca</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="marcaE" id="marcaE" required>
+                                    <option value="@Model.marca" selected="selected">@Model.marca</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Modelo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="modeloE" id="modeloE" required>
+                                    <option value="@Model.modelo" selected="selected">@Model.modelo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Año Fabricacion</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="añof" placeholder="Año fabricacion" value="@Model.año_fabricacion" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Capacidad (Ton)</label>
+                            <div class="col-sm-8">
+
+                                <input type="text" class="form-control" name="capacidadE" placeholder="Capacidad" value="@Model.capacidad" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Estado</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="EstadoE" required>
+                                    @{string[] estados = { "Disponible", "NoDisponible" };}
+                                    @foreach (var x in estados)
+                                    {
+                                        if (@Model.estado.Equals(x.ToLower()))
+                                        {
+                                            <option value="@x" selected> @x </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@x"> @x </option>
+                                        }
+                                    }
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Empresa Propietaria</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="EmpresaPE" required>
+                                    @foreach (string fa in (string[])ViewData["empresa"])
+                                    {
+                                        if (Model.empresa_propietaria.Equals(fa))
+                                        {
+                                            <option value="@fa" selected="selected">@fa</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@fa">@fa</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group" id="panel-tag">
+                            <label class="col-sm-2 control-label">Tag</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="tag" placeholder="Tag" value="@Model.tag" required>
+                                <input type="hidden" name="tagOld" value="@Model.tag">
+                                <span id="icon-tag" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                
+                <h3 class="text-center">Certificados del Equipo</h3>
+                <hr />
+
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Inspección</u></h4>
+
+                        @foreach (WebIzaje.Models.EquipoCertificados certificado in Model.datos_certificados)
+                        {
+                            if (certificado.nombre_certificado.Equals("Certificado Inspeccion") && (certificado != null))
+                            {
+                                <div class="col-md-7">
+                                    <label class="control-label col-lg-5">Fecha Vencimiento</label>
+                                    @if (certificado.fecha_vencimiento != string.Empty)
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_0")" id="fecha_0" value="@certificado.fecha_vencimiento" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' placeholder="dd/mm/aaaa">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_0")" id="fecha_0" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                                        </div>
+                                    }
+                                </div>
+
+
+                                <div class="col-md-5" id="@("c_file0")">
+                                    @if (certificado.url != "-1")
+                                    {
+                                        <div class='alert alert-info alert-dismissible' role='alert'>
+                                            <button type='button' class='close' onclick="certificadoEditar('0','@certificado.url')" id="btn-close-inspeccion" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                            <a type="button" class="btn btn-danger btn-block " href="@Url.Action("DownloadFile", "Equipo", new { url = certificado.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                            <input type="file" class="hidden" name="file_">
+                                            <input type="hidden" name="@("file_url0")" value="@certificado.url">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <label class="col-lg-5 control-label">Certificado Adjunto</label>
+                                        <div class="col-lg-7">
+                                            <input type="file" class="form-control col-lg-6" name="file_">
+                                            <input type="hidden" name="@("file_url0")">
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                </div>
+
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Accesorios</u></h4>
+
+                    @foreach (WebIzaje.Models.EquipoCertificados certificado in Model.datos_certificados)
+                    {
+                        if (certificado.nombre_certificado.Equals("Certificado Accesorios") && (certificado != null))
+                        {
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-lg-5 control-label">Fecha Vencimiento</label>
+                                    @if (certificado.fecha_vencimiento != string.Empty)
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_1")" id="fecha_1" value="@certificado.fecha_vencimiento" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_1")" id="fecha_1" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class=" col-md-5" id="@("c_file1")">
+                                @if (certificado.url != "-1")
+                                {
+                                    <div class='alert alert-info alert-dismissible col-lg-12' role='alert'>
+                                        <button type='button' class='close' onclick="certificadoEditar('1','@certificado.url')" id="btn-close-inspeccion" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                        <a type="button" class="btn btn-danger btn-block " href="@Url.Action("DownloadFile", "Equipo", new { url = certificado.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                        <input type="file" class="hidden" name="file_">
+                                        <input type="hidden" name="@("file_url1")" value="@certificado.url">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <label class="col-lg-5 control-label">Certificado Adjunto</label>
+                                    <div class="col-lg-7">
+                                        <input type="file" class="form-control col-lg-6" name="file_">
+                                        <input type="hidden" name="@("file_url1")">
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+
+
+                <div class="row">
+                    <h4 class="text-center text-primary"><u>Certificado de Pluma</u></h4>
+                    @foreach (WebIzaje.Models.EquipoCertificados certificado in Model.datos_certificados)
+                    {
+                        if (certificado.nombre_certificado.Equals("Certificado Pluma") && (certificado != null))
+                        {
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-lg-5 control-label">Fecha Vencimiento</label>
+                                    @if (certificado.fecha_vencimiento != string.Empty)
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_2")" id="fecha_2" value="@certificado.fecha_vencimiento" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-7">
+                                            <input type="text" class="form-control " name="@("fecha_2")" id="fecha_2" placeholder="dd/mm/aaaa" data-date-format="DD/MM/YYYY" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]'>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" id="@("c_file2")">
+                                @if (certificado.url != "-1")
+                                {
+                                    <div class='alert alert-info alert-dismissible' role='alert'>
+                                        <button type='button' class='close' onclick="certificadoEditar('2','@certificado.url')" id="btn-close-inspeccion" data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                                        <a type="button" class="btn btn-danger btn-block " href="@Url.Action("DownloadFile", "Equipo", new { url = certificado.url })"><i class="glyphicon glyphicon-file"></i>&nbsp;Descargar</a>
+                                        <input type="file" class="hidden" name="file_">
+                                        <input type="hidden" name="@("file_url2")" value="@certificado.url">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <label class="col-lg-5 control-label">Certificado Adjunto</label>
+                                    <div class="col-lg-7">
+                                        <input type="file" class="form-control col-lg-6" name="file_">
+                                        <input type="hidden" name="@("file_url2")">
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+                <!--permite almacenar todas las url qeu se han eliminado-->
+                <input type="hidden" name="clear_c" id="clear_c" value="" />
+                <hr />
+
+                <h3 class="text-center">Costos de Operacion del Equipo</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                @if (Model.cautivo.Equals("True"))
+                                {
+                                    <input type="radio" id="Ecautivo" name="seleccion" value="ECautivo" checked="checked" /><strong>Equipo Cautivo</strong>
+                                }
+                                else
+                                { <input type="radio" id="Ecautivo" name="seleccion" value="ECautivo" /><strong>Equipo Cautivo</strong>}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Costo Fijo</label>
+                            <div class="col-sm-8">
+                                @if (Model.cautivo.Equals("True"))
+                                {
+                                    <input type="text" class="form-control" id="Costofijo" name="Costo_fijo" placeholder="Costo Fijo" value="@Model.datos_cautivo.costo_fijo">
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="Costofijo" name="Costo_fijo" placeholder="Costo Fijo" value="">
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Area de Trabajo</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="AreaT" name="Areatra">
+                                    @foreach (string fa in (string[])ViewData["area"])
+                                    {
+                                        if (Model.cautivo.Equals("True"))
+                                        {
+                                            if (Model.datos_cautivo.area_trabajo.Equals(fa))
+                                            {
+                                                <option value="@fa" selected="selected">@fa</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@fa">@fa</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value="@fa">@fa</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                @if (Model.nocautivo.Equals("True"))
+                                {
+                                    <input type="radio" id="Enocautivo" name="seleccion" value="ENoCautivo" checked="checked" /> <strong>Equipo No Cautivo</strong>
+                                }
+                                else
+                                { <input type="radio" id="Enocautivo" name="seleccion" value="ENoCautivo" /> <strong>Equipo No Cautivo</strong>}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Costo Hora</label>
+                            <div class="col-sm-8">
+                                @if (Model.nocautivo.Equals("True"))
+                                {
+                                    <input type="text" class="form-control" id="CostoH" name="CostoH" placeholder="Costo Hora" value="@Model.datos_nocautivo.costo_hora">
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="CostoH" name="CostoH" placeholder="Costo Hora">
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Costo Hora Extra</label>
+                            <div class="col-sm-8">
+                                @if (Model.nocautivo.Equals("True"))
+                                {
+                                    <input type="text" class="form-control" id="CostoHE" name="CostoHE" placeholder="Costo Hora Extra" value="@Model.datos_nocautivo.costo_hora_extra">
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="CostoHE" name="CostoHE" placeholder="Costo Hora Extra">
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Minimo Garantizado</label>
+                            <div class="col-sm-8">
+                                @if (Model.nocautivo.Equals("True"))
+                                {
+                                    <input type="text" class="form-control" id="MinimoG" name="MinimoG" placeholder="Minimo Garantizado" value="@Model.datos_nocautivo.minimo_garantizado">
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" id="MinimoG" name="MinimoG" placeholder="Minimo Garantizado">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+
+                <h3 class="text-center">Datos de Funcionamiento</h3>
+                <hr />
+               
+                <div class="form-group">
+                    <label class="col-sm-4">Fecha de Ingreso a la Faena</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="fecha_ingresofa" name="fechaIngreso" value="@Model.fecha_ingreso_faena" data-date-format="DD/MM/YYYY" placeholder="dd/mm/aaaa" pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' />
+                    </div>
+                </div>
+                   
+                <div class="form-group">
+                    <label class="col-sm-4">Odometro (Km)</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Odometro" name="odometro" placeholder="Odometro (km)" value="@Model.odometro" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4">Horas Horometro</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Horasho" name="Horasho" placeholder="Horas Horometro" value="@Model.horas_horometro" />
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <a type="button" href="@Url.Action("Todos","Equipo")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-remove"></i>&nbsp;Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+                </div>
+
+            </form>
+
+        </div><!-- cierre de panel body-->
+    </div><!--cierre de panel default-->
+</div><!--cierre de contenedor-->
+
+@section scripts{
+<script type="text/javascript">
+    $("#familiaE").change(function () {
+        console.log("paso familia");
+        var valor = $("#familiaE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_tipoequipo", data: { "valor_seleccion": valor },
+            success: function (retorno) {
+                var arr = retorno.split(',');
+                $("#tipoE").empty();
+                for (i = 0; i < arr.length; i++) {
+                    $("#tipoE").append('<option value=' + arr[i] + '>' + arr[i] + '</option>');
+                }
+
+            }
+        });
+    });
+
+    $("#marcaE").change(function () {
+        var valor = $("#marcaE").val();
+        var tipo = $("#tipoE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_modelo", data: { "valor_seleccion": valor, "valor_tipo": tipo },
+            success: function (retorno) {
+                var datos_retorno = retorno.split(',');
+                $("#modeloE").empty();
+                for (i = 0; i < datos_retorno.length; i++) {
+
+                    $("#modeloE").append('<option value=' + datos_retorno[i] + '>' + datos_retorno[i] + '</option>')
+                }
+
+            }
+
+        });
+
+    });
+
+    $("#tipoE").change(function () {
+
+        var valor = $("#tipoE").val();
+        $.ajax(
+        {
+            url: "rescatar_datos_marcas", data: { "valor_seleccion": valor },
+            success: function (retorno) {
+                var datos_retorno = retorno.split(',');
+                $("#marcaE").empty();
+                $("#marcaE").append('<option value="Seleccione una marca">Seleccione una marca</option>')
+                for (i = 0; i < datos_retorno.length; i++) {
+
+                    $("#marcaE").append('<option value="' + datos_retorno[i] + '">' + datos_retorno[i] + '</option>')
+                }
+
+            }
+
+        });
+
+    });
+    $("#tag").change(function () {
+        var valor = $("#tag").val();
+        $.ajax({
+            url: "comprobar_tag",
+            data: { "tag": valor },
+            success: function (retorno) {
+                var booleano = retorno;
+                if (booleano == "True") {
+                    $("#panel-tag").attr("class", "form-group has-error has-feedback");
+                    $("#icon-tag").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                    $("#botonguardar").attr("disabled", "disabled");
+                }
+                else {
+                    $("#panel-tag").attr("class", "form-group has-success has-feedback");
+                    $("#icon-tag").attr("class", "glyphicon glyphicon-ok  form-control-feedback");
+                    $("#botonguardar").removeAttr("disabled");
+                }
+            }
+        });
+
+    });
+    
+
+    function certificadoEditar(num, nombre) {
+        var x = document.getElementById("c_file" + num);
+        var cadena = "<label class='control-label col-lg-5'>Certificado Adjunto</label><div class='col-lg-7'><input type='file' class='form-control' name='file_'><input type='hidden' name='file_url" + num + "'></div>";
+        x.innerHTML = cadena;
+        funcion_clear_c(nombre);
+    };
+    //funcion que guarda todas las url que se han eliminado para luego eliminarlas del directorio
+    function funcion_clear_c(url) {
+        var clear = $("#clear_c").val() + url + ";";
+        $("#clear_c").val(clear);
+    }
+
+    $("#fecha_0").datetimepicker({ pickTime: false });
+    $("#fecha_1").datetimepicker({ pickTime: false });
+    $("#fecha_2").datetimepicker({ pickTime: false });
+    $("#fecha_ingresofa").datetimepicker({ pickTime: false });
+    $(".footer").hide();
+</script>
+}

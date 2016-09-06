@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Sistema Gestión Izaje</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Desplegar navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span class="badge" style="background-color: #4DB9D8">IZAJE</span></a>
+            </div>
+
+            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+             otro elemento que se pueda ocultar al minimizar la barra -->
+            <!--ADMIN-->
+            @if (Session["rol"] != null && Session["rol"].Equals("admin"))
+            {
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home text-muted"></i>&nbsp;Inicio</a></li>
+
+
+                        <li><a href="@Url.Action("Index", "Calendario")"><i class="glyphicon glyphicon-calendar text-muted"></i>&nbsp;Calendario</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Solicitudes <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("agregarSolicitud", "Solicitud")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nueva</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verSolicitudes", "Solicitud")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verNuevas", "Solicitud")"><i class="glyphicon glyphicon-plus-sign text-muted"></i>&nbsp;Ver Nuevas</a></li>
+                                <li><a href="@Url.Action("verPlanificadas", "Solicitud")"><i class="glyphicon glyphicon-minus-sign text-muted"></i>&nbsp;Ver Planificadas</a></li>
+                                <li><a href="@Url.Action("verAutorizadas", "Solicitud")"><i class="glyphicon glyphicon-info-sign text-muted"></i>&nbsp;Ver Autorizadas</a></li>
+                                <li><a href="@Url.Action("verFinalizadas", "Solicitud")"><i class="glyphicon glyphicon-ok-sign text-muted"></i>&nbsp;Ver Finalizadas</a></li>
+                                <li><a href="@Url.Action("verConfirmadas", "Solicitud")"><i class="glyphicon glyphicon-ok text-muted"></i>&nbsp;Ver Confirmadas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Trabajadores <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Nuevo","Trabajador")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nuevo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Todos","Trabajador")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Equipos <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Nuevo", "Equipo")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nuevo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Todos", "Equipo")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Generar Estado de Pago <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Generarestadopago", "EstadoPago")"><i class="glyphicon glyphicon-usd text-muted"></i>&nbsp;Nuevo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Mostrareresumenestadopago", "EstadoPago")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todos</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Informes <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Servicio_Area", "Reportes")"><i class="glyphicon glyphicon-file text-muted"></i>&nbsp;Servicios por área</a></li>
+                                <li><a href="@Url.Action("Servicio_CentroCosto", "Reportes")"><i class="glyphicon glyphicon-file text-muted"></i>&nbsp;Servicios por centro de costo</a></li>
+                                <li><a href="@Url.Action("Estado_Equipos", "Reportes")"><i class="glyphicon glyphicon-file text-muted"></i>&nbsp;Servicios Estado de Equipo</a></li>
+                                <li><a href="@Url.Action("Servicio_Criticidad", "Reportes")"><i class="glyphicon glyphicon-file text-muted"></i>&nbsp;Servicios por Criticidad</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Admin <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("gerencias", "Admin")"><i class="glyphicon glyphicon-th-large text-muted"></i>&nbsp;Gerencias</a></li>
+                                <li><a href="@Url.Action("superintendencias", "Admin")"><i class="glyphicon glyphicon-th-large text-muted"></i>&nbsp;Superintendencias</a></li>
+                                <li><a href="@Url.Action("areas", "Admin")"><i class="glyphicon glyphicon-th-large text-muted"></i>&nbsp;Áreas</a></li>
+                                <li><a href="@Url.Action("centrosCosto", "Admin")"><i class="glyphicon glyphicon-th-large text-muted"></i>&nbsp;Centros de Costo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Empresas", "Admin")"><i class="glyphicon glyphicon-th-list text-muted"></i>&nbsp;Empresas</a></li>
+                                <li><a href="@Url.Action("criticidades", "Admin")"><i class="glyphicon glyphicon-th-list text-muted"></i>&nbsp;Criticidades</a></li>
+                                <li><a href="@Url.Action("Certificaciones", "Admin")"><i class="glyphicon glyphicon-th-list text-muted"></i>&nbsp;Certificaciones</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Familia_Equipos", "Admin")"><i class="glyphicon glyphicon-th text-muted"></i>&nbsp;Familia Equipos</a></li>
+                                <li><a href="@Url.Action("tiposEquipo", "Admin")"><i class="glyphicon glyphicon-th text-muted"></i>&nbsp;Tipos de Equipo</a></li>
+                                <li><a href="@Url.Action("Marca_Equipos", "Admin")"><i class="glyphicon glyphicon-th text-muted"></i>&nbsp;Marca Equipos</a></li>
+                                <li><a href="@Url.Action("Modelo_Equipos", "Admin")"><i class="glyphicon glyphicon-th text-muted"></i>&nbsp;Modelo Equipos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>&nbsp;
+                                @Session["nombre"] <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("LogOut", "Login")"><i class="glyphicon glyphicon-log-out text-muted"></i>&nbsp;Cerrar</a></li>
+                            </ul>
+                        </li>
+                </div>
+            }
+
+
+            <!--IZAJE-->
+            @if (Session["rol"] != null && Session["rol"].Equals("izaje"))
+            {
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home text-muted"></i>&nbsp;Inicio</a></li>
+
+
+                        <li><a href="@Url.Action("Index", "Calendario")"><i class="glyphicon glyphicon-calendar text-muted"></i>&nbsp;Calendario</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Solicitudes <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("agregarSolicitud", "Solicitud")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nueva</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verSolicitudes", "Solicitud")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verNuevas", "Solicitud")"><i class="glyphicon glyphicon-plus-sign text-muted"></i>&nbsp;Ver Nuevas</a></li>
+                                <li><a href="@Url.Action("verPlanificadas", "Solicitud")"><i class="glyphicon glyphicon-minus-sign text-muted"></i>&nbsp;Ver Planificadas</a></li>
+                                <li><a href="@Url.Action("verAutorizadas", "Solicitud")"><i class="glyphicon glyphicon-info-sign text-muted"></i>&nbsp;Ver Autorizadas</a></li>
+                                <li><a href="@Url.Action("verFinalizadas", "Solicitud")"><i class="glyphicon glyphicon-ok-sign text-muted"></i>&nbsp;Ver Finalizadas</a></li>
+                                <li><a href="@Url.Action("verConfirmadas", "Solicitud")"><i class="glyphicon glyphicon-ok text-muted"></i>&nbsp;Ver Confirmadas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Trabajadores <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Nuevo","Trabajador")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nuevo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Todos","Trabajador")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Equipos <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Nuevo", "Equipo")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nuevo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Todos", "Equipo")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>&nbsp;
+                                @Session["nombre"] <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("LogOut", "Login")"><i class="glyphicon glyphicon-log-out text-muted"></i>&nbsp;Cerrar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            }
+
+            <!-- JEFE DE AREA-->
+            @if (Session["rol"] != null && Session["rol"].Equals("jefeArea"))
+            {
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home text-muted"></i>&nbsp;Inicio</a></li>
+
+
+                        <li><a href="@Url.Action("Index", "Calendario")"><i class="glyphicon glyphicon-calendar text-muted"></i>&nbsp;Calendario</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Solicitudes <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("agregarSolicitud", "Solicitud")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nueva</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verSolicitudes", "Solicitud")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verPlanificadas", "Solicitud")"><i class="glyphicon glyphicon-minus-sign text-muted"></i>&nbsp;Ver Planificadas</a></li>
+                                <li><a href="@Url.Action("verAutorizadas", "Solicitud")"><i class="glyphicon glyphicon-info-sign text-muted"></i>&nbsp;Ver Autorizadas</a></li>
+                                <li><a href="@Url.Action("verFinalizadas", "Solicitud")"><i class="glyphicon glyphicon-ok-sign text-muted"></i>&nbsp;Ver Finalizadas</a></li>
+                                <li><a href="@Url.Action("verConfirmadas", "Solicitud")"><i class="glyphicon glyphicon-ok text-muted"></i>&nbsp;Ver Confirmadas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>&nbsp;
+                                @Session["nombre"] <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("LogOut", "Login")"><i class="glyphicon glyphicon-log-out text-muted"></i>&nbsp;Cerrar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            }
+
+            <!-- SOLICITANTE-->
+            @if (Session["rol"] == null)
+            {
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home text-muted"></i>&nbsp;Inicio</a></li>
+
+
+                        <li><a href="@Url.Action("Index", "Calendario")"><i class="glyphicon glyphicon-calendar text-muted"></i>&nbsp;Calendario</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Solicitudes <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("agregarSolicitud", "Solicitud")"><i class="glyphicon glyphicon-plus text-muted"></i>&nbsp;Nueva</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verSolicitudes", "Solicitud")"><i class="glyphicon glyphicon-list-alt text-muted"></i>&nbsp;Ver Todas</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("verNuevas", "Solicitud")"><i class="glyphicon glyphicon-plus-sign text-muted"></i>&nbsp;Ver Nuevas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Session["nombre"] == null)
+                        {
+                            <li><a class="btn btn-link" href="@Url.Action("Index", "Login")"><i class="glyphicon glyphicon-log-in"></i>&nbsp;Iniciar Sesión</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </nav>
+    
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/calendar")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

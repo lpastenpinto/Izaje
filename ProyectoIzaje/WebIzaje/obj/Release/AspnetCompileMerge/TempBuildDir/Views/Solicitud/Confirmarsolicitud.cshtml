@@ -1,0 +1,148 @@
+﻿@model WebIzaje.Models.Solicitud
+@{
+    ViewBag.Title = "Confirmar Solicitud";
+}
+@{int i = 0;}
+<div class="container">
+    <div class="page-header">
+        <h1 class="text-center">Confirmacion de Solicitudes</h1>
+    </div>
+
+            <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoConfirmarSolicitud", "Solicitud")">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label col-lg-4">Id de solicitud</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" value="@Model.idSolicitud" name="idsolicitud" id="idsolicitud" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label col-lg-4">Area</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="@Model.area" name="area" id="area" disabled />
+                        </div>
+                    </div>
+                </div> <!-- fin clase row-->
+
+                <div class="">
+                    <div class="form-group">
+                        <hr />
+                        <label class="control-label col-lg-4">Descripcion Servicio</label>
+                        <div class="col-lg-4">
+                            <textarea class="form-control" id="descripcion_servicio" style="resize:none; !important" disabled>@Model.descripcionServicio</textarea>
+                        </div>
+                    </div>
+                </div><!-- fin clase row-->
+                @for (i = 0; i < Model.fechas.Count; i++)
+                {
+                    <div class="">
+                        <div class="form-group">
+                            <hr />
+                            <label class="control-label col-lg-5">Fecha</label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" id="@("fecha" + i)" value="@Model.fechas[i]" disabled />
+                            </div>
+                        </div>
+                    </div><!-- fin clase row-->
+
+                    <div class="">
+                        <div class="form-group">
+                            <hr />
+                            <label class="control-label col-lg-3">Tag Equipo 1</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" id="@("tag_1" + i)" value="@Model.idEquipo1" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="control-label col-lg-4">Hora Reloj Inicio</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="@("hora_reloj1_inicio" + i)" value="@Model.horaRelojInicial1[i]" disabled />
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="control-label col-lg-4">Hora Reloj Fin</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="@("hora_reloj1_fin" + i)" value="@Model.horaRelojFinal1[i]" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label class="control-label col-lg-4">Hora Horometro Inicio</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="@("Hora_horometro1_inicio" + i)" value="@Model.horaHorometroInicial1[i]" disabled />
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="control-label col-lg-4">Hora Horometro Fin</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="@("Hora_horometro1_fin" + i)" value="@Model.horaHorometroFinal1[i]" disabled />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div><!-- fin clase row-->
+
+                    if (!Model.idEquipo2.Equals("--"))
+                    {
+                        <div class="">
+                            <div class="form-group">
+                                <hr />
+                                <label class="control-label col-lg-3">Tag Equipo 2</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="@("Tag_equipo_2" + i)" value="@Model.idEquipo2" disabled />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label col-lg-4">Hora Reloj Inicio</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="@("Hora_reloj2_inicio" + i)" value="@Model.horaRelojInicial2[i]" disabled />
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label col-lg-4">Hora Reloj Fin</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="@("Hora_reloj2_fin" + i)" value="@Model.horaRelojFinal2[i]" disabled />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label class="control-label col-lg-4">Hora Horometro Inicio</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="@("Hora_horometro2_inicio" + i)" value="@Model.horaHorometroInicial2[i]" disabled />
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label col-lg-4">Hora Horometro Fin</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="@("Hora_horometro2_fin" + i)" value="@Model.horaHorometroFinal2[i]" disabled />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- fin clase row-->
+                    }
+                }
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verFinalizadas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg pull-right">Confirmar</button>
+                </div>
+            </form>
+    <!-- cierre formulario
+    </div><!-- cierre panel body
+    </div><!-- cierre panel panel-default-->    
+    
+   
+</div><!-- cierre de contenedor-->

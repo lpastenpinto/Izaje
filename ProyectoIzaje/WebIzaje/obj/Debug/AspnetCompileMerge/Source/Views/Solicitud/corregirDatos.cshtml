@@ -1,0 +1,899 @@
+﻿@model WebIzaje.Models.Solicitud
+@{
+    ViewBag.Title = "Corregir Datos de Solicitud";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="page-header">
+                <h1 class="text-center">Corregir solicitud</h1>
+            </div>
+            <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoCorregirSolicitud", "Solicitud")">
+                <div class="form-group">
+                    <div class="col-lg-2"></div>
+                    <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                    <div class="col-lg-6">
+                        <input type="text" value="@Model.idSolicitud" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                               required>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <h3 class="text-center">Equipos y Trabajadores del Servicio</h3>
+                        <br>
+                    </div>
+                    <div>
+                        <h4 class="text-center">Equipo 1</h4>
+                        <br>
+                        <label for="familiaEquipo" class="col-lg-2 control-label">Familia Equipo 1</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="familiaEquipo1" name="familiaEquipo1"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<WebIzaje.Models.Familia_Equipo> familias = (List<WebIzaje.Models.Familia_Equipo>)ViewData["familiasEquipo"];
+                                    foreach (WebIzaje.Models.Familia_Equipo familia in (familias))
+                                    {
+                                        if(familia.nombre.Equals(ViewData["familiaEquipo1"]))
+                                        {
+                                            <option value="@familia.nombre" selected>@familia.nombre</option>
+                                        }
+                                        else 
+                                        {
+                                            <option value="@familia.nombre">@familia.nombre</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label for="tipoEquipo" class="col-lg-2 control-label">Tipo Equipo 1</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="tipoEquipo1" name="tipoEquipo1"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> tiposEquipo = (List<string>)ViewData["tiposEquipo1"];
+                                    foreach (string tipo in (tiposEquipo))
+                                    {
+                                        if (tipo.Equals(ViewData["tipoEquipo1"]))
+                                        {
+                                            <option value="@tipo" selected>@tipo</option>
+                                        }
+                                        else 
+                                        {
+                                            <option value="@tipo">@tipo</option>
+                                        }
+                                        
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br class="visible-lg">
+                        <label for="equipo" class="col-lg-2 control-label">Equipo 1</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="equipo1" name="equipo1"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> equipos = (List<string>)ViewData["equipos1"];
+                                    foreach (string equipo in (equipos))
+                                    {
+                                        if (!equipo.Split('/')[0].Equals(Model.idEquipo2)) 
+                                        {
+                                            if (equipo.Split('/')[0].Equals(Model.idEquipo1))
+                                            {
+                                                <option value="@equipo.Split('/')[0]" selected>@equipo</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@equipo.Split('/')[0]">@equipo</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label for="operador" class="col-lg-2 control-label">Operador 1</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="operador1" name="operador1"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> operadores = (List<string>)ViewData["operadores1"];
+                                    foreach (string operador in (operadores))
+                                    {
+                                        if (!operador.Split('/')[0].Equals(Model.idOperador2)) 
+                                        {
+                                            if (operador.Split('/')[0].Equals(Model.idOperador1))
+                                            {
+                                                <option value="@operador.Split('/')[0]" selected>@operador</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@operador.Split('/')[0]">@operador</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br class="visible-lg">
+                        <label for="equipo" class="col-lg-2 control-label">Rigger 1</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="rigger1" name="rigger1"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> riggers = (List<string>)ViewData["riggers1"];
+                                    foreach (string rigger in (riggers))
+                                    {
+                                        if (!rigger.Split('/')[0].Equals(Model.idRigger2)) 
+                                        {
+                                            if (rigger.Split('/')[0].Equals(Model.idRigger1))
+                                            {
+                                                <option value="@rigger.Split('/')[0]" selected>@rigger</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@rigger.Split('/')[0]">@rigger</option>
+                                            }
+                                        }                                        
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    @if (!Model.idEquipo2.Equals("--"))
+                    {
+                        <div class="clearfix"></div>
+                        <br class="visible-lg">
+                        <div>
+                        <h4 class="text-center">Equipo 2</h4>
+                        <br>
+                        <label for="familiaEquipo" class="col-lg-2 control-label">Familia Equipo 2</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="familiaEquipo2" name="familiaEquipo2"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                foreach (WebIzaje.Models.Familia_Equipo familia in (familias))
+                                    {
+                                        if(familia.nombre.Equals(ViewData["familiaEquipo2"]))
+                                        {
+                                            <option value="@familia.nombre" selected>@familia.nombre</option>
+                                        }
+                                        else 
+                                        {
+                                            <option value="@familia.nombre">@familia.nombre</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label for="tipoEquipo" class="col-lg-2 control-label">Tipo Equipo 2</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="tipoEquipo2" name="tipoEquipo2"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> tiposEquipo2 = (List<string>)ViewData["tiposEquipo2"];
+                                    foreach (string tipo in (tiposEquipo2))
+                                    {
+                                        if (tipo.Equals(ViewData["tipoEquipo2"]))
+                                        {
+                                            <option value="@tipo" selected>@tipo</option>
+                                        }
+                                        else 
+                                        {
+                                            <option value="@tipo">@tipo</option>
+                                        }
+                                        
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br class="visible-lg">
+                        <label for="equipo" class="col-lg-2 control-label">Equipo 2</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="equipo2" name="equipo2"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> equipos2 = (List<string>)ViewData["equipos2"];
+                                    foreach (string equipo in (equipos2))
+                                    {
+                                        if (!equipo.Split('/')[0].Equals(Model.idEquipo1))
+                                        {
+                                            if (equipo.Split('/')[0].Equals(Model.idEquipo2))
+                                            {
+                                                <option value="@equipo.Split('/')[0]" selected>@equipo</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@equipo.Split('/')[0]">@equipo</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label for="operador" class="col-lg-2 control-label">Operador 2</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="operador2" name="operador2"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> operadores2 = (List<string>)ViewData["operadores2"];
+                                    foreach (string operador in (operadores2))
+                                    {
+                                        if (!operador.Split('/')[0].Equals(Model.idOperador1))
+                                        {
+                                            if (operador.Split('/')[0].Equals(Model.idOperador2))
+                                        {
+                                            <option value="@operador.Split('/')[0]" selected>@operador</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@operador.Split('/')[0]">@operador</option>
+                                        }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br class="visible-lg">
+                        <label for="equipo" class="col-lg-2 control-label">Rigger 2</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" id="rigger2" name="rigger2"
+                                    required>
+                                <option value="Seleccione una opción">Seleccione una opción</option>
+                                @{
+                                    List<string> riggers2 = (List<string>)ViewData["riggers2"];
+                                    foreach (string rigger in (riggers2))
+                                    {
+                                        if (!rigger.Split('/')[0].Equals(Model.idRigger1)) 
+                                        {
+                                            if (rigger.Split('/')[0].Equals(Model.idRigger2))
+                                            {
+                                                <option value="@rigger.Split('/')[0]" selected>@rigger</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@rigger.Split('/')[0]">@rigger</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    }
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verSolicitudes","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                    <button type="submit" class="btn btn-primary btn-lg" id="botonPlanificar">Guardar Datos</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $("#familiaEquipo1").change(function () {
+
+            //Se deshabilitan los combobox que corresponden
+            $("#tipoEquipo1").prop('disabled', false);
+            $("#equipo1").prop('disabled', true);
+            $("#operador1").prop('disabled', true);
+            $("#rigger1").prop('disabled', true);
+            $("#botonPlanificar").attr("disabled", "disabled");
+
+            var valor = $("#familiaEquipo1").val();
+            
+            $("#tipoEquipo1").empty();
+            $("#tipoEquipo1").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+            if (valor == "Seleccione una opción") {
+                $("#tipoEquipo1").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerTiposEquipo",
+                data: { "familia": valor },
+
+                success: function (retorno) {
+                    
+                    $("#tipoEquipo1").empty();
+
+                    var arr = retorno.split(',');
+
+                    var optionList = "<option selected>" + "Seleccione una opción" + "</option>";
+                    
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log(arr[i] + "\n");
+                        optionList+="<option>" + arr[i] + "</option>";
+                    }
+                    $("#tipoEquipo1").append(optionList);
+                }
+            });
+        });
+
+        $("#tipoEquipo1").change(function (){
+
+            //Se habilitan y deshabilitan combobox
+            $("#equipo1").prop('disabled', false);
+            $("#operador1").prop('disabled', true);
+            $("#rigger1").prop('disabled', true);
+            $("#botonPlanificar").attr("disabled", "disabled");
+
+            var valor = $("#tipoEquipo1").val();            
+
+            if (valor == "Seleccione una opción" || valor == "") {
+                $("#equipo1").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valor
+                },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#equipo1").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo1").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo2").val() != arr[i].split('/')[0])
+                        {
+                            $("#equipo1").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                        }
+                    }
+                }
+
+            });
+
+            var valor2 = $("#tipoEquipo2").val();
+
+            if (valor2 == "Seleccione una opción" || valor2 == "") {
+                $("#equipo2").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valor2
+                },
+
+                success: function (retorno) {
+
+                    var equipo2Sel = $("#equipo2").val();
+
+                    var arr = retorno.split(',');
+
+                    $("#equipo2").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo2").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo1").val() != arr[i].split('/')[0]) {
+                            if (equipo2Sel == arr[i].split('/')[0])
+                            {
+                                $("#equipo2").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else
+                            {
+                                $("#equipo2").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+
+        $("#equipo1").change(function () {
+
+            //Se habilitan y deshabilitan combobox
+            $("#operador1").prop('disabled', false);
+            $("#rigger1").prop('disabled', false);
+
+            var valor = $("#equipo1").val();
+
+            if (valor == "Seleccione una opción" || valor=="") {
+                $("#operador1").prop('disabled', true);
+                $("#rigger1").prop('disabled', true);
+                $("#botonPlanificar").attr("disabled", "disabled");
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerOperadorRiggerSinFecha",
+                data: {
+                    "equipo": valor
+                },
+
+                success: function (retorno) {
+
+				console.log(retorno);
+                    var result = retorno.split(';');
+
+                    var arr = result[0].split(',');
+                    var arr2 = result[1].split(',');
+
+                    var operador1 = $("#operador2").val();
+                    var rigger1 = $("#rigger2").val();
+
+                    $("#operador1").empty();
+
+                    $("#operador1").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        if (operador1 != arr[i].split('/')[0]) {
+                            $("#operador1").append("<option value='"+arr[i].split('/')[0]+"'>" + arr[i] + "</option>");
+                        }
+                    }
+
+                    $("#rigger1").empty();
+
+                    $("#rigger1").append("<option>" + "Seleccione una opción" + "</option>");
+                    $("#rigger1").append("<option>" + "El servicio posee un rigger propio" + "</option>");
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (rigger1 != arr2[i].split('/')[0]) {
+                            $("#rigger1").append("<option value='" + arr2[i].split('/')[0] + "'>" + arr2[i] + "</option>");
+                        }
+                    }
+                }
+            });
+
+
+            var valorTipoEquipo2 = $("#tipoEquipo2").val();
+
+            if (valorTipoEquipo2 == "Seleccione una opción" || valor == "") {
+                $("#equipo2").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valorTipoEquipo2
+                },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    var valorEquipo2 = $("#equipo2").val();
+                    $("#equipo2").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo2").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo1").val() != arr[i].split('/')[0]) {
+                            if (valorEquipo2 == arr[i].split('/')[0])
+                            {
+                                $("#equipo2").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else
+                            {
+                                $("#equipo2").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+
+            corregirOperadorRigger2();
+        });
+
+        $("#operador1").change(function () {
+            corregirOperadorRigger2();
+            verificarDatos();
+        });
+
+        $("#rigger1").change(function () {
+            corregirOperadorRigger2();
+            verificarDatos();
+        });
+
+        function verificarDatos()
+        {
+            var valor1 = $("#operador1").val();
+            var valor2 = $("#rigger1").val();
+            if ($("#operador2").length != 0) {
+                var valor3 = $("#operador2").val();
+                var valor4 = $("#rigger2").val();
+
+                if (valor1 != "Seleccione una opción" && valor2 != "Seleccione una opción" && valor1 != "" && valor2 != ""
+                && valor3 != "Seleccione una opción" && valor4 != "Seleccione una opción" && valor3 != "" && valor4 != "") {
+                    $("#botonPlanificar").removeAttr("disabled");
+                    return;
+                }
+                else {
+                    $("#botonPlanificar").attr("disabled", "disabled");
+                }
+            }
+            else
+            {
+                if (valor1 != "Seleccione una opción" && valor2 != "Seleccione una opción" && valor1 != "" && valor2 != "") {
+                    $("#botonPlanificar").removeAttr("disabled");
+                    return;
+                }
+                else {
+                    $("#botonPlanificar").attr("disabled", "disabled");
+                }
+            } 
+        }
+
+        $("#familiaEquipo2").change(function () {
+
+            //Se deshabilitan los combobox que corresponden
+            $("#tipoEquipo2").prop('disabled', false);
+            $("#equipo2").prop('disabled', true);
+            $("#operador2").prop('disabled', true);
+            $("#rigger2").prop('disabled', true);
+            $("#botonPlanificar").attr("disabled", "disabled");
+
+            var valor = $("#familiaEquipo2").val();
+
+            if (valor == "Seleccione una opción") {
+                $("#tipoEquipo2").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerTiposEquipo",
+                data: { "familia": valor },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#tipoEquipo2").empty();
+
+                    $("#tipoEquipo2").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log(arr[i] + "\n");
+                        $("#tipoEquipo2").append("<option>" + arr[i] + "</option>");
+                    }
+                }
+            });
+        });
+
+        $("#tipoEquipo2").change(function () {
+
+            //Se habilitan y deshabilitan combobox
+            $("#equipo2").prop('disabled', false);
+            $("#operador2").prop('disabled', true);
+            $("#rigger2").prop('disabled', true);
+            $("#botonPlanificar").attr("disabled", "disabled");
+
+            var valor = $("#tipoEquipo2").val();
+
+            if (valor == "Seleccione una opción" || valor == "") {
+                $("#equipo2").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valor
+                },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    $("#equipo2").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo2").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo1").val() != arr[i].split('/')[0]) {
+                            $("#equipo2").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                        }
+                    }
+                }
+            });
+
+
+            var valorTipoEquipo1 = $("#tipoEquipo1").val();
+
+            if (valorTipoEquipo2 == "Seleccione una opción" || valor == "") {
+                $("#equipo1").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valorTipoEquipo1
+                },
+
+                success: function (retorno) {
+
+                    var arr = retorno.split(',');
+
+                    var valorEquipo1 = $("#equipo1").val();
+                    $("#equipo1").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo1").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo2").val() != arr[i].split('/')[0]) {
+                            if (valorEquipo1 == arr[i].split('/')[0]) {
+                                $("#equipo1").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else {
+                                $("#equipo1").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+
+            var valor1 = $("#tipoEquipo1").val();
+
+            if (valor1 == "Seleccione una opción" || valor1 == "") {
+                $("#equipo1").prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerEquiposSinFechas",
+                data: {
+                    "tipoEquipo": valor1
+                },
+
+                success: function (retorno) {
+
+                    var equipo2Sel = $("#equipo1").val();
+
+                    var arr = retorno.split(',');
+
+                    $("#equipo1").empty();
+                    console.log("Largo arreglo: " + arr.length);
+                    $("#equipo1").append("<option selected>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log("Equipo: " + arr[i] + " - " + arr[i].split('/')[0]);
+                        if ($("#equipo2").val() != arr[i].split('/')[0]) {
+                            if (equipo2Sel == arr[i].split('/')[0]) {
+                                $("#equipo1").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else {
+                                $("#equipo1").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        $("#equipo2").change(function () {
+
+            //Se habilitan y deshabilitan combobox
+            $("#operador2").prop('disabled', false);
+            $("#rigger2").prop('disabled', false);
+
+            var valor = $("#equipo2").val();
+
+            if (valor == "Seleccione una opción" || valor == "") {
+                $("#operador2").prop('disabled', true);
+                $("#rigger2").prop('disabled', true);
+                $("#botonPlanificar").attr("disabled", "disabled");
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerOperadorRiggerSinFecha",
+                data: {
+                    "equipo": valor
+                },
+
+                success: function (retorno) {
+
+                    console.log(retorno);
+                    var result = retorno.split(';');
+
+                    var arr = result[0].split(',');
+                    var arr2 = result[1].split(',');
+
+                    var operador1 = $("#operador1").val();
+                    var rigger1 = $("#rigger1").val();
+
+                    $("#operador2").empty();
+
+                    $("#operador2").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        if (operador1 != arr[i].split('/')[0]) {
+                            $("#operador2").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                        }
+                    }
+
+                    $("#rigger2").empty();
+
+                    $("#rigger2").append("<option>" + "Seleccione una opción" + "</option>");
+                    $("#rigger2").append("<option>" + "El servicio posee un rigger propio" + "</option>");
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (rigger1 != arr2[i].split('/')[0]) {
+                            $("#rigger2").append("<option value='" + arr2[i].split('/')[0] + "'>" + arr2[i] + "</option>");
+                        }
+                    }
+                }
+            });
+
+            corregirOperadorRigger1();
+        });
+
+        $("#operador2").change(function () {
+            corregirOperadorRigger1();
+            verificarDatos();
+        });
+
+        $("#rigger2").change(function () {
+            corregirOperadorRigger1();
+            verificarDatos();
+        });
+
+        function corregirOperadorRigger1()
+        {
+            var valor1 = $("#equipo1").val();
+
+            if (valor1 == "Seleccione una opción" || valor1 == "") {
+                $("#operador1").prop('disabled', true);
+                $("#rigger1").prop('disabled', true);
+                $("#botonPlanificar").attr("disabled", "disabled");
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerOperadorRiggerSinFecha",
+                data: {
+                    "equipo": valor1
+                },
+
+                success: function (retorno) {
+
+                    console.log(retorno);
+                    var result = retorno.split(';');
+
+                    var arr = result[0].split(',');
+                    var arr2 = result[1].split(',');
+
+                    var operador1 = $("#operador2").val();
+                    var rigger1 = $("#rigger2").val();
+
+                    var operadorSelect1 = $("#operador1").val();
+
+                    $("#operador1").empty();
+
+                    $("#operador1").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        if (operador1 != arr[i].split('/')[0]) {
+                            if (operadorSelect1 == arr[i].split('/')[0]) {
+                                $("#operador1").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else {
+                                $("#operador1").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+
+                    var RiggerSelect1 = $("#rigger1").val();
+
+                    $("#rigger1").empty();
+
+                    $("#rigger1").append("<option>" + "Seleccione una opción" + "</option>");
+                    $("#rigger1").append("<option>" + "El servicio posee un rigger propio" + "</option>");
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (rigger1 != arr2[i].split('/')[0]) {
+                            if (RiggerSelect1 == arr2[i].split('/')[0]) {
+                                $("#rigger1").append("<option value='" + arr2[i].split('/')[0] + "' selected>" + arr2[i] + "</option>");
+                            }
+                            else {
+                                $("#rigger1").append("<option value='" + arr2[i].split('/')[0] + "'>" + arr2[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function corregirOperadorRigger2() {
+            var valor2 = $("#equipo2").val();
+
+            if (valor2 == "Seleccione una opción" || valor2 == "") {
+                $("#operador2").prop('disabled', true);
+                $("#rigger2").prop('disabled', true);
+                $("#botonPlanificar").attr("disabled", "disabled");
+                return;
+            }
+
+            $.ajax({
+                url: "obtenerOperadorRiggerSinFecha",
+                data: {
+                    "equipo": valor2
+                },
+
+                success: function (retorno) {
+
+                    console.log(retorno);
+                    var result = retorno.split(';');
+
+                    var arr = result[0].split(',');
+                    var arr2 = result[1].split(',');
+
+                    var operador1 = $("#operador1").val();
+                    var rigger1 = $("#rigger1").val();
+
+                    var operadorSelect2 = $("#operador2").val();
+
+                    $("#operador2").empty();
+
+                    $("#operador2").append("<option>" + "Seleccione una opción" + "</option>");
+
+                    for (var i = 0; i < arr.length; i++) {
+                        if (operador1 != arr[i].split('/')[0]) {
+                            if (operadorSelect2 == arr[i].split('/')[0]) {
+                                $("#operador2").append("<option value='" + arr[i].split('/')[0] + "' selected>" + arr[i] + "</option>");
+                            }
+                            else {
+                                $("#operador2").append("<option value='" + arr[i].split('/')[0] + "'>" + arr[i] + "</option>");
+                            }
+                        }
+                    }
+
+                    var RiggerSelect2 = $("#rigger2").val();
+
+                    $("#rigger2").empty();
+
+                    $("#rigger2").append("<option>" + "Seleccione una opción" + "</option>");
+                    $("#rigger2").append("<option>" + "El servicio posee un rigger propio" + "</option>");
+
+                    for (var i = 0; i < arr2.length; i++) {
+                        if (rigger1 != arr2[i].split('/')[0]) {
+                            if (RiggerSelect2 == arr2[i].split('/')[0]) {
+                                $("#rigger2").append("<option value='" + arr2[i].split('/')[0] + "' selected>" + arr2[i] + "</option>");
+                            }
+                            else {
+                                $("#rigger2").append("<option value='" + arr2[i].split('/')[0] + "'>" + arr2[i] + "</option>");
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        $(".footer").hide();
+    </script>
+}

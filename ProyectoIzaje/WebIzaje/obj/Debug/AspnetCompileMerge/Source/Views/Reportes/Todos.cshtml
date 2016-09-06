@@ -1,0 +1,259 @@
+﻿
+@{
+    ViewBag.Title = "Todos los Reportes";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>Todos</h2>
+    </div>
+
+    <div class="table table-responsive">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th>Tipo de Reporte</th>
+                    <th>Ver</th>
+                    <th>Descargar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (string reporte in (string[])ViewData["Reportes"])
+                {
+                    <tr>
+                        <td><span class="badge">@reporte</span></td>
+                        @if (reporte.Equals("Estados Equipos"))
+                        {
+                            <td><a href="#" data-toggle="modal" data-target="#modal_equipo" onclick="funcionEquipo('ver')" ><i class='glyphicon glyphicon-search text-primary'></i></a></td>
+                            <td><a href="#" data-toggle="modal" data-target="#modal_equipo" onclick="funcionEquipo('descargar')"><i class='glyphicon glyphicon-download text-primary'></i></a></td>
+ 
+                        }
+                        else
+                        { 
+                        <td><a href="#" data-toggle="modal" data-target="#myModal" onclick="funcionDatos('@reporte','ver')" title="Filtro Vista Reporte"><i class='glyphicon glyphicon-search text-primary'></i></a></td>
+                        <td><a href="#" data-toggle="modal" data-target="#myModal" onclick="funcionDatos('@reporte','descargar')" title="Filtro Descarga Reporte"><i class='glyphicon glyphicon-download text-primary'></i></a></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!--MODAL-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="text-cabezera"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <label >Fecha de Inicio:</label>
+                        <div id="cuerpo_fecha_inicio">
+                            <input type='text' class='form-control' name='fecha_inicio' id='fecha_inicio' placeholder='DD/MM/YYYY'  pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required>
+                        </div>
+                        <br />
+                        <label >Fecha de Termino:</label>
+                        <div id="cuerpo_fecha_fin">
+                            <input type='text' class='form-control' name='fecha_fin' id='fecha_fin' placeholder='DD/MM/YYYY'  pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required>
+                        </div>
+                        <br />
+                        <label id="letra" ></label>
+                        <input type="hidden" id="tiporeporte"/>
+                        <input type="hidden" id="tipofiltro" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                        <a href="" type="button" id="btn_filtro" class="btn btn-primary" onclick="funcionFiltro()"><i class="glyphicon glyphicon-ok"></i>Aplicar Filtro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal Equipos-->
+        <div class="modal fade" id="modal_equipo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="text-cabezera">Filtro Estado Equipos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Fecha:</label>
+                        <br />
+                        <div class="input-group " id="panel_fecha_equipo">
+                               <input type='text' class='form-control' name='fecha_ingreso_faena' id='fecha_ingreso_faena' placeholder='DD/MM/YYYY'  pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required >
+                               <span class="input-group-addon"><span id="icono-fecha" class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <br />
+                        <br />
+                        <label><strong>NOTA:</strong></label><label class="text-info">Se mostraran todos los estados de los equipos hasta la fecha ingresada</label>
+                        <input type="hidden" id="tipofiltroEquipo" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Cancelar</button>
+                        <a href="" type="button" id="btn_filtro_equipo" class="btn btn-primary" onclick="funcionFiltroEquipo()"><i class="glyphicon glyphicon-ok"></i>Aplicar Filtro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--fin container-->
+@section scripts{
+    <script type="text/javascript">
+
+       
+        $("#btn_filtro").attr("disabled", "disabled");
+        $("#letra").html("Debe ingresar las dos fechas");
+        $("#letra").attr("class", "alert alert-danger");
+
+        //equipo
+        
+        
+        $("#btn_filtro_equipo").attr("disabled", "disabled");
+
+        $("#fecha_ingreso_faena").click(function () {
+            var valor = $("#fecha_ingreso_faena").val();
+            if (valor != "") {
+                $("#btn_filtro_equipo").removeAttr("disabled");
+                $("#icono-fecha").attr("class", "glyphicon glyphicon-ok ");
+            }
+            else {
+                $("#btn_filtro_equipo").attr("disabled", "disabled");
+                $("#icono-fecha").attr("class", "glyphicon glyphicon-remove");
+            }
+
+        });
+
+        function funcionEquipo(tipofiltro)
+        {
+            if (tipofiltro == "ver")
+            {
+                $("#tipofiltroEquipo").val(tipofiltro);
+            }
+            else
+            {
+                $("#tipofiltroEquipo").val(tipofiltro);
+            }
+        }
+        function funcionDatos(tiporeporte, tipofiltro)
+        {
+         
+            if (tipofiltro == "ver") {
+
+               
+                $("#text-cabezera").html("Filtro para Ver Reporte de "+tiporeporte+"");
+                $("#text-modal").html("");
+                $("#tipofiltro").val(tipofiltro);
+                $("#tiporeporte").val(tiporeporte);
+
+            } else {
+                $("#text-cabezera").html("Filtro para Descargar Reporte de "+tiporeporte+"");
+                $("#tipofiltro").val(tipofiltro);
+                $("#tiporeporte").val(tiporeporte);
+            }
+        }
+
+        $("#fecha_inicio").click(function () {
+
+            var valor = $("#fecha_fin").val();
+            var valor2 = $("#fecha_inicio").val();
+            if (valor != "" & valor2!="") {
+                $("#btn_filtro").removeAttr("disabled");
+                $("#letra").attr("class", "");
+                $("#letra").html("");
+            }
+            else {
+                $("#btn_filtro").attr("disabled", "disabled");
+                $("#letra").attr("class", "alert alert-danger");
+                $("#letra").html("Debe ingresar las dos fechas");
+            }
+
+        });
+
+        $("#fecha_fin").click(function () {
+
+            var valor = $("#fecha_inicio").val();
+            var valor2 = $("#fecha_fin").val();
+            if (valor != "" & valor2!="") {
+                $("#btn_filtro").removeAttr("disabled");
+                $("#letra").attr("class", "");
+                $("#letra").html("");
+            }
+            else {
+                $("#btn_filtro").attr("disabled", "disabled");
+                $("#letra").attr("class", "alert alert-danger");
+                $("#letra").html("Debe ingresar las dos fechas");
+            }
+
+        });
+
+        function funcionFiltroEquipo()
+        {
+            var fecha_ingreso = $("#fecha_ingreso_faena").val();
+            var tipofiltro = $("#tipofiltroEquipo").val();
+            if (tipofiltro == "ver") {
+                var cadena = "@Url.Action("verReporteEquipo", "Reportes", new { FechaIngreso = "fecha_ingreso"})";
+                cadena = cadena.replace("fecha_ingreso", fecha_ingreso);
+                cadena = cadena.replace(";", "&");
+
+                $("#btn_filtro_equipo").attr("href", cadena);
+            }
+            else {
+                var cadena = "@Url.Action("GuardarReporte_Equipo", "Reportes", new { FechaIngreso = "fecha_ingreso"})";
+                cadena = cadena.replace("fecha_ingreso", fecha_ingreso);
+                cadena = cadena.replace(";", "&");
+                $("#btn_filtro_equipo").attr("href", cadena);
+                $("#modal_equipo").modal('hide');
+            }
+        }
+        function funcionFiltro() {
+
+           var fecha_inicio = $("#fecha_inicio").val();
+            var fecha_fin = $("#fecha_fin").val();
+            
+                var tiporeporte = $("#tiporeporte").val();
+                var tipofiltro = $("#tipofiltro").val();
+                if (tipofiltro == "ver") {
+
+                    var cadena = "@Url.Action("VistaReporte_Solicitud", "Reportes", new { FechaInicio = "fecha_inicio", FechaFin = "fecha_fin", Tipo_Reporte = "tiporeporte" })";
+                    cadena = cadena.replace("fecha_inicio", fecha_inicio);
+                    cadena = cadena.replace("fecha_fin", fecha_fin);
+                    cadena = cadena.replace("tiporeporte", tiporeporte);
+                    cadena = cadena.replace(";", "&");
+                    cadena = cadena.replace(";", "&");
+
+                    $("#btn_filtro").attr("href", cadena);
+                   
+
+                }
+                else {
+                    var cadena = "@Url.Action("GuardarReporte_Solicitud", "Reportes", new { FechaInicio = "fecha_inicio", FechaFin = "fecha_fin", Tipo_Reporte = "tiporeporte" })";
+                    cadena = cadena.replace("fecha_inicio", fecha_inicio);
+                    cadena = cadena.replace("fecha_fin", fecha_fin);
+                    cadena = cadena.replace("tiporeporte", tiporeporte);
+                    cadena = cadena.replace(";", "&");
+                    cadena = cadena.replace(";", "&");
+                    $("#btn_filtro").attr("href", cadena);
+                    $("#myModal").modal('hide');
+                  
+                }
+            
+            }
+        
+        $("#fecha_inicio").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fecha_fin").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        $("#fecha_ingreso_faena").datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+        
+        
+        
+    </script>
+}

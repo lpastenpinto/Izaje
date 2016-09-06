@@ -1,0 +1,582 @@
+﻿@model WebIzaje.Models.Solicitud
+
+@{
+    ViewBag.Title = "Refinalizar Solicitud";
+}
+
+    <div class="container">
+        
+		        <div class="row">			        
+			        <div class="col-xs-12 col-sm-12">
+				        <div class="page-header">
+	                        <h1 class="text-center">Refinalizar una solicitud</h1>
+                        </div>
+                        <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoFinalizarSolicitud", "Solicitud")">
+                            <div class="form-group">
+                                <div class="col-lg-12"><h4 class="text-center">Datos de la solicitud</h4></div>
+                                <br>
+                                <br>
+                                <br class="visible-lg">
+                                <label for="idSolicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                                           value="@Model.idSolicitud" readonly>
+                                </div>
+                                <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="empresa" name="empresa"
+                                           value="@Model.empresa" disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="area" class="col-lg-2 control-label">Área:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="area" name="area"
+                                           value="@Model.area" disabled>
+                                </div>
+                                <label for="lugar" class="col-lg-2 control-label">Lugar:</label>
+                                <div class="col-lg-4">
+                                    <textarea class="form-control" id="lugar" name="lugar" style="resize:none !important"
+                                              disabled>@Model.descripcionLugar</textarea>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="fechaInicio" class="col-lg-2 control-label">Fecha Inicio:</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="fechaInicio" name="fechaInicio"
+                                               value="@string.Format("{0:dd-MM-yyyy}", Model.inicioCorregido.Date)" disabled>
+                                    </div>
+                                    <label for="fechaFin" class="col-lg-2 control-label">Fecha Fin:</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="fechaFin" name="fechaFin"
+                                               value="@string.Format("{0:dd-MM-yyyy}", Model.finCorregido.Date)" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="criticidad" class="col-lg-2 control-label">Criticidad:</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="criticidad" name="criticidad"
+                                               value="@Model.criticidadCorregida" disabled>
+                                    </div>
+                                    <label for="centroCosto" class="col-lg-2 control-label">Centro de costo:</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control" id="centroCosto" name="centroCosto"
+                                               value="@Model.centroCosto" disabled>
+                                    </div>
+                                    <br class="visible-lg">
+                                    <br class="visible-lg">
+                                    <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio:</label>
+                                    <div class="col-lg-4">
+                                        <textarea class="form-control" id="descripcionServicio" name="descripcionServicio" style="resize:none !important"
+                                                  disabled>@Model.descripcionServicio</textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div class="col-lg-12"><h4 class="text-center">Datos de finalización por día</h4></div>
+                                        <br>
+                                        <br>
+                                        <br class="visible-lg">
+                                        <!--agregar foreach para mostrar los datos-->
+                                        @{int i = 0;}
+                                        @for (i = 0; i < Model.fechas.Count; i++)
+                                        {
+                                            <label for="fechaSol1" class="col-lg-2 col-lg-offset-3 control-label">Fecha:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="@("fechaSol"+i)" name="@("fechaSol"+i)"
+                                                       value="@string.Format("{0:dd-MM-yyyy}", Model.inicioCorregido.Date.AddDays(i))"
+                                                       readonly>
+                                            </div>
+                                            <div class="col-lg-3">
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="tagEquipo1" class="col-lg-2 control-label">Tag equipo 1:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="@("tagEquipo1"+i)" name="@("tagEquipo1"+i)" value="@Model.idEquipo1"
+                                                       disabled>
+                                            </div>
+                                            <div class="col-lg-6">
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="rutOperador1" class="col-lg-2 control-label">Rut operador 1:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="@("rutOperador1"+i)" name="@("rutOperador1" + i)" value="@Model.idOperador1"
+                                                       disabled>
+                                            </div>
+                                            <label for="rutRigger1" class="col-lg-2 control-label">Rut Rigger 1:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" id="@("rutRigger1" + i)" name="@("rutRigger1" + i)" value="@Model.idRigger1"
+                                                       disabled>
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="horaRelojInicial1" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                            <div class="col-lg-4">
+                                                <select class="form-control" id="@("horaRelojInicial1" + i)" name="@("horaRelojInicial1" + i)" required>
+                                                    <option value="Seleccione una opción">Seleccione una opción</option>
+                                                    @{
+                                            int hora = 0;
+                                            string minuto = "00", horaString = "";
+                                            while (hora < 24)
+                                            {
+                                                horaString = hora + "";
+                                                if (horaString.Length < 2)
+                                                {
+                                                    horaString = "0" + hora;
+                                                }
+                                                horaString += ":" + minuto;
+
+                                                if (horaString.Equals(Model.horaRelojInicial1[i]))
+                                                {
+                                                    <option value="@horaString" selected>@horaString</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@horaString">@horaString</option>
+                                                }
+                                                                                                
+                                                if (minuto == "00")
+                                                {
+                                                    minuto = "30";
+                                                }
+                                                else 
+                                                {
+                                                    hora++;
+                                                    minuto = "00";
+                                                }
+                                            }
+                                            }
+                                                </select>
+                                            </div>
+                                            <label for="horaRelojFinal1" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                            <div class="col-lg-4">
+                                                <select class="form-control" id="@("horaRelojFinal1" + i)" name="@("horaRelojFinal1" + i)" required>
+                                                    <option value="Seleccione una opción">Seleccione una opción</option>
+                                                    @{
+                                            hora = 0;
+                                            minuto = "00"; horaString = "";
+                                            while (hora < 24)
+                                            {
+                                                horaString = hora + "";
+                                                if (horaString.Length < 2) { horaString = "0" + hora; }
+                                                horaString += ":" + minuto;
+
+                                                if (horaString.Equals(Model.horaRelojFinal1[i]))
+                                                {
+                                                    <option value="@horaString" selected>@horaString</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@horaString">@horaString</option>
+                                                }
+
+                                                if (minuto == "00")
+                                                {
+                                                    minuto = "30";
+                                                }
+                                                else
+                                                {
+                                                    hora++;
+                                                    minuto = "00";
+                                                }
+                                            }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <label for="horaHorometroInicio" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                            <div class="col-lg-4">
+                                                <input type="number" class="form-control" id="@("horaHorometroInicio1" + i)" name="@("horaHorometroInicio1" + i)" value="@Model.horaHorometroInicial1[i]">
+                                            </div>
+                                            <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                            <div class="col-lg-4">
+                                                <input type="number" class="form-control" id="@("horaHorometroFin1" + i)" name="@("horaHorometroFin1" + i)" value="@Model.horaHorometroFinal1[i]">
+                                                <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroFin1" + i)">Este valor no puede ser menor a la hora horómetro de inicio</div>
+                                            </div>
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            <br class="visible-lg">
+                                            if (!Model.idEquipo2.Equals("--")) 
+                                            {
+                                                <label for="tagEquipo2" class="col-lg-2 control-label">Tag equipo 2:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" id="@("tagEquipo2" + i)" name="@("tagEquipo2" + i)" value="@Model.idEquipo2"
+                                                           disabled>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="rutOperador2" class="col-lg-2 control-label">Rut operador 1:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" id="@("rutOperador2" + i)" name="@("rutOperador2" + i)" value="@Model.idOperador2"
+                                                           disabled>
+                                                </div>
+                                                <label for="rutRigger2" class="col-lg-2 control-label">Rut Rigger 1:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" id="@("rutRigger2" + i)" name="@("rutRigger2" + i)" value="@Model.idRigger2"
+                                                           disabled>
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="horaRelojInicial2" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="@("horaRelojInicial2" + i)" name="@("horaRelojInicial2" + i)" required>
+                                                        <option value="Seleccione una opción">Seleccione una opción</option>
+                                                        @{
+                                                hora = 0;
+                                                minuto = "00"; horaString = "";
+                                                while (hora < 24)
+                                                {
+                                                    horaString = hora + "";
+                                                    if (horaString.Length < 2)
+                                                    {
+                                                        horaString = "0" + hora;
+                                                    }
+                                                    horaString += ":" + minuto;
+
+                                                    if (horaString.Equals(Model.horaRelojInicial2[i]))
+                                                    {
+                                                        <option value="@horaString" selected>@horaString</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@horaString">@horaString</option>
+                                                    }
+
+                                                    if (minuto == "00")
+                                                    {
+                                                        minuto = "30";
+                                                    }
+                                                    else
+                                                    {
+                                                        hora++;
+                                                        minuto = "00";
+                                                    }
+                                                }
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <label for="horaRelojFinal2" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="@("horaRelojFinal2" + i)" name="@("horaRelojFinal2" + i)" required>
+                                                        <option value="Seleccione una opción">Seleccione una opción</option>
+                                                        @{
+                                                hora = 0;
+                                                minuto = "00"; horaString = "";
+                                                while (hora < 24)
+                                                {
+                                                    horaString = hora + "";
+                                                    if (horaString.Length < 2) { horaString = "0" + hora; }
+                                                    horaString += ":" + minuto;
+
+                                                    if (horaString.Equals(Model.horaRelojFinal2[i]))
+                                                    {
+                                                        <option value="@horaString" selected>@horaString</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@horaString">@horaString</option>
+                                                    }
+
+                                                    if (minuto == "00")
+                                                    {
+                                                        minuto = "30";
+                                                    }
+                                                    else
+                                                    {
+                                                        hora++;
+                                                        minuto = "00";
+                                                    }
+                                                }
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <label for="horaHorometroInicio2" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="number" class="form-control" id="@("horaHorometroInicio2" + i)" name="@("horaHorometroInicio2" + i)" value="@Model.horaHorometroInicial2[i]">
+                                                </div>
+                                                <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                                <div class="col-lg-4">
+                                                    <input type="number" class="form-control" id="@("horaHorometroFin2" + i)" name="@("horaHorometroFin2" + i)" value="@Model.horaHorometroFinal2[i]">
+                                                    <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroFin2" + i)">Este valor no puede ser menor a la hora horómetro de inicio</div>
+                                                </div>
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                                <br class="visible-lg">
+                                            }
+                                            if (i < Model.fechas.Count - 1)
+                                            {
+                                                <hr>
+                                            }
+                                        }
+                                    </div>
+                                    <br />
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verFinalizadas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                                        <button type="submit" class="btn btn-primary btn-lg" id="botonEnviar">Refinalizar esta solicitud</button>
+                                    </div>
+                                </form>
+                    </div>			        
+		        </div>
+	</div>
+
+
+@section scripts{
+    @for (i = 0; i < Model.fechas.Count; i++)
+    {
+        <script type="text/javascript">
+            $("#@("horaHorometroInicio1" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroInicio1" + i)").val();                
+
+                if (valor != "") {
+                    var arreglo = valor.split('');
+                    if (arreglo[0]=="-") {
+                        $("#@("mensajeHoraHorometroInicio1" + i)").removeClass("hidden");
+                        $("#botonEnviar").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#@("mensajeHoraHorometroInicio1" + i)").addClass("hidden");
+                    }
+                    $("#@("horaHorometroFin1" + i)").prop('disabled', false);
+                }
+                $("#@("horaHorometroFin1" + i)").val(valor);
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaHorometroInicio2" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroInicio2" + i)").val();
+                if (valor != "") {
+                    var arreglo = valor.split('');
+                    if (arreglo[0]=="-") {
+                        $("#@("mensajeHoraHorometroInicio2" + i)").removeClass("hidden");
+                        $("#botonEnviar").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#@("mensajeHoraHorometroInicio2" + i)").addClass("hidden");
+                    }
+                    $("#@("horaHorometroFin2" + i)").prop('disabled', false);
+                }
+                $("#@("horaHorometroFin2" + i)").val(valor);
+            });
+        </script>
+        
+        //Cambia el valor del horometro inicio del siguiente día
+        <script type="text/javascript">
+            $("#@("horaHorometroFin1" + i)").bind('keyup mouseup', function () {
+
+                var valor = $("#@("horaHorometroFin1" + i)").val();
+                if (valor != "") {
+                    $("#@("horaHorometroInicio1" + (i+1))").prop('disabled', false);
+                }
+                $("#@("horaHorometroInicio1" + (i+1))").val(valor);
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaHorometroFin2" + i)").bind('keyup mouseup', function () {
+
+                var valor = $("#@("horaHorometroFin2" + i)").val();
+                if (valor != "") {
+                    $("#@("horaHorometroInicio2" + (i+1))").prop('disabled', false);
+                }
+                $("#@("horaHorometroInicio2" + (i+1))").val(valor);
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaRelojInicial1" + i)").change( function () {
+
+                var valor = $("#@("horaRelojInicial1" + i)").val();
+
+                var hora = valor.split(':')[0];
+                var minuto = valor.split(':')[1];
+                if (valor != "") {
+                    $("#@("horaRelojFinal1" + i)").prop('disabled', false);
+
+                    //Se colocan valores de hora posterior a la hora ingresada
+                    $("#@("horaRelojFinal1" + i)").empty();
+
+                    var horaEntero = parseInt(hora);
+                    $("#@("horaRelojFinal1" + i)").append("<option value='Seleccione una opción'>Seleccione una opción</option>");
+                    while(horaEntero<24){
+                        $("#@("horaRelojFinal1" + i)").append("<option value='" + hora +
+                            ":" + minuto + "'>" + hora + ":" + minuto + "</option>");
+
+                        if (minuto == "00") minuto = "30";
+                        else {
+                            horaEntero++;
+                            hora = horaEntero + "";
+                            if (hora.length == 1) hora = "0" + hora;
+                            minuto = "00";
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaRelojInicial2" + i)").change( function () {
+
+                var valor = $("#@("horaRelojInicial2" + i)").val();
+
+                var hora = valor.split(':')[0];
+                var minuto = valor.split(':')[1];
+                if (valor != "") {
+                    $("#@("horaRelojFinal2" + i)").prop('disabled', false);
+
+                    //Se colocan valores de hora posterior a la hora ingresada
+                    $("#@("horaRelojFinal2" + i)").empty();
+
+                    var horaEntero = parseInt(hora);
+
+                    $("#@("horaRelojFinal2" + i)").append("<option value='Seleccione una opción'>Seleccione una opción</option>");
+                    while(horaEntero<24){
+                        $("#@("horaRelojFinal2" + i)").append("<option value='" + hora +
+                            ":" + minuto + "'>" + hora + ":" + minuto + "</option>");
+
+                        if (minuto == "00") minuto = "30";
+                        else {
+                            horaEntero++;
+                            hora = horaEntero + "";
+                            if (hora.length == 1) hora = "0" + hora;
+                            minuto = "00";
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaRelojFinal1" + i)").change( function () {
+
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if (activar) $("#botonEnviar").removeAttr("disabled");
+                else $("#botonEnviar").attr("disabled", "disabled");
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaRelojFinal2" + i)").change( function () {
+
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if(activar)$("#botonEnviar").removeAttr("disabled");
+                else $("#botonEnviar").attr("disabled", "disabled");
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaHorometroFin1" + i)").change( function () {
+                
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+                    
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if (parseInt($("#@("horaHorometroInicio1" + i)").val()) > parseInt($("#@("horaHorometroFin1" + i)").val())) {
+                    $("#@("mensajeHoraHorometroFin1" + i)").removeClass("hidden");
+                    activar = false;
+                }
+                else {
+                    $("#@("mensajeHoraHorometroFin1" + i)").addClass("hidden");
+                }
+
+                if(activar)$("#botonEnviar").removeAttr("disabled");                
+                else $("#botonEnviar").attr("disabled", "disabled");
+
+            });
+        </script>
+        
+        <script type="text/javascript">
+    $("#@("horaHorometroFin2" + i)").change(function () {
+
+        var activar = true;
+        for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+
+            if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                $("#horaRelojFinal2" + j).prop('disabled') ||
+                $("#horaHorometroFin1" + j).prop('disabled') ||
+                $("#horaHorometroFin2" + j).prop('disabled') ||
+                $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                ) {
+                activar = false;
+                break;
+            }
+        }
+
+        if (parseInt($("#@("horaHorometroInicio2" + i)").val()) > parseInt($("#@("horaHorometroFin2" + i)").val())) {
+            $("#@("mensajeHoraHorometroFin2" + i)").removeClass("hidden");
+            activar = false;
+        }
+        else {
+            $("#@("mensajeHoraHorometroFin2" + i)").addClass("hidden");
+        }
+
+        if (activar) $("#botonEnviar").removeAttr("disabled");
+        else $("#botonEnviar").attr("disabled", "disabled");
+
+    });
+        </script>
+    }
+}

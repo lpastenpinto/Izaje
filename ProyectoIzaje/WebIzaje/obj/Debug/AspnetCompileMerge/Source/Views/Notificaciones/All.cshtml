@@ -1,0 +1,101 @@
+﻿@model IEnumerable<WebIzaje.Models.Notificaciones>
+@{
+    ViewBag.Title = "Todos";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10);
+}
+
+
+<div class="container">
+    <div class="page-header table-hover">
+        <h2 class="text-center text-muted">Certificaciones, licencias y cursos vencidos</h2>
+    </div>
+
+    <div class="table-responsive">
+
+        @grid.GetHtml(
+            columns: grid.Columns(
+            
+        grid.Column("categoria",
+            header: string.Format("Categoria {0}", grid.SortColumn == "categoria" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""),
+            format: @<text>
+            @{ string date = @item.fecha.ToShortDateString();}
+            <span class="badge">@item.categoria</span>
+            </text>),
+            
+        grid.Column("id",header: "Id"),
+
+        grid.Column("tipo",
+            header: string.Format("Tipo {0}", grid.SortColumn == "tipo" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+
+        grid.Column("documento",
+            header: string.Format("Documento vencido     {0}", grid.SortColumn == "documento" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : "")),
+        
+        grid.Column("fecha",
+            header: string.Format("Fecha Vencimiento{0}", grid.SortColumn == "fecha" ? grid.SortDirection == SortDirection.Ascending ? "⇈" : "⇊" : ""),
+            format:@<text>            
+            @if (item.fecha.CompareTo(DateTime.Now) < 0)
+            {
+                string date = @item.fecha.ToShortDateString();
+                <span class="label label-danger">@date</span>
+            }
+            else 
+            {
+                string date = @item.fecha.ToShortDateString();
+                <span class="label label-warning">@date</span>                
+            }
+            </text>),
+
+        grid.Column("",
+            header: "Atraso",
+            format:@<text>
+                        @{ 
+                            DateTime now = DateTime.Now;
+                            DateTime fecha_start = new DateTime(now.Year, now.Month, now.Day);
+                            DateTime fecha_end = new DateTime(item.fecha.Year, item.fecha.Month, item.fecha.Day);
+
+                            TimeSpan diff = fecha_start.Subtract(fecha_end);
+                        }
+                        @if (diff.Days < 0)
+                        {
+                            <span class="label label-warning">Vence en @Math.Abs( diff.Days) días</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@diff.Days días</span>
+                        }
+                     &nbsp;
+                    </text>,
+            style:"text-left"),
+            
+        grid.Column("",
+            header: "",
+            format: @<text>
+                        @if (item.categoria.Equals("Trabajador"))
+                        {
+                            <a href="@Url.Action("Editar", "Trabajador", new { id = @item.id })" title="Editar"><i class="glyphicon glyphicon-edit text-primary"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Editar", "Equipo", new { tag = @item.id })" title="Editar"><i class="glyphicon glyphicon-edit text-primary"></i></a>
+                        }
+                    </text>)
+                  ), tableStyle: "table table-hover", footerStyle: "pagination")
+
+
+    </div> <!--responsive-->
+
+
+    
+</div><!--cierre container-->
+
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>

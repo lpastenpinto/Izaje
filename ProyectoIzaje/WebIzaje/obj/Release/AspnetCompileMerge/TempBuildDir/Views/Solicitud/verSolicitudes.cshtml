@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Todas las solicitudes";
+}
+
+    <div class="container">
+        <div class="page-header">
+            <h2 class="text-center">Todas las solicitudes @ViewData["prueba"]</h2>
+        </div>
+          
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id de solicitud</th>
+                        <th>Empresa solicitante</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Estado</th>
+                        <th>Ver detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td><strong class="text-primary">@Model[i].idSolicitud</strong></td>
+                                <td>@Model[i].empresa</td>
+                                <td>@Model[i].inicio</td>
+                                <td>@Model[i].fin</td>
+                                <td>@Model[i].estado</td>
+                                <td><a href="@Url.Action("verSolicitud", "Solicitud", new { idSolicitud = Model[i].idSolicitud })"><span class='glyphicon glyphicon-search text-primary'></span></a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>

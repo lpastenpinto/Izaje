@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container">
+    @if (ViewBag.success == 0)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong><i class="glyphicon glyphicon-remove-circle text-danger"></i></strong>&nbsp;¡Usuario o Password Incorrecto!
+        </div>
+    }
+
+    <div class="page-header">
+        <h2 class="text-center">Iniciar Sesión</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <form class="form-horizontal" role="form" method="post" action="@Url.Action("LogIn", "Login")">
+                <div class="form-group">
+                    <label for="nombre" class="col-lg-2 control-label">Usuario:</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="nombre"
+                               placeholder="usuario" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion" class="col-lg-2 control-label">password:</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" name="password"
+                               placeholder="password" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i>&nbsp;Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>
+
+
+

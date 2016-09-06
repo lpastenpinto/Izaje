@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Nuevo Criticidad";
+}
+
+<div class="container">
+   
+    <div class="panel-body">
+            
+        <div class="page-header">
+            <h1 class="text-center">Nueva criticidad</h1>
+        </div>
+        <form class="form-horizontal" role="form" method="post" action="@Url.Action("AgregarCriticidad", "Admin")">
+            <div class="form-group">
+                <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="nombre" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="Nombre" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descripcion" class="col-lg-2 control-label">Descripción</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" name="descripcion" rows="3"
+                                style="resize:none !important"
+                                placeholder="Descripción"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a type="button" href="@Url.Action("criticidades","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+            </div>
+        </form>
+
+    </div>
+</div>

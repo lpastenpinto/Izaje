@@ -1,0 +1,1 @@
+Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=Izaje;Integrated Security=True

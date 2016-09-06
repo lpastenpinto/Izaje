@@ -1,0 +1,32 @@
+﻿@model WebIzaje.Models.Empresa
+@{
+    ViewBag.Title = "Editar Empresa";
+}
+
+<div class="container">
+    <div class="panel-body">
+        <div class="page-header">
+            <h2 class="text-center">Editar Empresa</h2>
+        </div>
+    </div>
+    <form action="@Url.Action("Guardar_Editar_Empresa","Admin")" class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre</label>
+            <div class="col-sm-10">
+                <input type="hidden"name="nombre" value="@Model.nombre">
+                <input type="text" class="form-control" name="nombre_nuevo" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="Nombre Empresa" value="@Model.nombre" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Descripción</label>
+            <div class="col-sm-10">
+                <textarea name="descripcion" class="form-control" rows="3" placeholder="Descripción">@Model.descripcion</textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a type="button" href="@Url.Action("Empresas","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+        </div>
+    </form>
+</div>

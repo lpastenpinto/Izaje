@@ -1,0 +1,1 @@
+Data Source=190.209.219.15\SQLEXPRESS;Initial Catalog=Izaje;user id = MINDgl; password = izaje2014*

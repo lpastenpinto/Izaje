@@ -1,0 +1,68 @@
+﻿@model WebIzaje.Models.Modelo_Equipo
+@{
+    ViewBag.Title = "Editar Modelo Equipo";
+}
+
+<div class="container">
+    <div class="panel-body">
+        <div class="page-header">
+            <h2 class="text-center">Editar Modelo Equipo</h2>
+        </div>
+    </div>
+    <form action="@Url.Action("Guardar_Editar_Modelo_Equipo", "Admin")" class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Modelo</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="modelo" value="@Model.modelo">
+                <input type="text" class="form-control" name="modelo_nuevo" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="Modelo" value="@Model.modelo" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Marca</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="marca" required>
+                    @foreach (WebIzaje.Models.Marca_Equipo x in ViewBag.marca)
+                    {
+                        if(x.marca.Equals(Model.marca)){
+                            <option value="@x.marca" selected>@x.marca</option>
+                        }
+                        else{
+                            <option value="@x.marca">@x.marca</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tipo Equipo</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tipo" required>
+                    @foreach (WebIzaje.Models.tipoEquipo x in ViewBag.tipo)
+                    {
+                        if (x.tipo.Equals(Model.tipo))
+                        {
+                            <option value="@x.tipo" selected>@x.tipo</option>
+                        }
+                        else
+                        {
+                            <option value="@x.tipo">@x.tipo</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <a type="button" href="@Url.Action("Modelo_Equipos","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+

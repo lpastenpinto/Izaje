@@ -1,0 +1,59 @@
+﻿@model WebIzaje.Models.centro_costo
+@{
+    ViewBag.Title = "Nuevo Centro de Costo";
+}
+
+<div class="container">
+          
+        <div class="page-header">
+            <h1 class="text-center">Nuevo Centro de Costo</h1>
+        </div>
+
+        <form class="form-horizontal" role="form" method="post" action="@Url.Action("AgregarEditarCentroCosto", "Admin")">
+            <div class="form-group">
+                <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
+                <div class="col-lg-10">
+                    <input type="hidden" name="nombre" value="@Model.codigo">
+                    <input type="text" class="form-control" name="nombre_nuevo" pattern="[a-zA-Z0-9áéíóú ]+" placeholder="Nombre" value="@Model.nombre" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="codigo" class="col-lg-2 control-label">Codigo:</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="codigo" placeholder="Código" value="@Model.codigo" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="area" class="col-lg-2 control-label">Área</label>
+                <div class="col-lg-10">
+                    <select class="form-control" name="area" required>
+                        @{
+                            if (ViewBag.centrosCosto != null)
+                            {
+                                List<WebIzaje.Models.area> sups = (List<WebIzaje.Models.area>)ViewBag.centrosCosto;
+                                foreach (var x in sups)
+                                {
+                                    if (x.nombre.Equals(Model.area))
+                                    {
+                                        <option value="@x.nombre" selected>@x.nombre</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@x.nombre">@x.nombre</option>
+                                    }
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" href="@Url.Action("centrosCosto","Admin")" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+            </div>
+        </form>
+
+</div>
+

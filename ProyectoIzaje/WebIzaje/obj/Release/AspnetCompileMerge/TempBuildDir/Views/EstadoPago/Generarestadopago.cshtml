@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Generarestadopago";
+}
+
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1 class="text-center">Generar Estado de Pago</h1>
+                
+            </div><!-- cierre de page header-->
+            <form class="form-horizontal" role="form" action="@Url.Action("Guardar_estadopagoGenerado", "EstadoPago")" method="post">
+                
+                    
+                        <label class="control-label col-lg-4">Unidad de Fomento (UF)</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="Unidad_fomento" id="Unidad_fomento" placeholder="Ej: 23.000" pattern="[0-9]{2}[\.]?[0-9]{3}" required/>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <hr />
+                        <div class="col-lg-10">
+                            <input type="radio" id="Entre_fecha" name="seleccion" value="entre fechas"  />  <strong>Entre Fechas</strong>
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="radio" id="Ala_fecha" name="seleccion" value="ala fecha" /> <strong>A la Fecha</strong>
+                        </div>
+                        <br />
+                        <br />
+                        
+                
+                       <div class="panel panel-default col-lg-12" id="panel_alafecha">
+                        <div class="panel-body">
+                           <div id="modificar">
+
+
+                           </div>
+    
+                        </div><!-- cierre panel body interno-->
+                    </div><!-- cierre de panel default interno-->
+               <br />
+               <br />
+               <br />
+               <br />
+               <br />
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-lg">Generar</button>
+                </div>
+            </form><!-- cierre de formulario-->
+        </div><!-- cierre de panel body-->
+    </div><!-- cierre de panel default-->
+</div><!-- cierre de container-->
+@section Scripts
+{
+<script type="text/javascript">
+    $("#Entre_fecha").change(function () {
+        $("#modificar").empty();
+        $("#modificar").append("<label class='control-label col-lg-4'>Fecha de Inicio</label><div class='col-lg-4'><input type='text' class='form-control' id='fecha_entre_i' name='fecha_inicio_e' placeholder='dd/mm/aaaa' onFocus='fecha_i()' data-date-format='DD/MM/YYYY' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required/></div></br></br></br><label class='control-label col-lg-4'>Fecha de Termino</label><div class='col-lg-4'><input type='text' class='form-control' onFocus='fecha_f()' id='fecha_entre_f' name='fecha_termino_e' placeholder='dd/mm/aaaa' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required/></div>");
+    });
+    $("#Ala_fecha").change(function () {
+        $("#modificar").empty();
+        $("#modificar").append("<label class='control-label col-lg-4'>Fecha de Termino</label><div class='col-lg-4'><input type='text' onFocus='fecha_a_f()' class='form-control' id='fecha_ala_f' name='fecha_fin_a' placeholder='dd/mm/aaaa' data-date-format='DD/MM/YYYY' pattern='[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]' required/></div>");
+        
+    });
+    function fecha_i() {
+        $('#fecha_entre_i').datetimepicker({ pickTime: false });
+    };
+    function fecha_f() {
+        $('#fecha_entre_f').datetimepicker({ pickTime: false });
+    };
+    function fecha_a_f() {
+        $('#fecha_ala_f').datetimepicker({ pickTime: false });
+    };
+        $(".footer").hide();
+</script>
+    }

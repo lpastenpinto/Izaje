@@ -1,0 +1,566 @@
+﻿@model WebIzaje.Models.Solicitud
+@{
+    ViewBag.Title = "Finalizar Solicitud";
+}
+
+    <div class="container">
+       
+		        <div class="row">
+			        <div class="col-xs-12 col-sm-12">
+				        <div class="page-header">
+	                        <h1 class="text-center">Finalizar una solicitud</h1>
+                        </div>
+                        <form class="form-horizontal" role="form" method="post" action="@Url.Action("metodoFinalizarSolicitud", "Solicitud")">
+                        <div class="form-group">
+                            <div class="col-lg-2"></div>
+                            <label for="solicitud" class="col-lg-2 control-label">Id de solicitud</label>
+                            <div class="col-lg-6">
+                                <input type="text" value="@Model.idSolicitud" class="form-control" id="solicitudElegida" name="solicitudElegida"
+                                       required>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-lg-12"><h4 class="text-center">Datos de la solicitud</h4></div>
+                            <br>
+                            <br>
+                            <br class="visible-lg">
+                            <label for="idSolicitud" class="col-lg-2 control-label">Solicitud:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="idSolicitud" name="idSolicitud" value="@Model.idSolicitud"
+                                        disabled>
+                            </div>
+                            <label for="empresa" class="col-lg-2 control-label">Empresa:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="empresa" name="empresa" value="@Model.empresa"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="area" class="col-lg-2 control-label">Área:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="area" name="area" value="@Model.area"
+                                        disabled>
+                            </div>
+                            <label for="lugar" class="col-lg-2 control-label">Lugar:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="lugar" name="lugar" value="@Model.descripcionLugar"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="fechaInicio" class="col-lg-2 control-label">Fecha Inicio:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" value="@Model.inicioCorregido.ToString()"
+                                       disabled>
+                            </div>
+                            <label for="fechaFin" class="col-lg-2 control-label">Fecha Fin:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="fechaFin" name="fechaFin" value="@Model.finCorregido.ToString()"
+                                       disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="criticidad" class="col-lg-2 control-label">Criticidad:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="criticidad" name="criticidad" value="@Model.criticidad"
+                                        disabled>
+                            </div>
+                            <label for="centroCosto" class="col-lg-2 control-label">Centro de costo:</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="centroCosto" name="centroCosto" value="@Model.centroCosto"
+                                        disabled>
+                            </div>
+                            <br class="visible-lg">
+                            <br class="visible-lg">
+                            <label for="descripcionServicio" class="col-lg-2 control-label">Descripción del servicio:</label>
+                            <div class="col-lg-4">
+                                <textarea class="form-control" id="descripcionServicio" name="descripcionServicio"
+                                            disabled style="resize:none !important">@Model.descripcionServicio</textarea>
+                                </div>
+                            </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-lg-12"><h4 class="text-center">Datos de finalización por día</h4></div>
+                            <br>
+                            <br class="visible-lg">
+                            @for (int i = 0; i < (int)ViewData["dias"] && Model.inicioCorregido.Date.AddDays(i) <= Model.finCorregido.Date; i++)
+                            {
+                                <hr>
+                                <label for="fechaSol1" class="col-lg-2 col-lg-offset-3 control-label">Fecha:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="@("fechaSol"+i)" name="@("fechaSol"+i)" value="@string.Format("{0:dd-MM-yyyy}", Model.inicioCorregido.Date.AddDays(i))"
+                                            readonly>
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="tagEquipo1" class="col-lg-2 control-label">Tag equipo 1:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="@("tagEquipo1"+i)" name="@("tagEquipo1"+i)" value="@Model.idEquipo1"
+                                            disabled>
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="rutOperador1" class="col-lg-2 control-label">Rut operador 1:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="@("rutOperador1"+i)" name="@("rutOperador1" + i)" value="@Model.idOperador1"
+                                            disabled>
+                                </div>
+                                <label for="rutRigger1" class="col-lg-2 control-label">Rut Rigger 1:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="@("rutRigger1" + i)" name="@("rutRigger1" + i)" value="@Model.idRigger1"
+                                            disabled>
+                                </div>
+                                <br class="visible-lg">
+                                <br class="visible-lg">
+                                <label for="horaRelojInicial1" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="@("horaRelojInicial1" + i)" name="@("horaRelojInicial1" + i)" required>
+                                        <option value="Seleccione una opción" selected>Seleccione una opción</option>
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:30">23:30</option>
+                                    </select>
+                                </div>
+                                <label for="horaRelojFinal1" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control" id="@("horaRelojFinal1" + i)" name="@("horaRelojFinal1" + i)" required disabled></select>
+                                </div>
+                                <br>
+                                <br>
+                                <label for="horaHorometroInicio" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                <div class="col-lg-4">
+                                    @if (i == 0)
+                                    {
+                                        <input type="number" class="form-control" id="@("horaHorometroInicio1" + i)" name="@("horaHorometroInicio1" + i)">
+                                    }
+                                    else
+                                    {
+                                        <input type="number" class="form-control" id="@("horaHorometroInicio1" + i)" name="@("horaHorometroInicio1" + i)" disabled>
+                                    }
+                                    <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroInicio1" + i)">Este valor no puede ser negativo</div>
+                                </div>
+                                <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                <div class="col-lg-4">
+                                    <input type="number" class="form-control" id="@("horaHorometroFin1" + i)" name="@("horaHorometroFin1" + i)" disabled>
+                                    <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroFin1" + i)">Este valor no puede ser menor a la hora horómetro de inicio</div>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                if (!Model.idEquipo2.Equals("--")) 
+                                {
+                                    <label for="tagEquipo2" class="col-lg-2 control-label">Tag equipo 2:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="@("tagEquipo2" + i)" name="@("tagEquipo2" + i)" value="@Model.idEquipo2"
+                                                   disabled>
+                                        </div>
+                                        <div class="col-lg-6">
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="rutOperador2" class="col-lg-2 control-label">Rut operador 2:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="@("rutOperador2" + i)" name="@("rutOperador2" + i)" value="@Model.idOperador2"
+                                                   disabled>
+                                        </div>
+                                        <label for="rutRigger2" class="col-lg-2 control-label">Rut Rigger 2:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" id="@("rutRigger2" + i)" name="@("rutRigger2" + i)" value="@Model.idRigger2"
+                                                   disabled>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        <label for="horaRelojInicial2" class="col-lg-2 control-label">Hora reloj inicial:</label>
+                                        <div class="col-lg-4">
+                                            <select class="form-control" id="@("horaRelojInicial2" + i)" name="@("horaRelojInicial2" + i)" required>
+                                                <option value="Seleccione una opción" selected>Seleccione una opción</option>
+                                                <option value="00:00">00:00</option>
+                                                <option value="00:30">00:30</option>
+                                                <option value="01:00">01:00</option>
+                                                <option value="01:30">01:30</option>
+                                                <option value="02:00">02:00</option>
+                                                <option value="02:30">02:30</option>
+                                                <option value="03:00">03:00</option>
+                                                <option value="03:30">03:30</option>
+                                                <option value="04:00">04:00</option>
+                                                <option value="04:30">04:30</option>
+                                                <option value="05:00">05:00</option>
+                                                <option value="05:30">05:30</option>
+                                                <option value="06:00">06:00</option>
+                                                <option value="06:30">06:30</option>
+                                                <option value="07:00">07:00</option>
+                                                <option value="07:30">07:30</option>
+                                                <option value="08:00">08:00</option>
+                                                <option value="08:30">08:30</option>
+                                                <option value="09:00">09:00</option>
+                                                <option value="09:30">09:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00">12:00</option>
+                                                <option value="12:30">12:30</option>
+                                                <option value="13:00">13:00</option>
+                                                <option value="13:30">13:30</option>
+                                                <option value="14:00">14:00</option>
+                                                <option value="14:30">14:30</option>
+                                                <option value="15:00">15:00</option>
+                                                <option value="15:30">15:30</option>
+                                                <option value="16:00">16:00</option>
+                                                <option value="16:30">16:30</option>
+                                                <option value="17:00">17:00</option>
+                                                <option value="17:30">17:30</option>
+                                                <option value="18:00">18:00</option>
+                                                <option value="18:30">18:30</option>
+                                                <option value="19:00">19:00</option>
+                                                <option value="19:30">19:30</option>
+                                                <option value="20:00">20:00</option>
+                                                <option value="20:30">20:30</option>
+                                                <option value="21:00">21:00</option>
+                                                <option value="21:30">21:30</option>
+                                                <option value="22:00">22:00</option>
+                                                <option value="22:30">22:30</option>
+                                                <option value="23:00">23:00</option>
+                                                <option value="23:30">23:30</option>
+                                            </select>
+                                        </div>
+                                        <label for="horaRelojFinal2" class="col-lg-2 control-label">Hora Reloj Final:</label>
+                                        <div class="col-lg-4">
+                                            <select class="form-control" id="@("horaRelojFinal2" + i)" name="@("horaRelojFinal2" + i)" required disabled></select>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <label for="horaHorometroInicio" class="col-lg-2 control-label">Hora horómetro inicio:</label>
+                                        <div class="col-lg-4">
+                                            @if (i == 0)
+                                    {
+                                                <input type="number" class="form-control" id="@("horaHorometroInicio2" + i)" name="@("horaHorometroInicio2" + i)">
+                                    }
+                                    else
+                                    {
+                                                <input type="number" class="form-control" id="@("horaHorometroInicio2" + i)" name="@("horaHorometroInicio2" + i)" disabled>
+                                    }
+                                        <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroInicio2" + i)">Este valor no puede ser negativo</div>
+                                        </div>
+                                        <label for="horaHorometroFin" class="col-lg-2 control-label">Hora horómetro fin:</label>
+                                        <div class="col-lg-4">
+                                            <input type="number" class="form-control" id="@("horaHorometroFin2" + i)" name="@("horaHorometroFin2" + i)" disabled>
+                                            <div class="alert alert-danger hidden" id="@("mensajeHoraHorometroFin2" + i)">Este valor no puede ser menor a la hora horómetro de inicio</div>
+                                        </div>
+                                        <br class="visible-lg">
+                                        <br class="visible-lg">
+                                        }
+                                }                                        
+                                    </div>
+                        <div class="modal-footer">
+                            <a type="button" class="btn btn-default btn-lg" href="@Url.Action("verAutorizadas","Solicitud")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+                            <button type="submit" class="btn btn-primary btn-lg" id="botonEnviar" disabled>Finalizar esta solicitud</button>
+                        </div>
+                        </form>
+                    </div>			        
+		        </div>
+	</div>
+
+    @section scripts{      
+    
+        @for(int i=0; i < (int)ViewData["dias"]; i++){
+        <script type="text/javascript">
+            $("#@("horaHorometroInicio1" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroInicio1" + i)").val();                
+
+                if (valor != "") {
+                    var arreglo = valor.split('');
+                    if (arreglo[0]=="-") {
+                        $("#@("mensajeHoraHorometroInicio1" + i)").removeClass("hidden");
+                        $("#botonEnviar").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#@("mensajeHoraHorometroInicio1" + i)").addClass("hidden");
+                    }
+                    $("#@("horaHorometroFin1" + i)").prop('disabled', false);
+                }
+                $("#@("horaHorometroFin1" + i)").val(valor);
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#@("horaHorometroInicio2" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroInicio2" + i)").val();
+                if (valor != "") {
+                    var arreglo = valor.split('');
+                    if (arreglo[0]=="-") {
+                        $("#@("mensajeHoraHorometroInicio2" + i)").removeClass("hidden");
+                        $("#botonEnviar").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#@("mensajeHoraHorometroInicio2" + i)").addClass("hidden");
+                    }
+                    $("#@("horaHorometroFin2" + i)").prop('disabled', false);
+                }
+                $("#@("horaHorometroFin2" + i)").val(valor);
+            });
+        </script>
+          
+        //Cambia el valor del horometro inicio del siguiente día
+        <script type="text/javascript">
+            $("#@("horaHorometroFin1" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroFin1" + i)").val();
+                if (valor != "") {
+                    $("#@("horaHorometroInicio1" + (i+1))").prop('disabled', false);
+                }
+                $("#@("horaHorometroInicio1" + (i+1))").val(valor);
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $("#@("horaHorometroFin2" + i)").bind('keyup mouseup', function () {
+                                
+                var valor = $("#@("horaHorometroFin2" + i)").val();
+                if (valor != "") {
+                    $("#@("horaHorometroInicio2" + (i+1))").prop('disabled', false);
+                }
+                $("#@("horaHorometroInicio2" + (i+1))").val(valor);
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $("#@("horaRelojInicial1" + i)").change( function () {
+                                
+                var valor = $("#@("horaRelojInicial1" + i)").val();
+
+                var hora = valor.split(':')[0];
+                var minuto = valor.split(':')[1];
+                if (valor != "") {
+                    $("#@("horaRelojFinal1" + i)").prop('disabled', false);
+
+                    //Se colocan valores de hora posterior a la hora ingresada
+                    $("#@("horaRelojFinal1" + i)").empty();
+
+                    var horaEntero = parseInt(hora);
+                    $("#@("horaRelojFinal1" + i)").append("<option value='Seleccione una opción'>Seleccione una opción</option>");
+                    while(horaEntero<24){
+                        $("#@("horaRelojFinal1" + i)").append("<option value='" + hora + 
+                            ":" + minuto + "'>" + hora + ":" + minuto + "</option>");
+
+                        if (minuto == "00") minuto = "30";
+                        else {
+                            horaEntero++;
+                            hora = horaEntero + "";
+                            if (hora.length == 1) hora = "0" + hora;
+                            minuto = "00";
+                        }
+                    }
+                }                
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $("#@("horaRelojInicial2" + i)").change( function () {
+                                
+                var valor = $("#@("horaRelojInicial2" + i)").val();
+
+                var hora = valor.split(':')[0];
+                var minuto = valor.split(':')[1];
+                if (valor != "") {
+                    $("#@("horaRelojFinal2" + i)").prop('disabled', false);
+
+                    //Se colocan valores de hora posterior a la hora ingresada
+                    $("#@("horaRelojFinal2" + i)").empty();
+
+                    var horaEntero = parseInt(hora);
+
+                    $("#@("horaRelojFinal2" + i)").append("<option value='Seleccione una opción'>Seleccione una opción</option>");
+                    while(horaEntero<24){
+                        $("#@("horaRelojFinal2" + i)").append("<option value='" + hora + 
+                            ":" + minuto + "'>" + hora + ":" + minuto + "</option>");
+
+                        if (minuto == "00") minuto = "30";
+                        else {
+                            horaEntero++;
+                            hora = horaEntero + "";
+                            if (hora.length == 1) hora = "0" + hora;
+                            minuto = "00";
+                        }
+                    }
+                }                
+            });
+        </script>        
+        
+        <script type="text/javascript">
+            $("#@("horaRelojFinal1" + i)").change( function () {
+                
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+                    
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if (activar) $("#botonEnviar").removeAttr("disabled");
+                else $("#botonEnviar").attr("disabled", "disabled");
+                
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $("#@("horaRelojFinal2" + i)").change( function () {
+                
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+                    
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if(activar)$("#botonEnviar").removeAttr("disabled");                
+                else $("#botonEnviar").attr("disabled", "disabled");
+
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $("#@("horaHorometroFin1" + i)").change( function () {
+                
+                var activar=true;
+                for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+                    
+                    if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                        $("#horaRelojFinal2" + j).prop('disabled') ||
+                        $("#horaHorometroFin1" + j).prop('disabled') ||
+                        $("#horaHorometroFin2" + j).prop('disabled') ||
+                        $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                        $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                        $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                        ) {
+                        activar = false;
+                        break;
+                    }
+                }
+
+                if (parseInt($("#@("horaHorometroInicio1" + i)").val()) > parseInt($("#@("horaHorometroFin1" + i)").val())) {
+                    $("#@("mensajeHoraHorometroFin1" + i)").removeClass("hidden");
+                    activar = false;
+                }
+                else {
+                    $("#@("mensajeHoraHorometroFin1" + i)").addClass("hidden");
+                }
+
+                if(activar)$("#botonEnviar").removeAttr("disabled");                
+                else $("#botonEnviar").attr("disabled", "disabled");
+
+            });
+        </script>
+        
+        <script type="text/javascript">
+    $("#@("horaHorometroFin2" + i)").change(function () {
+
+        var activar = true;
+        for (var j = 0; $("#horaRelojFinal1" + j).length != 0; j++) {
+
+            if ($("#horaRelojFinal1" + j).prop('disabled') ||
+                $("#horaRelojFinal2" + j).prop('disabled') ||
+                $("#horaHorometroFin1" + j).prop('disabled') ||
+                $("#horaHorometroFin2" + j).prop('disabled') ||
+                $("#horaRelojFinal1" + j).val() == "Seleccione una opción" ||
+                $("#horaRelojFinal2" + j).val() == "Seleccione una opción" ||
+                $("#horaHorometroFin1" + j).val() == "Seleccione una opción" ||
+                $("#horaHorometroFin2" + j).val() == "Seleccione una opción"
+                ) {
+                activar = false;
+                break;
+            }
+        }
+
+        if (parseInt($("#@("horaHorometroInicio2" + i)").val()) > parseInt($("#@("horaHorometroFin2" + i)").val())) {
+            $("#@("mensajeHoraHorometroFin2" + i)").removeClass("hidden");
+            activar = false;
+        }
+        else {
+            $("#@("mensajeHoraHorometroFin2" + i)").addClass("hidden");
+        }
+
+        if (activar) $("#botonEnviar").removeAttr("disabled");
+        else $("#botonEnviar").attr("disabled", "disabled");
+
+    });
+        </script>           
+        
+        }
+    }

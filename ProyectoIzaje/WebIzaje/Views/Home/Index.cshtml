@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="jumbotron" style="background: url('@Url.Content("~/Images/crane3.jpg")') no-repeat; height: 430px">
+    <div class="container">
+
+        <div class="page-header">
+            <h1 style="color: #fff; ">Sistema Gestión Izaje</h1>
+        </div>
+        <p style="color: #eee; background-color:rgba(153, 153, 153, 0.5);">
+            Plataforma web: Gestión de Servicios de Izaje en Minera Los Pelambres.
+        </p>
+        @if(Session["nombre"]==null){
+            <a href="@Url.Action("index","Login")" class="btn btn-success btn-lg" ><i class="glyphicon glyphicon-log-in"></i>&nbsp;Iniciar Sesión</a>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">        
+        <div class="col-md-6 text-justify">
+            <h2 class="text-left"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Nueva solicitud</h2>
+            En esta sección podrás solicitar un nuevo servicio de Izaje dentro de Minera Los Pelambres mediante el llenado de un formulario para especificar las características del servicio.
+            <br>
+            <br>
+            <a class="btn btn-primary btn-md" href="@Url.Action("agregarSolicitud","Solicitud")"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Solicitar Servicio</a>
+        </div>        
+        <div class="col-md-6 text-justify">
+            <h2 class="text-left"><i class="glyphicon glyphicon-calendar"></i>&nbsp;Calendario</h2>            
+            En esta sección podrás ver todos los servicios de Izaje que han sido planificados, además de información detallada sobre cada uno de estos servicios.
+            <br>
+            <br>
+            <a class="btn btn-primary btn-md" href="@Url.Action("Index","Calendario")"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Ver Calendario</a>
+        </div>        
+    </div>
+</div>
+<br>
+<!--CSS StickyFooter-->
+<link rel="stylesheet" href="~/Content/bootstrap-stickyfooter.css">
+<div class="footer">
+    <footer>
+        <h5 class="text-muted text-center">
+            &copy; <strong>MINDgl</strong> <br />
+            <i class="glyphicon glyphicon-map-marker text-muted"></i>&ensp;La Serena, Chile - @DateTime.Now.Year
+        </h5>
+    </footer>
+</div>
+

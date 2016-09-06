@@ -1,0 +1,362 @@
+﻿@{
+    ViewBag.Title = "Nuevo Trabajador";
+}
+
+
+<div class="container">
+
+
+        <div class="page-header">
+            <h1 class="text-center">Nuevo Trabajador</h1>
+        </div>
+
+        <form action="@Url.Action("Guardar","Trabajador")" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <h6 class="text-center">
+                    <img src="@Url.Content("~/Images/default.jpg")" width="250px" class="img-rounded" />
+                </h6>
+                <hr />
+                <input type="file" class="form-control" name="imagen" accept="image/*">
+            </div>
+            <div class="col-md-8">
+
+                <div class="form-group" id="panel-rut">
+                    <label class="col-sm-2 control-label">Rut&emsp;</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="rut" placeholder="Ej. 10123345-1" pattern="\d{7,8}-[\d|kK]{1}" oninput="funcionValidarRut(value);" required>
+                        <span id="icon-rut" class="glyphicon glyphicon-ok form-control-feedback hidden"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nombre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Apellido Paterno</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="apellidoP" placeholder="Apellido Paterno" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Apellido Materno</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="apellidoM" placeholder="Apellido Materno" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Fono</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="fono" placeholder="Ej. 97657627 o (51)2226572" pattern="(\d{8})|(\(\d{2}\)\d{7})" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" placeholder="Ej. usuario@dominio.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Dirección</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="direccion" placeholder="Ej. Andres Bello, La Serena" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Rol</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="rol" id="rol" required>
+                            @{string[] roles = { "Operador", "Rigger" };}
+                            @foreach (var x in roles) {
+                                <option value="@x.ToLower()">@x</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Estado</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="estado" required>
+                            @{string[] estados = { "Turno Dia", "Turno Noche", "Descanso", "Licencia", "Vacaciones" };}
+                            @foreach (var x in estados)
+                            {
+                                <option value="@x.ToLower()">@x</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+
+        <h3 class="text-center">Requisitos Para Licencia Interna</h3>
+        <hr />
+        @{ string[] licencias = { "Examen Psicosensometrico", "Curso Manejo a la Defensa", "Licencia Municipal", "Hoja de Vida del Conductor", "Examen Preocupacional", "Inducción" };}
+        @for (int i = 0; i < licencias.Length; i++)
+        {
+        <div class="form-group" id="@("licencia"+i)">
+            <label class="col-sm-3 control-label">@licencias[i]</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="@("lnew_fecha"+i)" id="@("datetimepicker_l"+i)"  data-date-format="DD/MM/YYYY" pattern="\d{2}\/\d{2}\/\d{4}" placeholder="dd/mm/aaaa" />
+            </div>
+            <div class="col-sm-4">
+                <input type="file" class="form-control" name="lnew_file" id="@("lnew_file"+i)" accept="application/pdf">
+            </div>
+        </div>
+        }
+        <hr />
+
+        <section id="sectionCertificados">
+            <h3 class="text-center">Certificaciones Del Trabajador</h3>
+            <hr />
+            <div class="well well-sm" id="contenedorC"></div>
+            <h6 class="text-center">
+                <button type="button" class="btn btn-info" id="agregarC">
+                    <i class="glyphicon glyphicon-plus"></i> Agregar Certificación
+                </button>
+            </h6>
+
+            <input type="hidden" value="0" id="contador_c">
+            <hr />
+        </section>
+
+        <section id="sectionEquipos">
+            <h3 class="text-center">Equipos Certificados Para Ser Operados por el Trabajador</h3>
+            <hr />
+            <div class="well well-sm" id="contenedorE"></div>
+            <h6 class="text-center">
+                <button type="button" class="btn btn-info" id="agregarE">
+                    <i class="glyphicon glyphicon-plus"></i> Agregar Equipo
+                </button>
+            </h6>
+            <input type="hidden" value="0" id="contador_e">
+            <br />
+        </section>
+
+        <div class="modal-footer">
+            <a type="button" class="btn btn-default btn-lg" href="@Url.Action("Todos","Trabajador")"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-nuevo"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar</button>
+        </div>
+    </form>
+
+
+</div>
+@section scripts{
+<script type="text/javascript">
+
+    $('#agregarC').click(function () {
+        var contador = parseInt($('#contador_c').val());
+        var x = document.getElementById("contenedorC");
+        var elemento = document.createElement("div");
+
+        var cadena = "<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
+        cadena = cadena + "<div class='row'>";
+
+        cadena += "<div class='col-md-3'><div class='form-group'><label class='control-label'>Certificado</label><select class='form-control' name='cnew_name" + contador + "' id='certificado"+contador+"' required>";
+        cadena += "</select></div></div>";
+
+        cadena += "<div class='col-md-3'><div class='form-group'><label class='control-label'>Fecha de Vencimiento</label><input class='form-control' type='text' data-date-format='DD/MM/YYYY' pattern='\\d{2}\\/\\d{2}\\/\\d{4}' placeholder='dd/mm/aaaa' name='cnew_fecha" + contador + "' id='datetimepicker_c" + contador + "'  />";
+        cadena += "</div></div>";
+
+        cadena += "<div class='col-md-5'><div class='form-group'><label class='control-label'>Documento</label><input class='form-control' type='file' name='cnew_file' accept='application/pdf'>";
+        cadena += "</div></div>";
+        cadena += "</div>";
+
+
+        //agregar la clase y el inner
+        elemento.innerHTML = cadena;
+        elemento.setAttribute("class", "alert alert-info alert-dismissible");
+        elemento.setAttribute("role", "alert");
+        x.appendChild(elemento);
+
+        //Aumenta el contador oculto
+        contador = contador + 1;
+        $('#contador_c').val(contador);
+        loadCertificados(contador - 1);
+        startdateC(contador - 1);
+    });
+
+    function loadCertificados(contador) {
+        $.ajax({
+            url: "GetCertificado",
+            success: function (result) {
+                $("#certificado" + contador).html('');
+                $("#certificado" + contador).append("<option value=''>--Certificado--</option>");
+
+                if (result.length > 0) {
+                    var item = result.split(',');
+
+                    for (i = 0; i < item.length; i++) {
+                        $("#certificado" + contador).append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                    }
+                }
+               
+            }
+        });
+    }
+
+    $('#agregarE').click(function () {
+        var contador = parseInt($('#contador_e').val());
+        var x = document.getElementById("contenedorE");
+        var elemento = document.createElement("div");
+
+        var cadena = "<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>";
+        cadena = cadena + "<div class='row'>";
+        cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Marca</label><select class='form-control' name='enew_marca" + contador + "' id='marca"+contador+"' required>";
+        cadena += "</select></div></div>";
+
+        cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Modelo</label><select class='form-control' name='enew_modelo" + contador + "' id='modelo"+contador+"' required disabled>";
+        cadena += "</select></div></div>";
+
+        cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Capacidad(Ton)</label><select class='form-control' name='enew_capacidad" + contador + "' id='capacidad" + contador + "' required disabled>";
+        cadena += "</select></div></div>";
+
+        cadena += "<div class='col-md-2'><div class='form-group'><label class='control-label'>Fecha Vencimiento</label><input class='form-control' type='text' data-date-format='DD/MM/YYYY' pattern='\\d{2}\\/\\d{2}\\/\\d{4}' placeholder='dd/mm/aaaa' name='enew_fecha" + contador + "' id='datetimepicker_e" + contador + "' onfocus='startdateE(" + contador + ")' />";
+        cadena += "</div></div>";
+        cadena += "<div class='col-md-3'><div class='form-group'><label class='control-label'>Documento</label><input class='form-control' type='file' name='enew_file' accept='application/pdf'>";
+        cadena += "</div></div>";
+        cadena += "</div>";
+
+
+        //agregar la clase y el inner
+        elemento.innerHTML = cadena;
+        elemento.setAttribute("class", "alert alert-info alert-dismissible");
+        elemento.setAttribute("role", "alert");
+        x.appendChild(elemento);
+
+        //Aumenta el contador oculto
+        contador = contador + 1;
+        $('#contador_e').val(contador);
+        //loadModelo(contador - 1);
+        loadMarca(contador - 1);
+        startdateE(contador - 1);
+            
+    });
+
+    function loadMarca(contador) {
+            $.ajax({
+                url: "GetMarca",
+                success: function (items) {
+                    $("#marca" + contador).html('');
+                    $("#marca" + contador).append("<option value=''>--Marca--</option>");
+
+                    if (items.length > 0) {
+                        var item = items.split(',');
+
+                        for (i = 0; i < item.length; i++) {
+                            $("#marca" + contador).append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                        }
+                    }
+                },
+                done: loadModelo(contador)
+            });
+    }
+
+    function loadModelo(contador) {
+        $("#marca" + contador).change(function () {
+            $.ajax({
+                url: "GetModelo",
+                data: { 'marca': $("#marca" + contador).val() },
+                success: function (items) {
+                    $("#modelo" + contador).html('');
+                    $("#modelo" + contador).append("<option value=''>--Modelo--</option>");
+                    $("#modelo" + contador).removeAttr("disabled");
+
+                    if (items.length > 0) {
+                        var item = items.split(',');
+
+                        for (i = 0; i < item.length; i++) {
+                            $("#modelo" + contador).append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                        }
+                    }
+                },
+                done: loadCapacidad(contador)
+            });
+        })
+    }
+
+    function loadCapacidad(contador) {
+        $("#modelo" + contador).change(function () {
+            $.ajax({
+                url: "GetCapacidad",
+                data: { 'marca': $("#marca" + contador).val(), 'modelo': $("#modelo" + contador).val() },
+                success: function (items) {
+                        $("#capacidad" + contador).html('');
+                        $("#capacidad" + contador).append("<option value=''>--Capacidad--</option>");
+                        $("#capacidad" + contador).removeAttr("disabled");
+
+                        if (items.length > 0) {
+                            var item = items.split(',');
+
+                            for (i = 0; i < item.length; i++) {
+                                $("#capacidad" + contador).append("<option value='" + item[i] + "'>" + item[i] + "</option>");
+                            }
+                    }
+                }
+            })
+        })
+    };
+
+    $("#rol").change(function () {
+        var rol = $("#rol").val();
+        if (rol == "rigger") {
+            $("#licencia0,#licencia3,#licencia5,#sectionCertificados,#sectionEquipos").attr("hidden", "hidden");
+            $("input[name=lnew_fecha0],input[name=lnew_fecha3],input[name=lnew_fecha5]").val(null);
+            $("#lnew_file0").val(null);
+        } else {
+            $("#licencia0,#licencia3,#licencia5,#sectionCertificados,#sectionEquipos").removeAttr("hidden");
+        }
+    })
+
+    function funcionValidarRut(num) {
+        $.ajax({
+            url: "@Url.Action("rutValidar", "Trabajador")",
+            data: { 'rut': num },
+            success: function (result) {
+
+                if (result == "True") {
+                    $("#panel-rut").attr("class", "form-group has-success has-feedback");
+                    $("#icon-rut").attr("class", "glyphicon glyphicon-ok form-control-feedback");
+                    $("#btn-nuevo").removeAttr("disabled");
+                } else {
+                    $("#panel-rut").attr("class", "form-group has-error has-feedback");
+                    $("#icon-rut").attr("class", "glyphicon glyphicon-remove  form-control-feedback");
+                    $("#btn-nuevo").attr("disabled", "disabled");
+                }
+            }
+        })
+    };
+
+    $(function () {
+        $('#datetimepicker_l1').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+        $('#datetimepicker_l2').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+        $('#datetimepicker_l3').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+        $('#datetimepicker_l4').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+        $('#datetimepicker_l5').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+        $('#datetimepicker_l0').datetimepicker({viewMode: 'days',format: 'DD/MM/YYYY'});
+    });
+
+    function startdateC(num) {
+        $('#datetimepicker_c' + num).datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+    };
+    function startdateE(num) {
+        $('#datetimepicker_e' + num).datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY'
+        });
+    };
+
+    $(".footer").hide();
+</script>
+}
+
